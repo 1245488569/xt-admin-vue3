@@ -1,0 +1,22 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "scss",
+    "vue",
+    "sass"
+  ],
+  "windicss.sortOnSave": true,
+  "i18n-ally.localesPaths": [
+    "src/plugins/i18n",
+    "src/plugins/i18n/lang"
+  ]
+}

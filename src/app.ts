@@ -31,8 +31,8 @@ const sysGlobalConfig: IGlobalConfig = {
     enablePermission: true,
     // 是否开启载入进度条
     enableProgress: true,
-    // 是否开启动态标题(还未实现)
-    enableDynamicTitle: false,
+    // 是否开启动态标题
+    enableDynamicTitle: true,
     // 是否开启dashboard(当你所有侧边路由都需要权限动态生成时，将其设置为false，登录后框架将跳转到菜单中的第一个模块)
     enableDashboard: true,
     /**

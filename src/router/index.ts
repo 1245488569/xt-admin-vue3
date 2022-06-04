@@ -7,6 +7,8 @@ import { useUserStore } from '@/store/user'
 import { useNProgress } from '@vueuse/integrations/useNProgress'
 import constantRoutes from './constant'
 import useMenus from '@/hooks/useMenus'
+import { i18n } from '@/plugins/i18n'
+import { useTitle } from '@vueuse/core'
 
 const { isLoading } = useNProgress()
 
@@ -30,6 +32,17 @@ router.beforeEach(async(to, from, next) => {
   const useUser = useUserStore()
   const usePermissions = usePermissionsStore()
   useAppConfig.app.enableProgress && (isLoading.value = true)
+  // 设置页面标题
+  const title = useTitle()
+  if (useAppConfig.app.enableDynamicTitle) {
+    if (to.meta.title) {
+      title.value = i18n.global.te(to.meta.title) ? i18n.global.t(to.meta.title) : to.meta.title
+    } else {
+      title.value = import.meta.env.VITE_APP_TITLE
+    }
+  } else {
+    title.value = import.meta.env.VITE_APP_TITLE
+  }
 
   // 已登录
   if (useUser.getToken) {

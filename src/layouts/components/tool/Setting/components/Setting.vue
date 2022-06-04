@@ -78,6 +78,15 @@
           inactive-text="否"
         />
       </div>
+      <div class="flex justify-between items-center">
+        <span class="text-gray-500">开启动态标题</span>
+        <el-switch
+          v-model="useAppConfig.app.enableDynamicTitle"
+          inline-prompt
+          active-text="是"
+          inactive-text="否"
+        />
+      </div>
       <el-divider>导航</el-divider>
       <div class="flex justify-between items-center">
         <span class="text-gray-500">收起次导航</span>

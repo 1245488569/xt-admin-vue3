@@ -4,7 +4,6 @@
   import { useAppConfigStore } from '@/store/app'
   const useAppConfig = useAppConfigStore()
   const { locale } = useElementI18n()
-  document.title = import.meta.env.VITE_APP_TITLE
 
 </script>
 

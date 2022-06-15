@@ -1,25 +1,14 @@
-import router from '@/router'
 import { RouteRecordRaw } from 'vue-router'
 import * as path from 'path-browserify'
 import { isEmpty } from '@/util'
 import { useAppConfigStore } from '@/store/app'
-
+import { usePermissionsStore } from '@/store/permission'
 export default function useMenus() {
+  const permissionsStore = usePermissionsStore()
   const menus = computed(() => {
-    const filterRoutes = filterRouters(router.getRoutes())
-    return generateMenus(filterRoutes)
+    const route = mergeRoutePath(permissionsStore.routes)
+    return generateMenus(route)
   })
-
-  const getChildrenRoutes = routes => {
-    const result: RouteRecordRaw[] = []
-    routes.forEach(route => {
-      if (route.children && route.children.length) {
-        result.push(...route.children)
-      }
-    })
-
-    return result
-  }
 
   /**
   * 合并 path 作为跳转路径
@@ -35,19 +24,6 @@ export default function useMenus() {
     }
     return route
   }
-
-  /**
-  * 处理脱离层级的路由：某个路由为其他子路由，则剔除该路由，保留路由顶层(因为顶层中已经含有了被剔除的路由)
-  * @param {*} routes router.getRoutes()
-  */
-  const filterRouters = routes => {
-    const childrenRoutes = getChildrenRoutes(routes)
-    const res = routes.filter(route => {
-      return !childrenRoutes.find(childrenRoute => childrenRoute.name === route.name)
-    })
-    return mergeRoutePath(res)
-  }
-
   /**
   * 根据 filterRouters 数据，返回对应 menu 规则数组
   * forEach中的return 相当于 continue
@@ -56,12 +32,15 @@ export default function useMenus() {
     const useAppConfig = useAppConfigStore()
     const result: RouteRecordRaw[] = []
     filterRoutersData.forEach(item => {
+      // meta为空 children为空  比如登录 404...
       if (isEmpty(item.meta) && isEmpty(item.children)) return
 
+      // meta为空 children不为空  比如 '/'
       if (isEmpty(item.meta) && !isEmpty(item.children)) {
         result.push(...generateMenus(item.children))
         return
       }
+      // 1.meta children都不为空 2.meta不为空 children为空
       let route = result.find(res => res.name === item.name)
       if (!route) {
         route = {
@@ -70,7 +49,10 @@ export default function useMenus() {
         }
 
         if (route?.meta?.title && item.meta.hideInMenu !== true) {
+          // 这里可能出现的情况是 dashboard已经在tabbar中了 但是又设置了enableDashboard为false 就出现bug了
+          // 这里不去处理此bug 是因为 是否开始dashboard是在一开始就决定的 就算出现了 自己手动关闭一下就好
           if (!useAppConfig.app.enableDashboard && route.name === 'dashboard') return
+
           result.push(route)
         }
 
@@ -83,10 +65,8 @@ export default function useMenus() {
 
     return result
   }
-
   return {
     menus,
-    filterRouters,
     generateMenus
   }
 }

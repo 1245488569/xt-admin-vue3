@@ -1,19 +1,15 @@
-import { RouteRecordRaw } from 'vue-router'
 import * as path from 'path-browserify'
 import { isEmpty } from '@/util'
 import { useAppConfigStore } from '@/store/app'
 import { usePermissionsStore } from '@/store/permission'
 export default function useMenus() {
   const permissionsStore = usePermissionsStore()
-  const menus = computed(() => {
-    const route = mergeRoutePath(permissionsStore.routes)
-    return generateMenus(route)
-  })
+  const useAppConfig = useAppConfigStore()
 
   /**
-  * 合并 path 作为跳转路径
-  * @param {*} routes router.getRoutes()
-  */
+* 合并 path 作为跳转路径
+* @param {*} routes router.getRoutes()
+*/
   const mergeRoutePath = (route, basePath = '') => {
     for (let i = 0; i < route.length; i++) {
       const r = route[i]
@@ -29,8 +25,7 @@ export default function useMenus() {
   * forEach中的return 相当于 continue
   */
   const generateMenus = (filterRoutersData) => {
-    const useAppConfig = useAppConfigStore()
-    const result: RouteRecordRaw[] = []
+    const result: any[] = []
     filterRoutersData.forEach(item => {
       // meta为空 children为空  比如登录 404...
       if (isEmpty(item.meta) && isEmpty(item.children)) return
@@ -65,8 +60,36 @@ export default function useMenus() {
 
     return result
   }
+  // 过滤权限并补全路径后的路由
+  const allDealRoute = mergeRoutePath(permissionsStore.routes)
+  // 所有在侧边可以展示的菜单
+  const allSidebarMenu = generateMenus(allDealRoute)
+
+  // 展示的次菜单
+  const menus = computed(() => {
+    if (['onlyTopNav', 'onlySubSideNav'].includes(useAppConfig.getLayoutMode)) {
+      return allSidebarMenu
+    } else {
+      return allMainMenu.value[permissionsStore.mainMenuActive].children
+    }
+  })
+  // 所有菜单
+  const allMainMenu = computed(() => {
+    return permissionsStore.newPrivateRoutes.map(v => {
+      return {
+        parentIndex: v.parentIndex,
+        title: v.title,
+        icon: v.icon,
+        children: allSidebarMenu.filter(k => k.parentIndex === v.parentIndex)
+      }
+    })
+  })
+
   return {
     menus,
+    allMainMenu,
+    allSidebarMenu,
+    allDealRoute,
     generateMenus
   }
 }

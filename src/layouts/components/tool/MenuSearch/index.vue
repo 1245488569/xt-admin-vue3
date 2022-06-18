@@ -18,10 +18,9 @@
   const searchOptions = ref<any[]>([])
 
   const router = useRouter()
-  const { menus } = useMenus()
-
+  const { allSidebarMenu } = useMenus()
   const searchPool = computed(() => {
-    return generateRoutes(menus.value)
+    return generateRoutes(allSidebarMenu)
   })
 
 

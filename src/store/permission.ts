@@ -6,6 +6,7 @@ import privateRoutes from '@/router/privateRoutes'
 import { deepClone } from '@/util'
 import { useUserStore } from '@/store/user'
 import { useAppConfigStore } from './app'
+import { IPrivateRoute } from '@/router/type'
 
 // --------------前端路由处理-------------------
 function hasPermission(permissions, route) {
@@ -82,14 +83,45 @@ function filterBackendRoutes(routes: RouteRecordRaw[], backendRoutes: any[]): Ro
   return res
 }
 
+// 私有路由递归添加序号标记 返回需注册的路由
+function addPrivateChildrenIndex(privateChildrenRoutes:RouteRecordRaw[], parentIndex: number) {
+  privateChildrenRoutes.forEach(item => {
+    item.parentIndex = parentIndex
+    if (item.children && item.children.length) {
+      addPrivateChildrenIndex(item.children, item.parentIndex)
+    }
+  })
+}
+function addPrivateIndex(privateRoutes: IPrivateRoute[]) {
+  privateRoutes.forEach((item, i) => {
+    item.parentIndex = i
+    if (item.children && item.children.length) {
+      addPrivateChildrenIndex(item.children, item.parentIndex)
+    }
+  })
+  return privateRoutes
+}
+
+
 export const usePermissionsStore = defineStore('route', {
   state: () => ({
-    // 路由表
-    routes: [] as RouteRecordRaw[]
+    // 过滤完成的路由表(固定路由+异步路由)
+    routes: [] as RouteRecordRaw[],
+    // 添加了parentIndex标记的
+    newPrivateRoutes: [] as IPrivateRoute[],
+    mainMenuActive: 0
   }),
 
   getters: {
+    allPrivateChildrenRouter(): RouteRecordRaw[] {
+      let route = [] as RouteRecordRaw[]
+      this.newPrivateRoutes = addPrivateIndex(privateRoutes)
 
+      this.newPrivateRoutes.forEach(item => {
+        route = [...route, ...item.children]
+      })
+      return route
+    }
   },
 
   actions: {
@@ -111,14 +143,14 @@ export const usePermissionsStore = defineStore('route', {
           // 后端路由
           if (useAppConfig.getRouteMode === 'backend') {
             const backendRoutes = await userStore.getBackendRoutes()
-            routes = filterBackendRoutes(privateRoutes, backendRoutes)
+            routes = filterBackendRoutes(this.allPrivateChildrenRouter, backendRoutes)
           } else {
             // 前端路由
             const permissions = await userStore.getPermissions()
-            routes = filterPrivateRoutes(privateRoutes, permissions)
+            routes = filterPrivateRoutes(this.allPrivateChildrenRouter, permissions)
           }
         } else {
-          routes = [...privateRoutes]
+          routes = [...this.allPrivateChildrenRouter]
         }
         // 最后添加 不匹配路由进入 404
         routes.push({
@@ -131,6 +163,10 @@ export const usePermissionsStore = defineStore('route', {
         // routes 处理后的异步路由
         resolve(routes)
       })
+    },
+    // 点击主导航
+    changeMainMuen(mainMenuActive: number) {
+      this.mainMenuActive = mainMenuActive
     }
   }
 })

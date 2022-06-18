@@ -2,9 +2,36 @@
   import { generateTitle } from '@/util/i18n'
   import Logo from '../logo/index.vue'
   import { useAppConfigStore } from '@/store/app'
+  import useMenus from '@/hooks/useMenus'
+  import { usePermissionsStore } from '@/store/permission'
+  import { RouteRecordName, RouteRecordRaw } from 'vue-router'
+  const permissionsStore = usePermissionsStore()
   const useAppConfig = useAppConfigStore()
+  const { allMainMenu, allDealRoute } = useMenus()
+  const route = useRoute()
+  console.log(allDealRoute)
+  function findCurItemByName(name: RouteRecordName | null | undefined, menu: RouteRecordRaw[]) {
+    for (const item of menu) {
+      if (item.name === name) return item
+      if (item.children && item.children.length) {
+        const _item = findCurItemByName(name, item.children)
+        if (_item) return _item
+      }
+    }
+  }
 
-  const isActive = ref(false)
+  const stopWatchRoute = watch(() => route, (val) => {
+    const { name } = val
+
+    permissionsStore.changeMainMuen(findCurItemByName(name, allDealRoute).parentIndex)
+  }, {
+    immediate: true,
+    deep: true
+  })
+  onUnmounted(() => {
+    stopWatchRoute()
+  })
+
   const mainmenubgcolor = computed(() => {
     return useAppConfig.getTheme.mainMenuBgColor
   })
@@ -17,6 +44,10 @@
   const mainmenuactivetextcolor = computed(() => {
     return useAppConfig.getTheme.mainMenuActiveTextColor
   })
+
+  const clickMainMuen = (parentIndex) => {
+    permissionsStore.changeMainMuen(parentIndex)
+  }
 </script>
 
 <template>
@@ -26,15 +57,17 @@
     />
     <div class="!mt-[var(--xt-logo-height)]">
       <ul>
-        <template v-for="i in 50" :key="i">
+        <template v-for="(item, index) in allMainMenu" :key="index">
           <li
             class="cursor-pointer flex flex-col h-15 justify-center items-center main-menu-item"
-            :class="{ 'is-active': isActive }"
+            :class="{ 'is-active': item.parentIndex === permissionsStore.mainMenuActive }"
+            @click="clickMainMuen(item.parentIndex)"
+            v-if="item.children.length"
           >
             <el-icon :size="20">
-              <i-ep-map-location />
+              <svg-icon :name="item.icon" />
             </el-icon>
-            <span class="truncate">{{ generateTitle('1') }}</span>
+            <span class="truncate">{{ generateTitle(item.title) }}</span>
           </li>
         </template>
       </ul>

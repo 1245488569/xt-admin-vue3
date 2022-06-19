@@ -16,7 +16,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="flex items-center">
     <el-icon :size="size">
       <svg-icon
         class="cursor-pointer text-dark-50"

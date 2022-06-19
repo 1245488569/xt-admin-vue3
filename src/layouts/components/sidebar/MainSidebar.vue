@@ -23,7 +23,7 @@
   const stopWatchRoute = watch(() => route, (val) => {
     const { name } = val
 
-    permissionsStore.changeMainMuen(findCurItemByName(name, allDealRoute).parentIndex)
+    permissionsStore.changeMainMuen(findCurItemByName(name, allDealRoute).parentIndex ?? 0)
   }, {
     immediate: true,
     deep: true

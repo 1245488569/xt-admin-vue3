@@ -50,6 +50,8 @@ export const useTabbarStore = defineStore('tabbar', {
       const mergeTabIndex = this.list.findIndex(item => item.fullPath === tab.meta.mergeTabbarPath)
       if (mergeTabIndex !== -1) {
         this.list.splice(mergeTabIndex, 1, tab)
+      } else {
+        this.list.push(tab)
       }
     },
     /**

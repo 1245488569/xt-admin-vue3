@@ -77,6 +77,7 @@
 
 <style lang="scss" scoped>
   .main-sidebar-container {
+    background-color: v-bind(mainmenubgcolor);
     overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior: contain;

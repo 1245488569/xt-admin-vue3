@@ -35,8 +35,8 @@
     ]
   })
   const loginForm = ref({
-    account: '',
-    password: ''
+    account: 'admin11',
+    password: 'admin11'
   })
   const loading = ref(false)
   const loginFormRef = ref()

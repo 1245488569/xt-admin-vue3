@@ -1,5 +1,9 @@
 # Vue3 + Typescript + Vite + pinia + element plus + windcss
 
+# 演示地址
+http://www.xt-admin.com.cn/#/login
+
+
 ## 特点
 1. Vue3
 2. Vite

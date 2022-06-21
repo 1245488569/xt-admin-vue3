@@ -25,7 +25,7 @@ export default ({ command, mode }: ConfigEnv) => {
         output: { // 静态资源分类打包
           chunkFileNames: 'assets/js/[name]-[hash].js',
           entryFileNames: 'assets/js/[name]-[hash].js',
-          assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+          // assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
         }
       }
     },

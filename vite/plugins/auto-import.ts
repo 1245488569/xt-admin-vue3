@@ -5,14 +5,6 @@ export default function setupAutoImport() {
     imports: [
       'vue',
       'vue-router',
-      {
-        'vue': [
-          'defineProps',
-          'defineEmits',
-          'defineExpose',
-          'withDefaults'
-        ]
-      },
       'pinia'
     ],
     eslintrc: {

@@ -1,5 +1,7 @@
 # Vue3 + Typescript + Vite + pinia + element plus + windcss
 
+# 如果大家觉得有用，请帮忙点下star，十分感谢
+
 # 演示地址
 http://www.xt-admin.com.cn/#/login
 

@@ -3,7 +3,7 @@ import demo1Routes from './modules/demo1'
 import testRoutes from './modules/test'
 import cacheRoutes from './modules/cache'
 import backendRoutes from './modules/backend'
-
+import components from './modules/components'
 
 const privateRoutes: IPrivateRoute[] = [
   {
@@ -11,7 +11,7 @@ const privateRoutes: IPrivateRoute[] = [
     icon: 'ep:apple',
     children: [
       demo1Routes,
-      // testRoutes,
+      components
     ]
   },
   {

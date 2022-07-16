@@ -9,7 +9,7 @@
   const useAppConfig = useAppConfigStore()
   const { allMainMenu, allDealRoute } = useMenus()
   const route = useRoute()
-  console.log(allDealRoute)
+
   function findCurItemByName(name: RouteRecordName | null | undefined, menu: RouteRecordRaw[]) {
     for (const item of menu) {
       if (item.name === name) return item

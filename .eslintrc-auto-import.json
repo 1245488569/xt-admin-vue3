@@ -8,9 +8,6 @@
     "customRef": true,
     "defineAsyncComponent": true,
     "defineComponent": true,
-    "defineEmits": true,
-    "defineExpose": true,
-    "defineProps": true,
     "defineStore": true,
     "effectScope": true,
     "getActivePinia": true,
@@ -67,7 +64,6 @@
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
-    "watchSyncEffect": true,
-    "withDefaults": true
+    "watchSyncEffect": true
   }
 }

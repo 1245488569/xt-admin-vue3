@@ -3,7 +3,7 @@ import { piniaStore } from '@/store'
 import { RouteRecordRaw } from 'vue-router'
 import constantRoutes from '@/router/constant'
 import privateRoutes from '@/router/privateRoutes'
-import { deepClone } from '@/util'
+import cloneDeep from 'lodash/cloneDeep'
 import { useUserStore } from '@/store/user'
 import { useAppConfigStore } from './app'
 import { IPrivateRoute } from '@/router/type'
@@ -30,7 +30,7 @@ function hasPermission(permissions, route) {
 function filterPrivateRoutes(routes, permissions) {
   const res = [] as RouteRecordRaw[]
   routes.forEach(route => {
-    const tmpRoute = deepClone(route)
+    const tmpRoute = cloneDeep(route)
     if (hasPermission(permissions, tmpRoute)) {
       if (tmpRoute.children) {
         tmpRoute.children = filterPrivateRoutes(tmpRoute.children, permissions)
@@ -55,25 +55,25 @@ function hasBackRoutePermission(backendRoutes: any[], route: RouteRecordRaw) {
 function filterBackendRoutes(routes: RouteRecordRaw[], backendRoutes: any[]): RouteRecordRaw[] {
   const res = [] as RouteRecordRaw[]
   routes.forEach(route => {
-    const tmpRoute = deepClone(route)
+    const tmpRoute = cloneDeep(route)
     const backendRouteItem = backendRoutes.find(item => item.name === tmpRoute.name)
     if (hasBackRoutePermission(backendRoutes, tmpRoute)) {
       if (tmpRoute.children) {
         tmpRoute.children = filterBackendRoutes(tmpRoute.children, backendRoutes)
         if (tmpRoute.children.length) {
-          // 如果后端返回了meta 则以后端返回的meta里的内容为准  没返回的则已前端为准
-          if (backendRouteItem.meta) {
+          // 如果后端返回了meta 且前端路由也有meta 则以后端返回的meta里的内容为准  没返回的则已前端为准
+          if (JSON.stringify(backendRouteItem.meta) !== '{}' && JSON.stringify(tmpRoute.meta) !== '{}') {
             Object.keys(backendRouteItem.meta).forEach(key => {
-              tmpRoute.meta[key] = backendRouteItem.meta[key]
+              tmpRoute.meta![key] = backendRouteItem.meta[key]
             })
           }
           res.push(tmpRoute)
         }
       } else {
-        // 如果后端返回了meta 则以后端返回的meta里的内容为准  没返回的则已前端为准
-        if (backendRouteItem.meta) {
+        // 如果后端返回了meta 且前端路由也有meta 则以后端返回的meta里的内容为准  没返回的则已前端为准
+        if (JSON.stringify(backendRouteItem.meta) !== '{}' && JSON.stringify(tmpRoute.meta) !== '{}') {
           Object.keys(backendRouteItem.meta).forEach(key => {
-            tmpRoute.meta[key] = backendRouteItem.meta[key]
+            tmpRoute.meta![key] = backendRouteItem.meta[key]
           })
         }
         res.push(tmpRoute)

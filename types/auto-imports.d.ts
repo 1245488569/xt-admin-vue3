@@ -9,9 +9,6 @@ declare global {
   const customRef: typeof import('vue')['customRef']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
-  const defineEmits: typeof import('vue')['defineEmits']
-  const defineExpose: typeof import('vue')['defineExpose']
-  const defineProps: typeof import('vue')['defineProps']
   const defineStore: typeof import('pinia')['defineStore']
   const effectScope: typeof import('vue')['effectScope']
   const getActivePinia: typeof import('pinia')['getActivePinia']
@@ -69,5 +66,4 @@ declare global {
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
   const watchSyncEffect: typeof import('vue')['watchSyncEffect']
-  const withDefaults: typeof import('vue')['withDefaults']
 }

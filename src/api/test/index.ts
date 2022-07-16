@@ -31,3 +31,10 @@ export function logoutApi() {
     url: 'logout',
   })
 }
+
+export function tableListApi(data) {
+  return xtRequest.post<IResponseDataType>({
+    url: 'list',
+    data
+  })
+}

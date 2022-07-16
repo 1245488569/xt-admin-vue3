@@ -7,7 +7,6 @@
     {
       prop: 'index',
       label: '序号',
-      align: 'center',
       width: '70px',
       tableColumnOtherAttrs: {
         type: 'index'
@@ -19,6 +18,10 @@
       align: 'center',
       headerSlot: 'dateHeader',
       slot: 'date',
+      editable: true,
+      tableColumnOtherAttrs: {
+        className: 'date-custom'
+      }
     },
     {
       prop: 'name',
@@ -68,11 +71,24 @@
   const xtTableRef = ref<InstanceType<typeof XtTable> | null>(null)
   const edit = (row: any) => {
     console.log(row)
+    editRowSign.value = 'edit'
   }
 
   // 获取多选数据
   const getMultipleSelection = () => {
     console.log(xtTableRef.value?.multipleSelection)
+  }
+
+  // 编辑行标识
+  const editRowSign = ref<string>('')
+  // 确定修改当前行
+  const sureEditRow = (row: any) => {
+    console.log(row)
+  }
+  // 确定修改当前单元格
+  const editCellConfirm = ({row, $index}:{row: any, $index: number}) => {
+    console.log(row)
+    console.log($index)
   }
 </script>
 
@@ -84,32 +100,40 @@
     </div>
 
     <xt-table
+      class="xttable"
       ref="xtTableRef"
       stripe
       :options="options"
       :data="tableData"
       show-multiple
       is-edit-row
+      v-model:edit-row-sign="editRowSign"
       v-model:current-page="current"
       v-model:page-size="pageSize"
       :total="total"
+      @edit-cell-confirm="editCellConfirm"
     >
       <template #dateHeader="{ column, $index }">
-        <div class="flex items-center justify-center">
-          <el-icon :size="15">
-            <svg-icon name="ep:alarm-clock"></svg-icon>
-          </el-icon>
-          {{ $index }}-{{ column.label }}
-        </div>
+        <div>{{ $index }}-{{ column.label }}</div>
       </template>
       <template #date="{ row }">
-        <div class="flex items-center justify-center">
+        <div class="flex mr-3 items-center">
           <el-icon :size="20">
             <svg-icon name="ep:alarm-clock"></svg-icon>
           </el-icon>
-
           <span class="ml-3">{{ row.date }}</span>
         </div>
+      </template>
+      <!-- 可自定义单元格编辑图标 -->
+      <!-- <template #editCell="{ row }">
+        <el-icon :size="16" color="#F56C6C">
+          <svg-icon name="ep:check"></svg-icon>
+        </el-icon>
+        {{ row.date }}
+      </template> -->
+      <template #editRow="{ row }">
+        <el-button size="small" type="primary" @click="sureEditRow(row)">确认</el-button>
+        <el-button size="small" type="danger">取消</el-button>
       </template>
       <template #action="{ row }">
         <el-button size="small" type="primary" @click="edit(row)">编辑</el-button>
@@ -118,3 +142,11 @@
     </xt-table>
   </page-main>
 </template>
+
+<style lang="scss" scoped>
+.xttable :deep(.date-custom) .cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

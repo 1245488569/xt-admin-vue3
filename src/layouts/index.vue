@@ -171,7 +171,7 @@
           </div>
         </template>
 
-        <main class="flex flex-col flex-1" :class="mainMarginLeft">
+        <main class="flex flex-col flex-1 overflow-x-hidden" :class="mainMarginLeft">
           <div v-if="showActionbar" class="shadow right-0 z-999" :class="[fixedActionbar, actionbarLeft, actionbarTop]">
             <Tabbar v-if="showTabbar" />
             <Toolbar v-if="showToolbar" />
@@ -182,8 +182,6 @@
                 <component :is="Component" :key="route.fullPath" />
               </keep-alive>
             </router-view>
-
-            <!-- <router-view></router-view> -->
           </section>
         </main>
       </div>

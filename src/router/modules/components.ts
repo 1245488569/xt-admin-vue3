@@ -38,5 +38,14 @@ export default {
         icon: 'ep:apple',
       }
     },
+    {
+      path: 'edit-table',
+      name: 'EditTable',
+      component: () => import('@/views/components/table/EditTable.vue'),
+      meta: {
+        title: '可编辑表格',
+        icon: 'ep:apple',
+      }
+    },
   ]
 } as RouteRecordRaw

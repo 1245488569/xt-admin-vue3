@@ -47,5 +47,14 @@ export default {
         icon: 'ep:apple',
       }
     },
+    {
+      path: 'icon-picker',
+      name: 'IconPicker',
+      component: () => import('@/views/components/IconPicker/index.vue'),
+      meta: {
+        title: '图标选择',
+        icon: 'ep:apple',
+      }
+    },
   ]
 } as RouteRecordRaw

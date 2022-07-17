@@ -72,7 +72,8 @@
 
   // 获取多选数据
   const getMultipleSelection = () => {
-    console.log(xtTableRef.value?.multipleSelection)
+    // xtTableRef.value?.multipleSelection 不要这样使用 否则打包会报错
+    console.log(xtTableRef.value?.['multipleSelection'])
   }
 </script>
 

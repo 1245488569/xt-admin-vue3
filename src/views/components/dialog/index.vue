@@ -4,7 +4,8 @@
   const dialogRef = ref<InstanceType<typeof XtDialog> | null>()
 
   const openDialog = () => {
-    dialogRef.value?.open()
+    // dialogRef.value?.open() 不要这样使用 否则打包会报错
+    dialogRef.value?.['open']()
   }
 
   const options: FormOptions[] = [

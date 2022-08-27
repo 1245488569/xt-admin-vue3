@@ -1,5 +1,6 @@
 <script setup lang="ts" name="Top">
   import { useAppConfigStore } from '@/store/app'
+  import { generateTitle } from '@/util/i18n'
   import useMenus from '@/hooks/useMenus'
   import Logo from '../logo/index.vue'
   import SidebarItem from '../sidebar/SidebarItem.vue'
@@ -10,9 +11,33 @@
   import ThemeSelect from '../tool/ThemeSelect/index.vue'
   import Setting from '../tool/Setting/index.vue'
   import Personal from '../personal/index.vue'
+  import { usePermissionsStore } from '@/store/permission'
+  import { RouteRecordName, RouteRecordRaw } from 'vue-router'
   const useAppConfig = useAppConfigStore()
-  const { menus } = useMenus()
+  const { menus, allMainMenu, allDealRoute } = useMenus()
+  const permissionsStore = usePermissionsStore()
+  const route = useRoute()
+  function findCurItemByName(name: RouteRecordName | null | undefined, menu: RouteRecordRaw[]) {
+    for (const item of menu) {
+      if (item.name === name) return item
+      if (item.children && item.children.length) {
+        const _item = findCurItemByName(name, item.children)
+        if (_item) return _item
+      }
+    }
+  }
+  const stopWatchRoute = watch(() => route, (val) => {
+    const { name } = val
+    permissionsStore.changeMainMuen(findCurItemByName(name, allDealRoute).parentIndex ?? 0)
+  }, {
+    immediate: true,
+    deep: true
+  })
+  onUnmounted(() => {
+    stopWatchRoute()
+  })
 
+  // 整体顶部导航背景色
   const topnavbgcolor = computed(() => {
     if (useAppConfig.getLayoutMode === 'topSubSideNav') {
       return useAppConfig.getTheme.mainMenuBgColor
@@ -20,13 +45,42 @@
       return useAppConfig.getTheme.menuBgColor
     }
   })
+
+  // 选中主菜单背景色
+  const mainmenuactivebgcolor = computed(() => {
+    return useAppConfig.getTheme.mainMenuActiveBgColor
+  })
+
+  const clickMainMuen = (parentIndex) => {
+    permissionsStore.changeMainMuen(parentIndex)
+  }
 </script>
 
 <template>
   <div class="flex h-[var(--xt-top-nav-height)] flex-shrink-0 top-nav-container px-4 top-0 right-0 left-0 z-1000 fixed items-center">
     <Logo class="mr-4 text-xl" />
     <!-- 顶部主导航+侧边次栏导航 -->
-    <div class="flex-1" v-if="useAppConfig.getLayoutMode === 'topSubSideNav'">顶部主导航+侧边次栏导航  开发中....</div>
+    <div class="flex-1" v-if="useAppConfig.getLayoutMode === 'topSubSideNav'">
+      <el-menu
+        mode="horizontal"
+        :default-active="permissionsStore.mainMenuActive + ''"
+        :background-color="useAppConfig.getTheme.mainMenuBgColor"
+        :text-color="useAppConfig.getTheme.mainMenuTextColor"
+        :active-text-color="useAppConfig.getTheme.mainMenuActiveTextColor"
+        :unique-opened="true"
+      >
+        <template v-for="(item, index) in allMainMenu" :key="index">
+          <el-menu-item :index="item.parentIndex + ''" v-if="item.children.length" @click="clickMainMuen(item.parentIndex)">
+            <div class="flex max-w-20 truncate items-center justify-center">
+              <el-icon :size="20">
+                <svg-icon :name="item.icon" />
+              </el-icon>
+              <span>{{ generateTitle(item.title) }}</span>
+            </div>
+          </el-menu-item>
+        </template>
+      </el-menu>
+    </div>
     <!-- 只有顶部导航 -->
     <template v-if="useAppConfig.getLayoutMode === 'onlyTopNav'">
       <el-menu
@@ -57,6 +111,10 @@
 </template>
 
 <style lang="scss" scoped>
+.el-menu-item.is-active {
+  background-color: v-bind(mainmenuactivebgcolor);
+}
+
 .top-nav-container {
   background-color: v-bind(topnavbgcolor);
 

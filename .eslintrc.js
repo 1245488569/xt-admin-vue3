@@ -121,7 +121,7 @@ module.exports = {
     "vue/max-attributes-per-line": "off",
     "vue/multiline-html-element-content-newline": "off",
     "vue/mustache-interpolation-spacing": "off",
-    "vue/name-property-casing": ["error", "kebab-case"],
+    // "vue/name-property-casing": ["error", "kebab-case"],
     "vue/no-async-in-computed-properties": "error",
     "vue/no-boolean-default": "off",
     "vue/no-confusing-v-for-v-if": "off",

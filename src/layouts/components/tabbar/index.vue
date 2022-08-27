@@ -34,7 +34,7 @@
     useTabbar.add({
       fullPath,
       path,
-      name: matched.find(v => v.name === name)?.components.default.name || '',
+      name: matched.find(v => v.name === name)?.components?.default.name || '',
       meta
     })
     nextTick(() => {

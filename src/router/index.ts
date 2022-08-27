@@ -107,7 +107,7 @@ router.afterEach((to, from) => {
   useAppConfig.app.enableProgress && (isLoading.value = false)
 
   if (to.meta.cache) {
-    const componentName = to.matched[to.matched.length - 1].components.default.name
+    const componentName = to.matched[to.matched.length - 1].components?.default.name || null
     if (componentName) {
       useKeepAlive.add(componentName)
     } else {
@@ -116,7 +116,7 @@ router.afterEach((to, from) => {
   }
 
   if (from.meta.cache) {
-    const componentName = from.matched[from.matched.length - 1].components.default.name
+    const componentName = from.matched[from.matched.length - 1].components?.default.name || null
     if (componentName) {
       switch (typeof from.meta.cache) {
         case 'string':

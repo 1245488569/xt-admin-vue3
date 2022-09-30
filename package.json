@@ -73,12 +73,7 @@
     "workbox-window": "^6.5.4"
   },
   "lint-staged": {
-    "src/**/*.{ts,vue}": [
-      "eslint --fix"
-    ],
-    "*.vue": [
-      "stylelint --fix  --custom-syntax postcss-html"
-    ]
+    "*.{js,ts,tsx,vue}": "eslint --cache --fix"
   },
   "pnpm": {
     "peerDependencyRules": {

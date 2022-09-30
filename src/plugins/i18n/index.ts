@@ -5,9 +5,8 @@ import mZhChLocale from './lang/zh-ch'
 import mZhTwLocale from './lang/zh-tw'
 import mEnLocale from './lang/en'
 
-
 const messages = {
-  'en': {
+  en: {
     ...mEnLocale
   },
   'zh-ch': {

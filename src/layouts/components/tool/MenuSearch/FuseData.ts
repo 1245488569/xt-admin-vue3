@@ -15,8 +15,15 @@ export const generateRoutes = (routes, basePath = '/', prefixTitle = []) => {
     }
     // 动态路由不允许被搜索
     const re = /.*\/:.*/
-    if (route.meta && route.meta.title && route.meta.hideInSearch !== true && !re.exec(route.path)) {
-      const i18ntitle = i18n.global.te(route.meta.title) ? i18n.global.t(route.meta.title) : route.meta.title
+    if (
+      route.meta &&
+      route.meta.title &&
+      route.meta.hideInSearch !== true &&
+      !re.exec(route.path)
+    ) {
+      const i18ntitle = i18n.global.te(route.meta.title)
+        ? i18n.global.t(route.meta.title)
+        : route.meta.title
       data.title = [...data.title, i18ntitle]
       res.push(data)
     }

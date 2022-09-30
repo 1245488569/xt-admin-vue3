@@ -27,7 +27,7 @@ const router = createRouter({
 // ------------------------------路由守卫相关------------------------------
 // 白名单(无token可以进入的页面)
 const whiteList = ['/login']
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const useAppConfig = useAppConfigStore()
   const useUser = useUserStore()
   const usePermissions = usePermissionsStore()
@@ -36,7 +36,9 @@ router.beforeEach(async(to, from, next) => {
   const title = useTitle()
   if (useAppConfig.app.enableDynamicTitle) {
     if (to.meta.title) {
-      title.value = i18n.global.te(to.meta.title) ? i18n.global.t(to.meta.title) : to.meta.title
+      title.value = i18n.global.te(to.meta.title)
+        ? i18n.global.t(to.meta.title)
+        : to.meta.title
     } else {
       title.value = import.meta.env.VITE_APP_TITLE
     }
@@ -48,7 +50,8 @@ router.beforeEach(async(to, from, next) => {
   if (useUser.getToken) {
     // 还没挂载过路由
     if (!usePermissions.routes.length) {
-      const filterRoutes: RouteRecordRaw[] = await usePermissions.filterPermissionsRoutes()
+      const filterRoutes: RouteRecordRaw[] =
+        await usePermissions.filterPermissionsRoutes()
       filterRoutes.forEach(item => {
         router.addRoute(item)
       })
@@ -64,7 +67,10 @@ router.beforeEach(async(to, from, next) => {
               replace: true
             })
             // 如果前往的是dashboard 但是dashboard不存在
-          } else if (to.name === 'dashboard' && !useAppConfig.app.enableDashboard) {
+          } else if (
+            to.name === 'dashboard' &&
+            !useAppConfig.app.enableDashboard
+          ) {
             // 进入第一个侧边栏导航
             const { menus } = useMenus()
             if (menus.value.length) {
@@ -101,13 +107,13 @@ router.beforeEach(async(to, from, next) => {
 })
 
 router.afterEach((to, from) => {
-
   const useAppConfig = useAppConfigStore()
   const useKeepAlive = useKeepAliveStore()
   useAppConfig.app.enableProgress && (isLoading.value = false)
 
   if (to.meta.cache) {
-    const componentName = to.matched[to.matched.length - 1].components?.default.name || null
+    const componentName =
+      to.matched[to.matched.length - 1].components?.default.name || null
     if (componentName) {
       useKeepAlive.add(componentName)
     } else {
@@ -116,7 +122,8 @@ router.afterEach((to, from) => {
   }
 
   if (from.meta.cache) {
-    const componentName = from.matched[from.matched.length - 1].components?.default.name || null
+    const componentName =
+      from.matched[from.matched.length - 1].components?.default.name || null
     if (componentName) {
       switch (typeof from.meta.cache) {
         case 'string':
@@ -149,9 +156,7 @@ router.afterEach((to, from) => {
       }
     }
   }
-
 })
-
 
 export async function setupRouter(app: App) {
   app.use(router)

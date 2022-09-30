@@ -1,8 +1,8 @@
 <script setup lang="ts" name="dashboard">
-  import { ElMessage } from 'element-plus'
-  const showMsg = () => {
-    ElMessage('this is a message.')
-  }
+import { ElMessage } from 'element-plus'
+const showMsg = () => {
+  ElMessage('this is a message.')
+}
 </script>
 
 <template>

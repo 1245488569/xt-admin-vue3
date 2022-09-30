@@ -1,22 +1,22 @@
 <script setup lang="ts" name="LangSelect">
-  import { useI18n } from 'vue-i18n'
-  import { useAppConfigStore } from '@/store/app'
+import { useI18n } from 'vue-i18n'
+import { useAppConfigStore } from '@/store/app'
 
-  defineProps({
-    size: {
-      type: Number,
-      default: 20
-    }
-  })
-
-  const useAppConfig = useAppConfigStore()
-  const language = computed(() => useAppConfig.getLanguage)
-
-  const i18n = useI18n()
-  const handleSetLanguage = (lang: Language) => {
-    i18n.locale.value = lang
-    useAppConfig.changeLanguage(lang)
+defineProps({
+  size: {
+    type: Number,
+    default: 20
   }
+})
+
+const useAppConfig = useAppConfigStore()
+const language = computed(() => useAppConfig.getLanguage)
+
+const i18n = useI18n()
+const handleSetLanguage = (lang: Language) => {
+  i18n.locale.value = lang
+  useAppConfig.changeLanguage(lang)
+}
 </script>
 
 <template>

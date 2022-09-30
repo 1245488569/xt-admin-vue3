@@ -9,26 +9,18 @@ const privateRoutes: IPrivateRoute[] = [
   {
     title: '演示1',
     icon: 'ep:apple',
-    children: [
-      demo1Routes,
-      components
-    ]
+    children: [demo1Routes, components]
   },
   {
     title: '演示2',
     icon: 'ep:apple',
-    children: [
-      cacheRoutes,
-      backendRoutes,
-    ]
+    children: [cacheRoutes, backendRoutes]
   },
   {
     title: '演示3',
     icon: 'ep:apple',
-    children: [
-      testRoutes
-    ]
-  },
+    children: [testRoutes]
+  }
 ]
 
 export default privateRoutes

@@ -1,7 +1,6 @@
-
 import { STORAGE_PREFIX } from '@/enums/cacheEnum'
 
-const useStorage = ($storage) => {
+const useStorage = $storage => {
   /**
    * 根据 key 判断 storage 中是否有储存值
    * @param key storage key
@@ -30,7 +29,10 @@ const useStorage = ($storage) => {
    * @param value 需要储存在 storage 中的值
    */
   const set = (key: string, value: any) => {
-    return $storage.setItem(`${STORAGE_PREFIX}${key}`, value ? JSON.stringify(value) : value)
+    return $storage.setItem(
+      `${STORAGE_PREFIX}${key}`,
+      value ? JSON.stringify(value) : value
+    )
   }
 
   /**
@@ -67,14 +69,13 @@ const useStorage = ($storage) => {
     set,
     remove,
     clearExcept,
-    clearAll,
+    clearAll
   }
 }
 
-const SessionStorageService = useStorage(window.sessionStorage || sessionStorage)
+const SessionStorageService = useStorage(
+  window.sessionStorage || sessionStorage
+)
 const LocalStorageService = useStorage(window.localStorage || localStorage)
 
-export {
-  SessionStorageService,
-  LocalStorageService,
-}
+export { SessionStorageService, LocalStorageService }

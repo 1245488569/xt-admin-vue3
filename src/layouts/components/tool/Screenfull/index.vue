@@ -1,14 +1,13 @@
-
 <script setup lang="ts" name="Screenfull">
-  import { useFullscreen } from '@vueuse/core'
-  const { isFullscreen, toggle } = useFullscreen()
+import { useFullscreen } from '@vueuse/core'
+const { isFullscreen, toggle } = useFullscreen()
 
-  defineProps({
-    size: {
-      type: Number,
-      default: 20
-    }
-  })
+defineProps({
+  size: {
+    type: Number,
+    default: 20
+  }
+})
 </script>
 
 <template>

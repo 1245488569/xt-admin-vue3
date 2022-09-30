@@ -52,17 +52,28 @@ function hasBackRoutePermission(backendRoutes: any[], route: RouteRecordRaw) {
   return isAuth
 }
 // 从前端路由中过滤出后端返回的路由  并进行处理
-function filterBackendRoutes(routes: RouteRecordRaw[], backendRoutes: any[]): RouteRecordRaw[] {
+function filterBackendRoutes(
+  routes: RouteRecordRaw[],
+  backendRoutes: any[]
+): RouteRecordRaw[] {
   const res = [] as RouteRecordRaw[]
   routes.forEach(route => {
     const tmpRoute = cloneDeep(route)
-    const backendRouteItem = backendRoutes.find(item => item.name === tmpRoute.name)
+    const backendRouteItem = backendRoutes.find(
+      item => item.name === tmpRoute.name
+    )
     if (hasBackRoutePermission(backendRoutes, tmpRoute)) {
       if (tmpRoute.children) {
-        tmpRoute.children = filterBackendRoutes(tmpRoute.children, backendRoutes)
+        tmpRoute.children = filterBackendRoutes(
+          tmpRoute.children,
+          backendRoutes
+        )
         if (tmpRoute.children.length) {
           // 如果后端返回了meta 且前端路由也有meta 则以后端返回的meta里的内容为准  没返回的则已前端为准
-          if (JSON.stringify(backendRouteItem.meta) !== '{}' && JSON.stringify(tmpRoute.meta) !== '{}') {
+          if (
+            JSON.stringify(backendRouteItem.meta) !== '{}' &&
+            JSON.stringify(tmpRoute.meta) !== '{}'
+          ) {
             Object.keys(backendRouteItem.meta).forEach(key => {
               tmpRoute.meta![key] = backendRouteItem.meta[key]
             })
@@ -71,7 +82,10 @@ function filterBackendRoutes(routes: RouteRecordRaw[], backendRoutes: any[]): Ro
         }
       } else {
         // 如果后端返回了meta 且前端路由也有meta 则以后端返回的meta里的内容为准  没返回的则已前端为准
-        if (JSON.stringify(backendRouteItem.meta) !== '{}' && JSON.stringify(tmpRoute.meta) !== '{}') {
+        if (
+          JSON.stringify(backendRouteItem.meta) !== '{}' &&
+          JSON.stringify(tmpRoute.meta) !== '{}'
+        ) {
           Object.keys(backendRouteItem.meta).forEach(key => {
             tmpRoute.meta![key] = backendRouteItem.meta[key]
           })
@@ -84,7 +98,10 @@ function filterBackendRoutes(routes: RouteRecordRaw[], backendRoutes: any[]): Ro
 }
 
 // 私有路由递归添加序号标记 返回需注册的路由
-function addPrivateChildrenIndex(privateChildrenRoutes:RouteRecordRaw[], parentIndex: number) {
+function addPrivateChildrenIndex(
+  privateChildrenRoutes: RouteRecordRaw[],
+  parentIndex: number
+) {
   privateChildrenRoutes.forEach(item => {
     item.parentIndex = parentIndex
     if (item.children && item.children.length) {
@@ -101,7 +118,6 @@ function addPrivateIndex(privateRoutes: IPrivateRoute[]) {
   })
   return privateRoutes
 }
-
 
 export const usePermissionsStore = defineStore('route', {
   state: () => ({
@@ -143,11 +159,17 @@ export const usePermissionsStore = defineStore('route', {
           // 后端路由
           if (useAppConfig.getRouteMode === 'backend') {
             const backendRoutes = await userStore.getBackendRoutes()
-            routes = filterBackendRoutes(this.allPrivateChildrenRouter, backendRoutes)
+            routes = filterBackendRoutes(
+              this.allPrivateChildrenRouter,
+              backendRoutes
+            )
           } else {
             // 前端路由
             const permissions = await userStore.getPermissions()
-            routes = filterPrivateRoutes(this.allPrivateChildrenRouter, permissions)
+            routes = filterPrivateRoutes(
+              this.allPrivateChildrenRouter,
+              permissions
+            )
           }
         } else {
           routes = [...this.allPrivateChildrenRouter]

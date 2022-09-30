@@ -16,6 +16,6 @@ export default {
         icon: 'ep:apple',
         auth: ['test']
       }
-    },
+    }
   ]
 } as RouteRecordRaw

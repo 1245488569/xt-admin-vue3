@@ -13,7 +13,10 @@ import setupMock from './mock'
 import setupPwa from './pwa'
 import setupSetupExtend from './setup-extend'
 
-export default function setupVitePlugins(isBuild: boolean, env: Record<string, string>) {
+export default function setupVitePlugins(
+  isBuild: boolean,
+  env: Record<string, string>
+) {
   const { VITE_BUILD_COMPRESS, VITE_USE_PWA, VITE_USE_MOCK } = env
   const plugins: (Plugin | Plugin[])[] = [vue()]
   plugins.push(WindiCSS())

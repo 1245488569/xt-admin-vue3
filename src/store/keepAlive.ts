@@ -21,7 +21,7 @@ export const useKeepAliveStore = defineStore('keepAlive', {
     },
     remove(name: string) {
       this.list = this.list.filter(item => item !== name)
-    },
+    }
   }
 })
 

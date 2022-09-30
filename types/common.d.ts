@@ -1,7 +1,15 @@
 type Language = 'zh-ch' | 'zh-tw' | 'en'
 type ElementSize = 'large' | 'default' | 'small'
-type ThemeKey = 'menuBgColor' | 'menuActiveBgColor' | 'menuTextColor' | 'menuActiveTextColor'
-type LayoutMode = 'onlyTopNav' | 'onlySubSideNav' | 'mainSubSideNav' | 'topSubSideNav'
+type ThemeKey =
+  | 'menuBgColor'
+  | 'menuActiveBgColor'
+  | 'menuTextColor'
+  | 'menuActiveTextColor'
+type LayoutMode =
+  | 'onlyTopNav'
+  | 'onlySubSideNav'
+  | 'mainSubSideNav'
+  | 'topSubSideNav'
 type RouteMode = 'frontend' | 'backend'
 
 interface IGlobalApp {
@@ -55,6 +63,6 @@ interface IGlobalConfig {
   app: IGlobalApp
   nav: IGlobalNav
   tabbar: IGlobalTabbar
-  toolbar:IGlobalToolbar
+  toolbar: IGlobalToolbar
   theme: IGlobalTheme
 }

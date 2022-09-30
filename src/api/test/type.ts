@@ -1,14 +1,14 @@
 export interface ILoginResult {
   name: string
-  age: number,
+  age: number
   token: string
 }
 
 export interface IPermissionsResult {
-  permissions: string []
+  permissions: string[]
 }
 
 export interface IBackendResult {
   backendRoutes: any[]
-  permissions: string []
+  permissions: string[]
 }

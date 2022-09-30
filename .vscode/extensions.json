@@ -5,6 +5,7 @@
 		"dbaeumer.vscode-eslint",
 		"stylelint.vscode-stylelint",
 		"Vue.volar",
-    "voorjaar.windicss-intellisense"
+    "voorjaar.windicss-intellisense",
+    "esbenp.prettier-vscode"
 	]
 }

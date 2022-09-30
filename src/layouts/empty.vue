@@ -1,6 +1,6 @@
 <script lang="ts" setup name="EmptyRoute">
-  import { useKeepAliveStore } from '@/store/keepAlive'
-  const useKeepAlive = useKeepAliveStore()
+import { useKeepAliveStore } from '@/store/keepAlive'
+const useKeepAlive = useKeepAliveStore()
 </script>
 
 <template>
@@ -11,4 +11,3 @@
   </router-view>
   <!-- <router-view></router-view> -->
 </template>
-

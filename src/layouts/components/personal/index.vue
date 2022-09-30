@@ -1,16 +1,16 @@
 <script setup lang="ts" name="PersonalSelect">
-  import router from '@/router'
-  import { useUserStore } from '@/store/user'
+import router from '@/router'
+import { useUserStore } from '@/store/user'
 
-  const logout = () => {
-    const useUser = useUserStore()
-    useUser.logout().then(() => {
-      router.replace({
-        name: 'login'
-      })
-      location.reload()
+const logout = () => {
+  const useUser = useUserStore()
+  useUser.logout().then(() => {
+    router.replace({
+      name: 'login'
     })
-  }
+    location.reload()
+  })
+}
 </script>
 
 <template>

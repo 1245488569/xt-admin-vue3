@@ -17,20 +17,21 @@ export default ({ command, mode }: ConfigEnv) => {
         compress: {
           keep_infinity: true, // 防止 Infinity 被压缩成 1/0，这可能会导致 Chrome 上的性能问题
           drop_console: env.VITE_BUILD_DROP_CONSOLE === 'true',
-          drop_debugger: env.VITE_BUILD_DROP_DEBUGGER === 'true',
-        },
+          drop_debugger: env.VITE_BUILD_DROP_DEBUGGER === 'true'
+        }
       },
       chunkSizeWarningLimit: 1500, // chunk 大小警告的限制（以 kbs 为单位）默认500
       rollupOptions: {
-        output: { // 静态资源分类打包
+        output: {
+          // 静态资源分类打包
           chunkFileNames: 'assets/js/[name]-[hash].js',
-          entryFileNames: 'assets/js/[name]-[hash].js',
+          entryFileNames: 'assets/js/[name]-[hash].js'
           // assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
         }
       }
     },
     resolve: {
-      alias,
+      alias
     },
     base: './',
     server: {

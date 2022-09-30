@@ -1,12 +1,11 @@
-
 <script setup lang="ts" name="Reload">
-  defineProps({
-    size: {
-      type: Number,
-      default: 20
-    }
-  })
-  const reload = inject('reload')
+defineProps({
+  size: {
+    type: Number,
+    default: 20
+  }
+})
+const reload = inject('reload')
 </script>
 
 <template>

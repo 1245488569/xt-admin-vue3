@@ -1,9 +1,5 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div>
-    个人设置
-  </div>
+  <div>个人设置</div>
 </template>

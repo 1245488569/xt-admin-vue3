@@ -1,53 +1,51 @@
-
 <script setup lang="ts" name="SettingDrawer">
-  import { useAppConfigStore } from '@/store/app'
+import { useAppConfigStore } from '@/store/app'
 
-  export interface ISettingDrawerExposed {
-    open: () => void
+export interface ISettingDrawerExposed {
+  open: () => void
+}
+
+const useAppConfig = useAppConfigStore()
+const layoutMode = ref(useAppConfig.getLayoutMode)
+const layoutModeOptions = ref([
+  {
+    label: '只有顶部导航',
+    value: 'onlyTopNav'
+  },
+  {
+    label: '只有侧边栏导航',
+    value: 'onlySubSideNav'
+  },
+  {
+    label: '侧边主导航+侧边次栏导航',
+    value: 'mainSubSideNav'
+  },
+  {
+    label: '顶部主导航+侧边次栏导航',
+    value: 'topSubSideNav'
   }
+])
+const changeLayoutMode = (val: LayoutMode) => {
+  useAppConfig.changeLayoutMode(val)
+}
 
-  const useAppConfig = useAppConfigStore()
-  const layoutMode = ref(useAppConfig.getLayoutMode)
-  const layoutModeOptions = ref([
-    {
-      label: '只有顶部导航',
-      value: 'onlyTopNav'
-    },
-    {
-      label: '只有侧边栏导航',
-      value: 'onlySubSideNav'
-    },
-    {
-      label: '侧边主导航+侧边次栏导航',
-      value: 'mainSubSideNav'
-    },
-    {
-      label: '顶部主导航+侧边次栏导航',
-      value: 'topSubSideNav'
-    },
-  ])
-  const changeLayoutMode = (val: LayoutMode) => {
-
-    useAppConfig.changeLayoutMode(val)
-  }
-
-  const isOpen = ref(false)
-  const open = () => {
-    isOpen.value = true
-  }
-  defineExpose({
-    open
-  })
+const isOpen = ref(false)
+const open = () => {
+  isOpen.value = true
+}
+defineExpose({
+  open
+})
 </script>
 
 <template>
   <div class="text-sm drawer">
-    <el-drawer
-      v-model="isOpen"
-      title="应用配置"
-      :size="350"
-    >
-      <el-alert title="应用配置可实时预览效果，仅临时生效。" type="error" :closable="false" />
+    <el-drawer v-model="isOpen" title="应用配置" :size="350">
+      <el-alert
+        title="应用配置可实时预览效果，仅临时生效。"
+        type="error"
+        :closable="false"
+      />
       <el-divider>布局模式</el-divider>
       <div>
         <el-select v-model="layoutMode" @change="changeLayoutMode">
@@ -203,19 +201,18 @@
 </template>
 
 <style lang="scss" scoped>
-  .drawer {
-    :deep(.el-drawer__body) {
-      display: flex;
-      flex-direction: column;
-      overflow: auto;
-      padding: 10px 20px;
-    }
-
-    :deep(.el-drawer__header) {
-      margin-bottom: initial;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #ddd;
-    }
+.drawer {
+  :deep(.el-drawer__body) {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding: 10px 20px;
   }
 
+  :deep(.el-drawer__header) {
+    margin-bottom: initial;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+}
 </style>

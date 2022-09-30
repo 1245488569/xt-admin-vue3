@@ -6,7 +6,11 @@ import { useAppConfigStore } from '@/store/app'
 export default function useElementI18n() {
   const useAppConfig = useAppConfigStore()
   const locale = computed(() => {
-    return useAppConfig.getLanguage === 'zh-ch' ? zhCh : useAppConfig.getLanguage === 'zh-tw' ? zhTw : en
+    return useAppConfig.getLanguage === 'zh-ch'
+      ? zhCh
+      : useAppConfig.getLanguage === 'zh-tw'
+      ? zhTw
+      : en
   })
 
   return {

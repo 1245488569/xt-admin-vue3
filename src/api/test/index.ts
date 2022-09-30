@@ -16,19 +16,19 @@ export function loginApi() {
 
 export function permissionApi() {
   return xtRequest.get<IResponseDataType<IPermissionsResult>>({
-    url: 'user/permission',
+    url: 'user/permission'
   })
 }
 
 export function backendRoutesApi() {
   return xtRequest.get<IResponseDataType<IBackendResult>>({
-    url: 'user/backend',
+    url: 'user/backend'
   })
 }
 
 export function logoutApi() {
   return xtRequest.get<IResponseDataType>({
-    url: 'logout',
+    url: 'logout'
   })
 }
 

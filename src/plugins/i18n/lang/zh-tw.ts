@@ -2,14 +2,14 @@ export default {
   route: {
     login: '登錄',
     personal: '個人設置',
-    dashboard: '首頁',
+    dashboard: '首頁'
   },
   tabbar: {
     refresh: '刷新',
     delete: '關閉',
     deleteLeft: '關閉左側',
     deleteRight: '關閉右側',
-    deleteOther: '關閉其他',
+    deleteOther: '關閉其他'
   },
   login: {
     title: '用戶登錄',
@@ -17,11 +17,11 @@ export default {
     password: '密碼',
     loginBtn: '登錄',
     accountRule: '用戶名為必填項',
-    passwordRule: '密碼不能少於6位',
+    passwordRule: '密碼不能少於6位'
   },
   personal: {
     personal: '個人設置',
-    loginOut: '退出',
+    loginOut: '退出'
   },
   notfound: {
     title: '未找到頁面',

@@ -1,66 +1,77 @@
 <script setup lang="ts" name="Top">
-  import { useAppConfigStore } from '@/store/app'
-  import { generateTitle } from '@/util/i18n'
-  import useMenus from '@/hooks/useMenus'
-  import Logo from '../logo/index.vue'
-  import SidebarItem from '../sidebar/SidebarItem.vue'
-  import MenuSearch from '../tool/MenuSearch/index.vue'
-  import Reload from '../tool/Reload/index.vue'
-  import LangSelect from '../tool/LangSelect/index.vue'
-  import Screenfull from '../tool/Screenfull/index.vue'
-  import ThemeSelect from '../tool/ThemeSelect/index.vue'
-  import Setting from '../tool/Setting/index.vue'
-  import Personal from '../personal/index.vue'
-  import { usePermissionsStore } from '@/store/permission'
-  import { RouteRecordName, RouteRecordRaw } from 'vue-router'
-  const useAppConfig = useAppConfigStore()
-  const { menus, allMainMenu, allDealRoute } = useMenus()
-  const permissionsStore = usePermissionsStore()
-  const route = useRoute()
-  function findCurItemByName(name: RouteRecordName | null | undefined, menu: RouteRecordRaw[]) {
-    for (const item of menu) {
-      if (item.name === name) return item
-      if (item.children && item.children.length) {
-        const _item = findCurItemByName(name, item.children)
-        if (_item) return _item
-      }
+import { useAppConfigStore } from '@/store/app'
+import { generateTitle } from '@/util/i18n'
+import useMenus from '@/hooks/useMenus'
+import Logo from '../logo/index.vue'
+import SidebarItem from '../sidebar/SidebarItem.vue'
+import MenuSearch from '../tool/MenuSearch/index.vue'
+import Reload from '../tool/Reload/index.vue'
+import LangSelect from '../tool/LangSelect/index.vue'
+import Screenfull from '../tool/Screenfull/index.vue'
+import ThemeSelect from '../tool/ThemeSelect/index.vue'
+import Setting from '../tool/Setting/index.vue'
+import Personal from '../personal/index.vue'
+import { usePermissionsStore } from '@/store/permission'
+import { RouteRecordName, RouteRecordRaw } from 'vue-router'
+const useAppConfig = useAppConfigStore()
+const { menus, allMainMenu, allDealRoute } = useMenus()
+const permissionsStore = usePermissionsStore()
+const route = useRoute()
+function findCurItemByName(
+  name: RouteRecordName | null | undefined,
+  menu: RouteRecordRaw[]
+) {
+  for (const item of menu) {
+    if (item.name === name) return item
+    if (item.children && item.children.length) {
+      const _item = findCurItemByName(name, item.children)
+      if (_item) return _item
     }
   }
-  const stopWatchRoute = watch(() => route, (val) => {
+}
+const stopWatchRoute = watch(
+  () => route,
+  val => {
     const { name } = val
-    permissionsStore.changeMainMuen(findCurItemByName(name, allDealRoute).parentIndex ?? 0)
-  }, {
+    permissionsStore.changeMainMuen(
+      findCurItemByName(name, allDealRoute).parentIndex ?? 0
+    )
+  },
+  {
     immediate: true,
     deep: true
-  })
-  onUnmounted(() => {
-    stopWatchRoute()
-  })
-
-  // 整体顶部导航背景色
-  const topnavbgcolor = computed(() => {
-    if (useAppConfig.getLayoutMode === 'topSubSideNav') {
-      return useAppConfig.getTheme.mainMenuBgColor
-    } else if (useAppConfig.getLayoutMode === 'onlyTopNav') {
-      return useAppConfig.getTheme.menuBgColor
-    }
-  })
-
-  // 选中主菜单背景色
-  const mainmenuactivebgcolor = computed(() => {
-    return useAppConfig.getTheme.mainMenuActiveBgColor
-  })
-
-  const clickMainMuen = (parentIndex) => {
-    permissionsStore.changeMainMuen(parentIndex)
   }
+)
+onUnmounted(() => {
+  stopWatchRoute()
+})
+
+// 整体顶部导航背景色
+const topnavbgcolor = computed(() => {
+  if (useAppConfig.getLayoutMode === 'topSubSideNav') {
+    return useAppConfig.getTheme.mainMenuBgColor
+  } else if (useAppConfig.getLayoutMode === 'onlyTopNav') {
+    return useAppConfig.getTheme.menuBgColor
+  }
+})
+
+// 选中主菜单背景色
+const mainmenuactivebgcolor = computed(() => {
+  return useAppConfig.getTheme.mainMenuActiveBgColor
+})
+
+const clickMainMuen = parentIndex => {
+  permissionsStore.changeMainMuen(parentIndex)
+}
 </script>
 
 <template>
-  <div class="flex h-[var(--xt-top-nav-height)] flex-shrink-0 top-nav-container px-4 top-0 right-0 left-0 z-1000 fixed items-center">
+  <div
+    class="flex h-[var(--xt-top-nav-height)] flex-shrink-0 top-nav-container px-4 top-0 right-0 left-0 z-1000 fixed items-center"
+  >
     <Logo class="mr-4 text-xl" />
     <!-- 顶部主导航+侧边次栏导航 -->
-    <div class="flex-1" v-if="useAppConfig.getLayoutMode === 'topSubSideNav'">
+    <div v-if="useAppConfig.getLayoutMode === 'topSubSideNav'" class="flex-1">
       <el-menu
         mode="horizontal"
         :default-active="permissionsStore.mainMenuActive + ''"
@@ -70,7 +81,11 @@
         :unique-opened="true"
       >
         <template v-for="(item, index) in allMainMenu" :key="index">
-          <el-menu-item :index="item.parentIndex + ''" v-if="item.children.length" @click="clickMainMuen(item.parentIndex)">
+          <el-menu-item
+            v-if="item.children.length"
+            :index="item.parentIndex + ''"
+            @click="clickMainMuen(item.parentIndex)"
+          >
             <div class="flex max-w-20 truncate items-center justify-center">
               <el-icon :size="20">
                 <svg-icon :name="item.icon" />
@@ -98,7 +113,12 @@
         </template>
       </el-menu>
     </template>
-    <div class="flex items-center" v-if="['onlyTopNav', 'topSubSideNav'].includes(useAppConfig.getLayoutMode)">
+    <div
+      v-if="
+        ['onlyTopNav', 'topSubSideNav'].includes(useAppConfig.getLayoutMode)
+      "
+      class="flex items-center"
+    >
       <MenuSearch v-if="useAppConfig.toolbar.enableMenuSearch" class="mr-2" />
       <Reload v-if="useAppConfig.toolbar.enablePageReload" class="mr-2" />
       <LangSelect v-if="useAppConfig.toolbar.enableI18n" class="mr-2" />

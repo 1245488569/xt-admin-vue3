@@ -1,6 +1,6 @@
 import {
   createStyleImportPlugin,
-  ElementPlusResolve,
+  ElementPlusResolve
 } from 'vite-plugin-style-import'
 
 export default function setupStyleImport() {
@@ -12,8 +12,8 @@ export default function setupStyleImport() {
         esModule: true,
         resolveStyle: (name: string) => {
           return `element-plus/theme-chalk/${name}.css`
-        },
-      },
+        }
+      }
     ]
   })
 }

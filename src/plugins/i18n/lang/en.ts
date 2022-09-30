@@ -2,14 +2,14 @@ export default {
   route: {
     login: 'Login',
     personal: 'Personal Setting',
-    dashboard: 'Dashboard',
+    dashboard: 'Dashboard'
   },
   tabbar: {
     refresh: 'refresh',
     delete: 'close',
     deleteLeft: 'close left',
     deleteRight: 'close right',
-    deleteOther: 'close other',
+    deleteOther: 'close other'
   },
   login: {
     title: 'User Login',
@@ -17,11 +17,11 @@ export default {
     password: 'Password',
     loginBtn: 'Login',
     accountRule: 'Account is required',
-    passwordRule: 'Password cannot be less than 6 digits',
+    passwordRule: 'Password cannot be less than 6 digits'
   },
   personal: {
     personal: 'Personal Setting',
-    loginOut: 'Login Out',
+    loginOut: 'Login Out'
   },
   notfound: {
     title: 'Page not found',

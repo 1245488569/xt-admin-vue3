@@ -1,5 +1,5 @@
 <script setup lang="ts" name="demo2Detail">
-  const num = ref(1)
+const num = ref(1)
 </script>
 
 <template>

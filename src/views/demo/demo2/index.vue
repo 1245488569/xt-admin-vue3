@@ -1,17 +1,17 @@
 <script setup lang="ts" name="demo2Index">
-  import router from '@/router'
-  const num = ref(1)
-  const goDeatil = () => {
-    router.push({
-      name: 'demo2Detail'
-    })
-  }
+import router from '@/router'
+const num = ref(1)
+const goDeatil = () => {
+  router.push({
+    name: 'demo2Detail'
+  })
+}
 
-  const goTest = () => {
-    router.push({
-      name: 'test1'
-    })
-  }
+const goTest = () => {
+  router.push({
+    name: 'test1'
+  })
+}
 </script>
 
 <template>

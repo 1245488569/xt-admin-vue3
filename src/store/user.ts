@@ -2,7 +2,12 @@ import { defineStore } from 'pinia'
 import { piniaStore } from '@/store'
 import { LocalStorageService } from '@/util/storage'
 import { STORAGE_PREFIX, USER } from '@/enums/cacheEnum'
-import { backendRoutesApi, loginApi, logoutApi, permissionApi } from '@/api/test'
+import {
+  backendRoutesApi,
+  loginApi,
+  logoutApi,
+  permissionApi
+} from '@/api/test'
 import { useTabbarStore } from './tabbar'
 import { useKeepAliveStore } from './keepAlive'
 import { usePermissionsStore } from './permission'
@@ -23,18 +28,20 @@ export const useUserStore = defineStore('user', {
   actions: {
     login() {
       return new Promise((resolve, reject) => {
-        loginApi().then(res => {
-          this.userInfo = res.result
-          this.token = res.result.token
-          resolve(res)
-        }).catch(error => {
-          reject(error)
-        })
+        loginApi()
+          .then(res => {
+            this.userInfo = res.result
+            this.token = res.result.token
+            resolve(res)
+          })
+          .catch(error => {
+            reject(error)
+          })
       })
     },
     // 获取权限
     getPermissions(): Promise<string[]> {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         permissionApi().then(res => {
           this.permissions = res.result.permissions
           resolve(res.result.permissions)
@@ -43,7 +50,7 @@ export const useUserStore = defineStore('user', {
     },
     // 获取后端路由及按钮权限（需要类型请自己定义）
     getBackendRoutes(): Promise<any[]> {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         backendRoutesApi().then(res => {
           this.permissions = res.result.permissions
           resolve(res.result.backendRoutes)
@@ -51,7 +58,7 @@ export const useUserStore = defineStore('user', {
       })
     },
     logout() {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         logoutApi().then(() => {
           const useTabbar = useTabbarStore()
           const useKeepAlive = useKeepAliveStore()
@@ -72,8 +79,12 @@ export const useUserStore = defineStore('user', {
   persist: {
     enabled: true,
     strategies: [
-      { key: `${STORAGE_PREFIX}${USER}`, storage: localStorage, paths: ['token', 'userInfo'] }
-    ],
+      {
+        key: `${STORAGE_PREFIX}${USER}`,
+        storage: localStorage,
+        paths: ['token', 'userInfo']
+      }
+    ]
   }
 })
 

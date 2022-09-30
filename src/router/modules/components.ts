@@ -8,7 +8,7 @@ export default {
   redirect: '/components/form',
   meta: {
     title: '组件',
-    icon: 'ep:apple',
+    icon: 'ep:apple'
   },
   children: [
     {
@@ -17,7 +17,7 @@ export default {
       component: () => import('@/views/components/form/index.vue'),
       meta: {
         title: '表单',
-        icon: 'ep:apple',
+        icon: 'ep:apple'
       }
     },
     {
@@ -26,7 +26,7 @@ export default {
       component: () => import('@/views/components/dialog/index.vue'),
       meta: {
         title: '弹框',
-        icon: 'ep:apple',
+        icon: 'ep:apple'
       }
     },
     {
@@ -35,7 +35,7 @@ export default {
       component: () => import('@/views/components/table/index.vue'),
       meta: {
         title: '普通表格',
-        icon: 'ep:apple',
+        icon: 'ep:apple'
       }
     },
     {
@@ -44,7 +44,7 @@ export default {
       component: () => import('@/views/components/table/EditTable.vue'),
       meta: {
         title: '可编辑表格',
-        icon: 'ep:apple',
+        icon: 'ep:apple'
       }
     },
     {
@@ -53,8 +53,8 @@ export default {
       component: () => import('@/views/components/IconPicker/index.vue'),
       meta: {
         title: '图标选择',
-        icon: 'ep:apple',
+        icon: 'ep:apple'
       }
-    },
+    }
   ]
 } as RouteRecordRaw

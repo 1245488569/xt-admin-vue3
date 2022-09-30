@@ -49,8 +49,12 @@ export const useAppConfigStore = defineStore('app', {
   persist: {
     enabled: true,
     strategies: [
-      { key: `${STORAGE_PREFIX}${APP_CONFIG}`, storage: localStorage, paths: ['defaultLanguage', 'theme'] }
-    ],
+      {
+        key: `${STORAGE_PREFIX}${APP_CONFIG}`,
+        storage: localStorage,
+        paths: ['defaultLanguage', 'theme']
+      }
+    ]
   }
 })
 

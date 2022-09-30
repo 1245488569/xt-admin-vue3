@@ -3,15 +3,16 @@ import { APP_CONFIG } from '@/enums/cacheEnum'
 
 const sysGlobalConfig: IGlobalConfig = {
   // 默认语言. zh-ch: 简体中文 zh-tw: 繁体中文 en: 英文
-  defaultLanguage: LocalStorageService.get(APP_CONFIG)?.defaultLanguage || 'zh-ch',
+  defaultLanguage:
+    LocalStorageService.get(APP_CONFIG)?.defaultLanguage || 'zh-ch',
   /**
-    * Element 组件尺寸
-    * 这里有和主内容区默认文字大小关联
-    * 可选：large、default、small
-    * large 主内容区默认文字大小 16px
-    * default 主内容区默认文字大小 14px
-    * small 主内容区默认文字大小 12px
-    */
+   * Element 组件尺寸
+   * 这里有和主内容区默认文字大小关联
+   * 可选：large、default、small
+   * large 主内容区默认文字大小 16px
+   * default 主内容区默认文字大小 14px
+   * small 主内容区默认文字大小 12px
+   */
   elementSize: 'default',
   /**
    * 路由模式（如果为backend  请设置enablePermission为true）
@@ -36,12 +37,12 @@ const sysGlobalConfig: IGlobalConfig = {
     // 是否开启dashboard(当你所有侧边路由都需要权限动态生成时，将其设置为false，登录后框架将跳转到菜单中的第一个模块)
     enableDashboard: true,
     /**
-    * 布局模式
-    * onlyTopNav 只有顶部导航
-    * onlySubSideNav 只有侧边栏导航
-    * mainSubSideNav 侧边主导航+侧边次栏导航
-    * topSubSideNav 顶部主导航+侧边次栏导航
-    */
+     * 布局模式
+     * onlyTopNav 只有顶部导航
+     * onlySubSideNav 只有侧边栏导航
+     * mainSubSideNav 侧边主导航+侧边次栏导航
+     * topSubSideNav 顶部主导航+侧边次栏导航
+     */
     layoutMode: 'mainSubSideNav'
   },
   // 导航
@@ -49,12 +50,12 @@ const sysGlobalConfig: IGlobalConfig = {
     // 次导航是否收起
     subMenuCollapse: false,
     // 操作栏（tabbar与toolbar）是否固定
-    fixed: true,
+    fixed: true
   },
   // 标签栏
   tabbar: {
     // 是否开启
-    enable: true,
+    enable: true
   },
   // 工具栏
   toolbar: {
@@ -78,7 +79,7 @@ const sysGlobalConfig: IGlobalConfig = {
     enableAppSetting: true,
 
     // 是否开启通知中心(未实现)
-    enableNotification: false,
+    enableNotification: false
   },
   // 样式设置
   theme: LocalStorageService.get(APP_CONFIG)?.theme || {
@@ -107,7 +108,7 @@ const sysGlobalConfig: IGlobalConfig = {
     // 次菜单文字颜色
     menuTextColor: '#000000',
     // 选中次菜单文字颜色
-    menuActiveTextColor: '#FFFFFF',
+    menuActiveTextColor: '#FFFFFF'
   }
 }
 

@@ -20,7 +20,7 @@ export default {
       meta: {
         title: '普通缓存',
         icon: 'ep:bell',
-        cache: true,
+        cache: true
       }
     },
     {
@@ -61,13 +61,13 @@ export default {
                     title: '多级缓存1-1-1-1',
                     icon: 'ep:alarm-clock',
                     cache: true
-                  },
+                  }
                 }
               ]
             }
           ]
         }
       ]
-    },
+    }
   ]
 } as RouteRecordRaw

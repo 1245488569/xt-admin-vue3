@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  const icon = ref('')
+const icon = ref('')
 </script>
 
 <template>

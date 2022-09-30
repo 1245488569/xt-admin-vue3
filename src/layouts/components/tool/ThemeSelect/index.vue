@@ -1,30 +1,22 @@
-
 <script setup lang="ts" name="ThemeSelect">
-  import SelectColor from './components/SelectColor.vue'
+import SelectColor from './components/SelectColor.vue'
 
-  defineProps({
-    size: {
-      type: Number,
-      default: 20
-    }
-  })
-  const selectColorVisible = ref(false)
-  const handleSetTheme = () => {
-    selectColorVisible.value = true
+defineProps({
+  size: {
+    type: Number,
+    default: 20
   }
+})
+const selectColorVisible = ref(false)
+const handleSetTheme = () => {
+  selectColorVisible.value = true
+}
 </script>
 
 <template>
-  <el-dropdown
-    v-bind="$attrs"
-    trigger="hover"
-    @command="handleSetTheme"
-  >
+  <el-dropdown v-bind="$attrs" trigger="hover" @command="handleSetTheme">
     <el-icon :size="size">
-      <svg-icon
-        class="cursor-pointer text-dark-50"
-        name="ri:palette-line"
-      />
+      <svg-icon class="cursor-pointer text-dark-50" name="ri:palette-line" />
     </el-icon>
     <template #dropdown>
       <el-dropdown-menu>

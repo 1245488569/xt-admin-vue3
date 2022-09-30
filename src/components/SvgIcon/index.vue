@@ -1,22 +1,22 @@
 <script setup lang="ts" name="SvgIcon">
-  import { Icon } from '@iconify/vue'
-  const props = defineProps({
-    name: {
-      type: String,
-      required: true
-    },
-    prefix: {
-      type: String,
-      default: 'icon',
-    },
-  })
+import { Icon } from '@iconify/vue'
+const props = defineProps({
+  name: {
+    type: String,
+    required: true
+  },
+  prefix: {
+    type: String,
+    default: 'icon'
+  }
+})
 
-  const symbolId = computed(() => `#${props.prefix}-${props.name}`)
+const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>
 
 <template>
-  <Icon class="svg-icon" v-if="name.includes(':')" :icon="name" />
-  <svg class="svg-icon" v-else aria-hidden="true">
+  <Icon v-if="name.includes(':')" class="svg-icon" :icon="name" />
+  <svg v-else class="svg-icon" aria-hidden="true">
     <use :xlink:href="symbolId" />
   </svg>
 </template>

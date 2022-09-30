@@ -2,14 +2,14 @@ export default {
   route: {
     login: '登录',
     dashboard: '首页',
-    personal: '个人设置',
+    personal: '个人设置'
   },
   tabbar: {
     refresh: '刷新',
     delete: '关闭',
     deleteLeft: '关闭左侧',
     deleteRight: '关闭右侧',
-    deleteOther: '关闭其他',
+    deleteOther: '关闭其他'
   },
   login: {
     title: '用户登录',
@@ -17,11 +17,11 @@ export default {
     password: '密码',
     loginBtn: '登录',
     accountRule: '用户名为必填项',
-    passwordRule: '密码不能少于6位',
+    passwordRule: '密码不能少于6位'
   },
   personal: {
     personal: '个人设置',
-    loginOut: '退出',
+    loginOut: '退出'
   },
   notfound: {
     title: '未找到页面',

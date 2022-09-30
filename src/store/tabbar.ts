@@ -14,7 +14,13 @@ export interface ITabbarItem {
   meta: RouteMeta
 }
 
-export type RemoveType = 'once' | 'self' | 'otherOnce' | 'right' | 'left' | 'otherAll'
+export type RemoveType =
+  | 'once'
+  | 'self'
+  | 'otherOnce'
+  | 'right'
+  | 'left'
+  | 'otherAll'
 
 export const useTabbarStore = defineStore('tabbar', {
   state: () => ({
@@ -38,7 +44,9 @@ export const useTabbarStore = defineStore('tabbar', {
       }
       const isFind = this.list.find(item => item.fullPath === tab.fullPath)
       if (!isFind) {
-        const isMergeIndex = this.list.findIndex(item => item.meta.mergeTabbarPath === tab.fullPath)
+        const isMergeIndex = this.list.findIndex(
+          item => item.meta.mergeTabbarPath === tab.fullPath
+        )
         if (isMergeIndex !== -1) {
           this.list.splice(isMergeIndex, 1, tab)
         } else {
@@ -47,7 +55,9 @@ export const useTabbarStore = defineStore('tabbar', {
       }
     },
     merge(tab: ITabbarItem) {
-      const mergeTabIndex = this.list.findIndex(item => item.fullPath === tab.meta.mergeTabbarPath)
+      const mergeTabIndex = this.list.findIndex(
+        item => item.fullPath === tab.meta.mergeTabbarPath
+      )
       if (mergeTabIndex !== -1) {
         this.list.splice(mergeTabIndex, 1, tab)
       } else {
@@ -63,7 +73,9 @@ export const useTabbarStore = defineStore('tabbar', {
     remove(fullPath: string, type: RemoveType, activeFullPath: string) {
       const useKeepAlive = useKeepAliveStore()
       const index = this.list.findIndex(item => item.fullPath === fullPath)
-      const activeIndex = this.list.findIndex(item => item.fullPath === activeFullPath)
+      const activeIndex = this.list.findIndex(
+        item => item.fullPath === activeFullPath
+      )
       switch (type) {
         case 'self':
           if (this.list[index].meta?.cache) {
@@ -97,7 +109,10 @@ export const useTabbarStore = defineStore('tabbar', {
           if (index !== activeIndex && activeIndex > index) {
             router.push(fullPath)
           }
-          const rightRemoveArr = this.list.splice(index + 1, this.list.length - index + 1)
+          const rightRemoveArr = this.list.splice(
+            index + 1,
+            this.list.length - index + 1
+          )
           rightRemoveArr.forEach(item => {
             if (item.meta?.cache) {
               useKeepAlive.remove(item.name)
@@ -108,7 +123,9 @@ export const useTabbarStore = defineStore('tabbar', {
           if (index !== activeIndex) {
             router.push(fullPath)
           }
-          const otherAllRemoveArr = this.list.filter(item => item.fullPath !== fullPath)
+          const otherAllRemoveArr = this.list.filter(
+            item => item.fullPath !== fullPath
+          )
           otherAllRemoveArr.forEach(item => {
             if (item.meta?.cache) {
               useKeepAlive.remove(item.name)
@@ -118,8 +135,7 @@ export const useTabbarStore = defineStore('tabbar', {
           break
       }
     }
-
-  },
+  }
   // persist: {
   //   enabled: true,
   //   strategies: [

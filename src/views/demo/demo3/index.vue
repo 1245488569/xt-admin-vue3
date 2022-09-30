@@ -1,24 +1,23 @@
 <script setup lang="ts" name="demo3Index">
-  import router from '@/router'
-  const num = ref(1)
-  const goDeatil = () => {
-    router.push({
-      name: 'demo3Detail',
-      query: {
-        id: 123
-      }
-    })
-  }
+import router from '@/router'
+const num = ref(1)
+const goDeatil = () => {
+  router.push({
+    name: 'demo3Detail',
+    query: {
+      id: 123
+    }
+  })
+}
 
-  const goDeatil2 = () => {
-    router.push({
-      name: 'demo3Detail',
-      query: {
-        id: 456
-      }
-    })
-  }
-
+const goDeatil2 = () => {
+  router.push({
+    name: 'demo3Detail',
+    query: {
+      id: 456
+    }
+  })
+}
 </script>
 
 <template>

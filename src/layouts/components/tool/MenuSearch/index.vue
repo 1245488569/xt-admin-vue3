@@ -1,90 +1,93 @@
 <script setup lang="ts" name="MenuSearch">
-  import { onClickOutside } from '@vueuse/core'
-  import Fuse from 'fuse.js'
-  import { generateRoutes } from './FuseData'
-  import { watchSwitchLang } from '@/util/i18n'
-  import useMenus from '@/hooks/useMenus'
+import { onClickOutside } from '@vueuse/core'
+import Fuse from 'fuse.js'
+import { generateRoutes } from './FuseData'
+import { watchSwitchLang } from '@/util/i18n'
+import useMenus from '@/hooks/useMenus'
 
-  defineProps({
-    size: {
-      type: Number,
-      default: 20
-    }
-  })
-  const target = ref(null)
-  const isShow = ref(false)
-  const headerSearchSelectRef = ref()
-  const search = ref('')
-  const searchOptions = ref<any[]>([])
-
-  const router = useRouter()
-  const { allSidebarMenu } = useMenus()
-  const searchPool = computed(() => {
-    return generateRoutes(allSidebarMenu)
-  })
-
-
-  /**
-   * 搜索库相关
-   */
-  let fuse: any
-  const initFuse = (searchPool) => {
-    fuse = new Fuse(searchPool, {
-      fieldNormWeight: 1,
-      // 是否按优先级进行排序
-      shouldSort: true,
-      // 匹配算法放弃的时机， 阈值 0.0 需要完美匹配（字母和位置），阈值 1.0 将匹配任何内容。
-      threshold: 0.4,
-      // 匹配长度超过这个值的才会被认为是匹配的
-      minMatchCharLength: 1,
-      // 将被搜索的键列表。 这支持嵌套路径、加权搜索、在字符串和对象数组中搜索。
-      // name：搜索的键
-      // weight：对应的权重
-      keys: [
-        {
-          name: 'title',
-          weight: 0.7
-        },
-        {
-          name: 'path',
-          weight: 0.3
-        }
-      ]
-    })
+defineProps({
+  size: {
+    type: Number,
+    default: 20
   }
+})
+const target = ref(null)
+const isShow = ref(false)
+const headerSearchSelectRef = ref()
+const search = ref('')
+const searchOptions = ref<any[]>([])
+
+const router = useRouter()
+const { allSidebarMenu } = useMenus()
+const searchPool = computed(() => {
+  return generateRoutes(allSidebarMenu)
+})
+
+/**
+ * 搜索库相关
+ */
+let fuse: any
+const initFuse = searchPool => {
+  fuse = new Fuse(searchPool, {
+    fieldNormWeight: 1,
+    // 是否按优先级进行排序
+    shouldSort: true,
+    // 匹配算法放弃的时机， 阈值 0.0 需要完美匹配（字母和位置），阈值 1.0 将匹配任何内容。
+    threshold: 0.4,
+    // 匹配长度超过这个值的才会被认为是匹配的
+    minMatchCharLength: 1,
+    // 将被搜索的键列表。 这支持嵌套路径、加权搜索、在字符串和对象数组中搜索。
+    // name：搜索的键
+    // weight：对应的权重
+    keys: [
+      {
+        name: 'title',
+        weight: 0.7
+      },
+      {
+        name: 'path',
+        weight: 0.3
+      }
+    ]
+  })
+}
+initFuse(searchPool.value)
+watch(isShow, val => {
+  if (val) {
+    onClickOutside(target, onClose)
+  }
+})
+watchSwitchLang(() => {
   initFuse(searchPool.value)
-  watch(isShow, (val) => {
-    if (val) {
-      onClickOutside(target, onClose)
-    }
-  })
-  watchSwitchLang(() => {
-    initFuse(searchPool.value)
-  })
-  const onShowClick = () => {
-    isShow.value = !isShow.value
-    headerSearchSelectRef.value.focus()
-  }
-  const querySearch = (query) => {
-    if (query !== '') {
-      searchOptions.value = fuse.search(query)
-    } else {
-      searchOptions.value = []
-    }
-  }
-  const onSelectChange = (val) => {
-    router.push(val.path)
-    onClose()
-  }
-  const onClose = () => {
-    headerSearchSelectRef.value.blur()
-    isShow.value = false
+})
+const onShowClick = () => {
+  isShow.value = !isShow.value
+  headerSearchSelectRef.value.focus()
+}
+const querySearch = query => {
+  if (query !== '') {
+    searchOptions.value = fuse.search(query)
+  } else {
     searchOptions.value = []
   }
+}
+const onSelectChange = val => {
+  router.push(val.path)
+  onClose()
+}
+const onClose = () => {
+  headerSearchSelectRef.value.blur()
+  isShow.value = false
+  searchOptions.value = []
+}
 </script>
 
 <template>
-  <div ref="target" :class="{ show: isShow }" class="flex header-search items-center">
+  <div
+    ref="target"
+    :class="{ show: isShow }"
+    class="flex header-search items-center"
+  >
     <el-icon :size="size">
       <svg-icon
         class="cursor-pointer text-dark-50"
@@ -94,8 +97,8 @@
     </el-icon>
     <el-select
       ref="headerSearchSelectRef"
-      class="header-search-select"
       v-model="search"
+      class="header-search-select"
       filterable
       default-first-option
       remote

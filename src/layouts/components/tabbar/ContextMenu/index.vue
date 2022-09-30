@@ -1,80 +1,87 @@
 <script setup lang="ts" name="ContextMenu">
-  import router from '@/router'
-  import { RemoveType, useTabbarStore } from '@/store/tabbar'
+import router from '@/router'
+import { RemoveType, useTabbarStore } from '@/store/tabbar'
 
-  const props = defineProps({
-    // 右键点击tab的fullPath
-    fullPath: {
-      type: String,
-      default: ''
-    },
-    // 当前选中的tab的fullPath
-    activeFullPath: {
-      type: String,
-      default: ''
-    },
-  })
-
-  const reload = () => {
-    if (disabledReload.value) return
-    router.push({
-      name: 'reload'
-    })
+const props = defineProps({
+  // 右键点击tab的fullPath
+  fullPath: {
+    type: String,
+    default: ''
+  },
+  // 当前选中的tab的fullPath
+  activeFullPath: {
+    type: String,
+    default: ''
   }
+})
 
-  const useTabbar = useTabbarStore()
-  const route = useRoute()
+const reload = () => {
+  if (disabledReload.value) return
+  router.push({
+    name: 'reload'
+  })
+}
 
-  // 按钮disabled判断
-  const disabledReload = computed(() => {
-    return props.fullPath !== route.fullPath
-  })
-  const disabledDelSelf = computed(() => {
-    return useTabbar.getTabbarList.length <= 1
-  })
-  const disabledDelLeft = computed(() => {
-    const index = useTabbar.getTabbarList.findIndex(item => item.fullPath === props.fullPath)
-    return index === 0
-  })
-  const disabledDelRight = computed(() => {
-    const index = useTabbar.getTabbarList.findIndex(item => item.fullPath === props.fullPath)
-    return index === useTabbar.getTabbarList.length - 1
-  })
-  const disabledDelOtherAll = computed(() => {
-    return useTabbar.getTabbarList.length <= 1
-  })
-  // 删除事件
-  const closeTab = ((type: RemoveType) => {
-    if (type === 'once') {
-      if (props.fullPath !== props.activeFullPath) {
-        type = 'otherOnce'
-      } else {
-        type = 'self'
-      }
+const useTabbar = useTabbarStore()
+const route = useRoute()
+
+// 按钮disabled判断
+const disabledReload = computed(() => {
+  return props.fullPath !== route.fullPath
+})
+const disabledDelSelf = computed(() => {
+  return useTabbar.getTabbarList.length <= 1
+})
+const disabledDelLeft = computed(() => {
+  const index = useTabbar.getTabbarList.findIndex(
+    item => item.fullPath === props.fullPath
+  )
+  return index === 0
+})
+const disabledDelRight = computed(() => {
+  const index = useTabbar.getTabbarList.findIndex(
+    item => item.fullPath === props.fullPath
+  )
+  return index === useTabbar.getTabbarList.length - 1
+})
+const disabledDelOtherAll = computed(() => {
+  return useTabbar.getTabbarList.length <= 1
+})
+// 删除事件
+const closeTab = (type: RemoveType) => {
+  if (type === 'once') {
+    if (props.fullPath !== props.activeFullPath) {
+      type = 'otherOnce'
+    } else {
+      type = 'self'
     }
-    if (type === 'self' && disabledDelSelf.value) return
-    if (type === 'left' && disabledDelLeft.value) return
-    if (type === 'right' && disabledDelRight.value) return
-    if (type === 'otherAll' && disabledDelOtherAll.value) return
-    useTabbar.remove(props.fullPath, type, props.activeFullPath)
-  })
+  }
+  if (type === 'self' && disabledDelSelf.value) return
+  if (type === 'left' && disabledDelLeft.value) return
+  if (type === 'right' && disabledDelRight.value) return
+  if (type === 'otherAll' && disabledDelOtherAll.value) return
+  useTabbar.remove(props.fullPath, type, props.activeFullPath)
+}
 </script>
 
 <template>
   <ul class="context-menu-container">
-    <li @click="reload" :class="{ 'disabled': disabledReload }">
+    <li :class="{ disabled: disabledReload }" @click="reload">
       {{ $t('tabbar.refresh') }}
     </li>
-    <li @click="closeTab('once')" :class="{ 'disabled': disabledDelSelf }">
+    <li :class="{ disabled: disabledDelSelf }" @click="closeTab('once')">
       {{ $t('tabbar.delete') }}
     </li>
-    <li @click="closeTab('left')" :class="{ 'disabled': disabledDelLeft }">
+    <li :class="{ disabled: disabledDelLeft }" @click="closeTab('left')">
       {{ $t('tabbar.deleteLeft') }}
     </li>
-    <li @click="closeTab('right')" :class="{ 'disabled': disabledDelRight }">
+    <li :class="{ disabled: disabledDelRight }" @click="closeTab('right')">
       {{ $t('tabbar.deleteRight') }}
     </li>
-    <li @click="closeTab('otherAll')" :class="{ 'disabled': disabledDelOtherAll }">
+    <li
+      :class="{ disabled: disabledDelOtherAll }"
+      @click="closeTab('otherAll')"
+    >
       {{ $t('tabbar.deleteOther') }}
     </li>
   </ul>

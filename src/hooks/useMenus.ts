@@ -7,9 +7,9 @@ export default function useMenus() {
   const useAppConfig = useAppConfigStore()
 
   /**
-* 合并 path 作为跳转路径
-* @param {*} routes router.getRoutes()
-*/
+   * 合并 path 作为跳转路径
+   * @param {*} routes router.getRoutes()
+   */
   const mergeRoutePath = (route, basePath = '') => {
     for (let i = 0; i < route.length; i++) {
       const r = route[i]
@@ -21,10 +21,10 @@ export default function useMenus() {
     return route
   }
   /**
-  * 根据 filterRouters 数据，返回对应 menu 规则数组
-  * forEach中的return 相当于 continue
-  */
-  const generateMenus = (filterRoutersData) => {
+   * 根据 filterRouters 数据，返回对应 menu 规则数组
+   * forEach中的return 相当于 continue
+   */
+  const generateMenus = filterRoutersData => {
     const result: any[] = []
     filterRoutersData.forEach(item => {
       // meta为空 children为空  比如登录 404...
@@ -46,7 +46,8 @@ export default function useMenus() {
         if (route?.meta?.title && item.meta.hideInMenu !== true) {
           // 这里可能出现的情况是 dashboard已经在tabbar中了 但是又设置了enableDashboard为false 就出现bug了
           // 这里不去处理此bug 是因为 是否开始dashboard是在一开始就决定的 就算出现了 自己手动关闭一下就好
-          if (!useAppConfig.app.enableDashboard && route.name === 'dashboard') return
+          if (!useAppConfig.app.enableDashboard && route.name === 'dashboard')
+            return
 
           result.push(route)
         }
@@ -55,7 +56,6 @@ export default function useMenus() {
           route?.children?.push(...generateMenus(item.children))
         }
       }
-
     })
 
     return result

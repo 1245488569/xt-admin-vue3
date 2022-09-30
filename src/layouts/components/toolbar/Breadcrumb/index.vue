@@ -1,48 +1,53 @@
 <script lang="ts" setup name="Breadcrumb">
-  import { generateTitle } from '@/util/i18n'
+import { generateTitle } from '@/util/i18n'
 
-  const route = useRoute()
+const route = useRoute()
 
-  const breadcrumbData: any = ref([])
-  const getBreadcrumbData = () => {
-    breadcrumbData.value = route.matched.filter((item) => item.meta && item.meta.title && !item.meta.hideInBreadcrumb)
-  }
-
-  watch(
-    route,
-    () => {
-      getBreadcrumbData()
-    },
-    {
-      immediate: true
-    }
+const breadcrumbData: any = ref([])
+const getBreadcrumbData = () => {
+  breadcrumbData.value = route.matched.filter(
+    item => item.meta && item.meta.title && !item.meta.hideInBreadcrumb
   )
+}
 
-  const router = useRouter()
-  const onLinkClick = (item) => {
-    // 开启权限后 点击有重定向参数的路由 但重定向的路由无权限时 跳转他下面的第一个路由
-    if (item.redirect) {
-      let redirectPathOrName = ''
-      if (typeof item.redirect === 'string') {
-        redirectPathOrName = item.redirect
-      } else {
-        redirectPathOrName = item.redirect.name
-      }
-      const name = item.children.find(v => v.name === redirectPathOrName || v.path === redirectPathOrName)?.name || ''
-      // name存在 说明重定向的路由有权限
-      if (name) {
-        router.push({
-          name
-        })
-      } else {
-        router.push({
-          name: item.children[0].name
-        })
-      }
-    } else {
-      console.warn('请设置redirect参数')
-    }
+watch(
+  route,
+  () => {
+    getBreadcrumbData()
+  },
+  {
+    immediate: true
   }
+)
+
+const router = useRouter()
+const onLinkClick = item => {
+  // 开启权限后 点击有重定向参数的路由 但重定向的路由无权限时 跳转他下面的第一个路由
+  if (item.redirect) {
+    let redirectPathOrName = ''
+    if (typeof item.redirect === 'string') {
+      redirectPathOrName = item.redirect
+    } else {
+      redirectPathOrName = item.redirect.name
+    }
+    const name =
+      item.children.find(
+        v => v.name === redirectPathOrName || v.path === redirectPathOrName
+      )?.name || ''
+    // name存在 说明重定向的路由有权限
+    if (name) {
+      router.push({
+        name
+      })
+    } else {
+      router.push({
+        name: item.children[0].name
+      })
+    }
+  } else {
+    console.warn('请设置redirect参数')
+  }
+}
 </script>
 
 <template>

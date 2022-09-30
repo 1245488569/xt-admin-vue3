@@ -8,7 +8,7 @@ export default {
   redirect: '/backend/backend1',
   meta: {
     title: 'backend',
-    icon: 'ep:apple',
+    icon: 'ep:apple'
   },
   children: [
     {
@@ -17,7 +17,7 @@ export default {
       component: () => import('@/views/backend/backend1/index.vue'),
       meta: {
         title: 'backend1',
-        icon: 'ep:apple',
+        icon: 'ep:apple'
       }
     },
     {
@@ -26,8 +26,8 @@ export default {
       component: () => import('@/views/backend/backend2/index.vue'),
       meta: {
         title: 'backend2',
-        icon: 'ep:apple',
+        icon: 'ep:apple'
       }
-    },
+    }
   ]
 } as RouteRecordRaw

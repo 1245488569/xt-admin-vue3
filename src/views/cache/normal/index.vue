@@ -1,5 +1,5 @@
 <script setup lang="ts" name="cacheNormal">
-  const num = ref(1)
+const num = ref(1)
 </script>
 
 <template>
@@ -11,5 +11,4 @@
       </div>
     </div>
   </page-main>
-
 </template>

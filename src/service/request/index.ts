@@ -28,17 +28,17 @@ class XTRequestClass {
 
     // 所有实例都有的请求拦截器（如果对应实例也传入了拦截器则 都会 执行）
     this.instance.interceptors.request.use(
-      (config) => {
+      config => {
         return config
       },
-      (err) => {
+      err => {
         return err
       }
     )
 
     // 所有实例都有的响应拦截器（如果对应实例也传入了拦截器则 都会 执行）
     this.instance.interceptors.response.use(
-      (res) => {
+      res => {
         const data = res.data
         if (data.type === 'error') {
           console.log('请求失败-，错误信息...')
@@ -46,7 +46,7 @@ class XTRequestClass {
           return data
         }
       },
-      (err) => {
+      err => {
         console.log('所有实例响应失败拦截')
         console.log(err)
         // if (err.response.status === 404) {
@@ -65,13 +65,13 @@ class XTRequestClass {
       }
       this.instance
         .request<any, T>(config)
-        .then((res) => {
+        .then(res => {
           if (config.interceptors?.responseInterceptor) {
             res = config.interceptors.responseInterceptor(res)
           }
           resolve(res)
         })
-        .catch((err) => {
+        .catch(err => {
           reject(err)
           return err
         })

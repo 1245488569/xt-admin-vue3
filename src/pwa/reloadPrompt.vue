@@ -1,24 +1,19 @@
 <template>
   <div v-if="needRefresh" class="toast" role="alert">
-    <div class="mb-2">
-      请更新（请点击“更新”，你将看见最新的内容）。
-    </div>
+    <div class="mb-2">请更新（请点击“更新”，你将看见最新的内容）。</div>
     <button @click="updateServiceWorker()">更新</button>
     <button @click="close">关闭</button>
   </div>
 </template>
 
 <script setup lang="ts" name="ReloadPrompt">
-  import { useRegisterSW } from 'virtual:pwa-register/vue'
+import { useRegisterSW } from 'virtual:pwa-register/vue'
 
-  const {
-    needRefresh,
-    updateServiceWorker
-  } = useRegisterSW()
+const { needRefresh, updateServiceWorker } = useRegisterSW()
 
-  const close = async() => {
-    needRefresh.value = false
-  }
+const close = async () => {
+  needRefresh.value = false
+}
 </script>
 
 <style lang="scss" scoped>

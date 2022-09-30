@@ -50,7 +50,7 @@ export default {
                 hideInMenu: true,
                 hideInBreadcrumb: true,
                 activeMenu: '/demo/demo2/index'
-              },
+              }
             },
             {
               path: 'detail',
@@ -65,7 +65,7 @@ export default {
               }
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -99,7 +99,7 @@ export default {
           }
         }
       ]
-    },
+    }
 
     // {
     //   path: 'demo4',

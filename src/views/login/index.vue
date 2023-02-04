@@ -75,7 +75,7 @@ const handleLogin = () => {
       </div>
     </div>
     <div
-      class="flex text-center w-full px-0 z-0 items-center justify-center md:px-16 lg:w-1/2"
+      class="flex text-center w-full px-0 z-0 relative items-center justify-center md:px-16 lg:w-1/2"
       style="background-color: #161616"
     >
       <div
@@ -135,6 +135,14 @@ const handleLogin = () => {
             >{{ $t('login.loginBtn') }}</el-button
           >
         </el-form>
+
+        <div class="text-center bottom-5 left-[45%] absolute">
+          <div>
+            <a href="https://beian.miit.gov.cn/"
+              >备案号：蜀ICP备2022015938号-1</a
+            >
+          </div>
+        </div>
       </div>
     </div>
   </section>

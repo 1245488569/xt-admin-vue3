@@ -1,30 +1,33 @@
 <script setup lang="ts">
-import router from '@/router'
-const goBack = () => {
+const router = useRouter()
+function goHome() {
   router.push('/')
 }
 </script>
 
 <template>
-  <div class="bg-gradient-to-r from-purple-300 to-blue-200">
-    <div
-      class="flex m-auto min-h-screen py-16 w-9/12 items-center justify-center"
-    >
-      <div class="bg-white shadow pb-8 overflow-hidden sm:rounded-lg">
-        <div class="border-t border-gray-200 text-center pt-8">
-          <h1 class="font-bold text-9xl text-purple-400">404</h1>
-          <h1 class="font-medium py-8 text-6xl">{{ $t('notfound.title') }}</h1>
-          <p class="font-medium px-12 pb-8 text-2xl">
-            {{ $t('notfound.desc') }}
-          </p>
-          <button
-            class="bg-gradient-to-r rounded-md font-semibold from-purple-400 to-blue-500 text-white mr-6 py-3 px-6 hover:from-pink-500 hover:to-orange-500"
-            @click="goBack"
-          >
-            {{ $t('notfound.back') }}
-          </button>
-        </div>
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-300 to-blue-200">
+    <div class="bg-white rounded-md flex flex-col py-12 w-[500px] items-center justify-center">
+      <div class="font-bold text-9xl text-purple-400">
+        404
+      </div>
+      <div class="font-medium py-8 text-6xl dark:text-dark-900">
+        未找到页面
+      </div>
+      <div class="font-medium pb-8 text-2xl dark:text-dark-900">
+        您正在寻找的页面不存在
+      </div>
+      <div>
+        <button class="back-btn" @click="goHome">
+          首页
+        </button>
       </div>
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.back-btn {
+  @apply bg-gradient-to-r from-purple-400 to-blue-500 rounded-md font-semibold py-3 px-6 hover:from-pink-500 hover:to-orange-500;
+}
+</style>

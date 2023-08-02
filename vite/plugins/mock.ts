@@ -6,8 +6,8 @@ export default function setupMock(isBuild: boolean) {
     localEnabled: !isBuild,
     prodEnabled: isBuild,
     injectCode: `
-      import { setupProdMockServer } from './mockProdServer';
-      setupProdMockServer();
-    `
+      import { setupProdMockServer } from './mock.ts';
+      setupProdMockServer()
+    `,
   })
 }

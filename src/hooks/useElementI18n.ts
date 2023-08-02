@@ -1,19 +1,20 @@
-import zhCh from 'element-plus/lib/locale/lang/zh-cn'
-import zhTw from 'element-plus/lib/locale/lang/zh-tw'
-import en from 'element-plus/lib/locale/lang/en'
-import { useAppConfigStore } from '@/store/app'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import zhTw from 'element-plus/dist/locale/zh-tw.mjs'
+import en from 'element-plus/dist/locale/en.mjs'
+import { useAppConfigStore } from '@/stores/app'
 
 export default function useElementI18n() {
   const useAppConfig = useAppConfigStore()
+
   const locale = computed(() => {
-    return useAppConfig.getLanguage === 'zh-ch'
-      ? zhCh
-      : useAppConfig.getLanguage === 'zh-tw'
-      ? zhTw
-      : en
+    console.log(useAppConfig.appConfig.defaultLanguage)
+
+    return useAppConfig.appConfig.defaultLanguage === 'zh-cn'
+      ? zhCn
+      : useAppConfig.appConfig.defaultLanguage === 'zh-tw'
+        ? zhTw
+        : en
   })
 
-  return {
-    locale
-  }
+  return { locale }
 }

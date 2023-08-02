@@ -1,19 +1,21 @@
 <script setup lang="ts" name="Logo">
-import { useAppConfigStore } from '@/store/app'
-defineProps({
-  showLogoImage: {
-    type: Boolean,
-    default: true
-  },
-  showLogoText: {
-    type: Boolean,
-    default: true
-  }
+import { useAppConfigStore } from '@/stores/app'
+
+interface IProps {
+  showLogoImage?: boolean
+  showLogoText?: boolean
+}
+withDefaults(defineProps<IProps>(), {
+  showLogoImage: true,
+  showLogoText: true,
 })
+
 const useAppConfig = useAppConfigStore()
+// logo背景色
 const logobgcolor = computed(() => {
   return useAppConfig.getTheme.logoBgColor
 })
+// logo字体颜色
 const logotextcolor = computed(() => {
   return useAppConfig.getTheme.logoTextColor
 })
@@ -24,20 +26,9 @@ const title = ref(import.meta.env.VITE_APP_TITLE)
   <router-link
     to="/"
     :title="title"
-    class="flex h-[var(--xt-logo-height)] px-2 top-0 z-1000 logo items-center justify-center"
-    :class="{
-      fixed: ['onlySubSideNav', 'mainSubSideNav'].includes(
-        useAppConfig.getLayoutMode
-      )
-    }"
+    class="logo flex h-[var(--xt-logo-height)] px-2 items-center justify-center flex-shrink-0"
   >
-    <el-avatar
-      v-if="showLogoImage"
-      :class="useAppConfig.getCollapse ? '' : 'mr-2'"
-      shape="square"
-      :size="40"
-      src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png"
-    />
+    <el-avatar v-if="showLogoImage" class="flex-shrink-0" :class="useAppConfig.getCollapse ? '' : 'mr-2'" shape="square" :size="40" src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png" />
     <span v-if="showLogoText" class="font-bold truncate">{{ title }}</span>
   </router-link>
 </template>
@@ -47,5 +38,10 @@ const title = ref(import.meta.env.VITE_APP_TITLE)
   width: inherit;
   color: v-bind(logotextcolor);
   background-color: v-bind(logobgcolor);
+}
+
+.dark .logo {
+  color: var(--xt-color-dark);
+  background-color: var(--xt-bg-color-dark);
 }
 </style>

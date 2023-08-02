@@ -1,22 +1,15 @@
 {
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
+  // 配置stylelint检查的文件类型范围
+  "stylelint.validate": ["css", "less", "postcss", "scss", "sass", "vue"],
+  "stylelint.enable": true,
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "stylelint.validate": [
-    "css",
-    "less",
-    "postcss",
-    "scss",
-    "vue",
-    "sass"
-  ],
-  "windicss.sortOnSave": true,
-  "i18n-ally.localesPaths": [
-    "src/plugins/i18n",
-    "src/plugins/i18n/lang"
-  ]
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

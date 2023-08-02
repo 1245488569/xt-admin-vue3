@@ -2,17 +2,19 @@
 
 # 如果大家觉得有用，请帮忙点下star，十分感谢
 
-# 演示地址
+# 说明：master分支为最新版本（正在更新），oldMaster为旧版本，旧版本不再维护
+
+# 演示地址（已失效，请自行下载代码运行，查看）
 http://www.xt-admin.com.cn/#/login
 
 
 ## 特点
 1. Vue3
-2. Vite
-3. Typescript
+2. Vite4
+3. Typescript5
 4. pinia
 5. element plus
-6. Windi CSS
+6. Unocss
 7. pnpm 包管理器
 8. 权限菜单支持（前端与后端模式都支持，极大程度简化开发工作）
 9. 4种布局模式随意切换
@@ -40,7 +42,7 @@ http://www.xt-admin.com.cn/#/login
 31. 其余的（请查看app.ts 或者 .env文件 或者assets/styles/globals/layout.scss）
 
 ## `node` 版本推荐
-最低14
+最低16
 
 ## 使用（请一定使用pnpm）
 
@@ -71,8 +73,7 @@ pnpm build:test
 
 ```shell
 pnpm lint
-pnpm stylelint
 # 校验时修复
-pnpm lint:fix
-pnpm stylint:fix
+pnpm lint:eslint
+pnpm lint:stylelint
 ```

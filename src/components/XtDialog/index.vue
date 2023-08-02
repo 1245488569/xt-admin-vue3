@@ -1,32 +1,62 @@
 <script setup lang="ts" name="XtDialog">
-const dialogVisible = ref(false)
-const open = () => {
-  dialogVisible.value = true
+interface IProps {
+  modelValue: boolean
+  loading?: boolean
+  showCancel?: boolean
+  showConfirm?: boolean
+  cancelButtonText?: string
+  confirmButtonText?: string
 }
-const close = () => {
-  dialogVisible.value = false
-}
-const Confirm = () => {
-  dialogVisible.value = false
-}
-// 分发方法
-defineExpose({
-  open,
-  close,
-  Confirm
+
+const props = withDefaults(defineProps<IProps>(), {
+  loading: false,
+  showCancel: true,
+  showConfirm: true,
+  cancelButtonText: '取消',
+  confirmButtonText: '确定',
 })
+
+const emits = defineEmits(['update:modelValue', 'cancel', 'confirm'])
+
+const value = computed({
+  get() {
+    return props.modelValue
+  },
+
+  set(value) {
+    emits('update:modelValue', value)
+  },
+})
+
+function handleCancel() {
+  emits('cancel')
+}
+
+function handleConfirm() {
+  emits('confirm')
+}
 </script>
 
 <template>
-  <el-dialog v-model="dialogVisible" v-bind="$attrs">
-    <template #default>
-      <slot></slot>
-    </template>
+  <el-dialog
+    v-model="value"
+    class="xt-base-dialog"
+    :close-on-click-modal="false"
+    :close-on-press-escape="false"
+    v-bind="$attrs"
+  >
+    <slot />
     <template #footer>
-      <span>
-        <el-button @click="close">Cancel</el-button>
-        <el-button type="primary" @click="Confirm">Confirm</el-button>
-      </span>
+      <slot name="footer">
+        <span v-if="showCancel || showConfirm">
+          <el-button v-if="showCancel" @click="handleCancel">
+            {{ cancelButtonText }}
+          </el-button>
+          <el-button v-if="showConfirm" type="primary" :loading="loading" @click="handleConfirm">
+            {{ confirmButtonText }}
+          </el-button>
+        </span>
+      </slot>
     </template>
   </el-dialog>
 </template>

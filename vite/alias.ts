@@ -1,9 +1,7 @@
-import * as path from 'path'
-import { AliasOptions } from 'vite'
+import { URL, fileURLToPath } from 'node:url'
 
 const alias = {
-  '@': path.resolve(__dirname, '../src'),
-  'vue-i18n': 'vue-i18n/index'
-} as AliasOptions
+  '@': fileURLToPath(new URL('../src', import.meta.url)),
+}
 
 export default alias

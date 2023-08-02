@@ -1,14 +1,13 @@
 <script setup lang="ts" name="SvgIcon">
 import { Icon } from '@iconify/vue'
-const props = defineProps({
-  name: {
-    type: String,
-    required: true
-  },
-  prefix: {
-    type: String,
-    default: 'icon'
-  }
+
+interface IProps {
+  name: string
+  prefix?: string
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  prefix: 'icon',
 })
 
 const symbolId = computed(() => `#${props.prefix}-${props.name}`)
@@ -20,6 +19,7 @@ const symbolId = computed(() => `#${props.prefix}-${props.name}`)
     <use :xlink:href="symbolId" />
   </svg>
 </template>
+
 <style lang="scss" scoped>
 .svg-icon {
   width: 1em;

@@ -1,0 +1,39 @@
+:root {
+  --xt-dialog-header-height: 50px;
+}
+
+.xt-base-dialog.el-dialog {
+  .el-dialog__header {
+    min-height: var(--xt-dialog-header-height);
+    display: flex;
+    align-items: center;
+    margin-right: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    background-color: var(--el-color-primary);
+
+    .el-dialog__title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .el-dialog__headerbtn {
+      width: var(--xt-dialog-header-height);
+      height: var(--xt-dialog-header-height);
+      position: absolute;
+      top: 0;
+      right: 5px;
+      font-size: 16px;
+
+      .el-dialog__close {
+        color: #fff;
+      }
+    }
+  }
+
+  .el-dialog__body {
+    padding: 20px 40px 0;
+    background-color: var(--el-bg-color);
+  }
+}

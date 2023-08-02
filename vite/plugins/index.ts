@@ -1,41 +1,23 @@
+import type { PluginOption } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { Plugin } from 'vite'
-
-import WindiCSS from 'vite-plugin-windicss'
-import setupRestart from './restart'
-import setupComponents from './components'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import UnoCSS from 'unocss/vite'
 import setupAutoImport from './auto-import'
+import setupComponents from './components'
+import setupExtendPlus from './extend-plus'
+import setupSvgIcon from './svg-icon'
 import setupIcons from './icon'
-import setupSvgIcons from './svg-sprite'
-import setupStyleImport from './style-import'
-import setupCompression from './compression'
 import setupMock from './mock'
-import setupPwa from './pwa'
-import setupSetupExtend from './setup-extend'
 
-export default function setupVitePlugins(
-  isBuild: boolean,
-  env: Record<string, string>
-) {
-  const { VITE_BUILD_COMPRESS, VITE_USE_PWA, VITE_USE_MOCK } = env
-  const plugins: (Plugin | Plugin[])[] = [vue()]
-  plugins.push(WindiCSS())
-  !isBuild && plugins.push(setupRestart())
+export default function setupVitePlugins(viteEnv: Record<string, string>, isBulid: boolean) {
+  const { VITE_USE_MOCK } = viteEnv
+
+  const plugins: PluginOption[] = [vue(), vueJsx(), UnoCSS()]
   plugins.push(setupAutoImport())
   plugins.push(setupComponents())
-  plugins.push(setupStyleImport())
-
-  plugins.push(setupSetupExtend())
-
+  plugins.push(setupExtendPlus())
   plugins.push(setupIcons())
-  plugins.push(setupSvgIcons(isBuild))
-  if (isBuild) {
-    const compressList = VITE_BUILD_COMPRESS.split(',')
-    if (compressList.includes('gzip') || compressList.includes('brotli')) {
-      plugins.push(...setupCompression(env))
-    }
-  }
-  VITE_USE_MOCK === 'true' && plugins.push(setupMock(isBuild))
-  isBuild && VITE_USE_PWA === 'true' && plugins.push(setupPwa(env))
+  plugins.push(setupSvgIcon(isBulid))
+  VITE_USE_MOCK === 'true' && plugins.push(setupMock(isBulid))
   return plugins
 }

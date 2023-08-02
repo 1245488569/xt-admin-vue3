@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-standard-scss",
+    "stylelint-config-standard-vue/scss"
+  ],
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "rules": {
+    "selector-class-pattern": null,
+    "declaration-empty-line-before": null,
+    "declaration-property-value-no-unknown": null,
+    "no-descending-specificity": true,
+    "property-no-unknown": null,
+    "function-no-unknown": [
+      true,
+      {
+        "ignoreFunctions": [
+          "v-bind"
+        ]
+      }
+    ]
+  }
+}

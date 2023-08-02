@@ -1,11 +1,9 @@
 {
-	"recommendations": [
-		"EditorConfig.EditorConfig",
-		"mikestead.dotenv",
-		"dbaeumer.vscode-eslint",
-		"stylelint.vscode-stylelint",
-		"Vue.volar",
-    "voorjaar.windicss-intellisense",
-    "esbenp.prettier-vscode"
-	]
+  "recommendations": [
+    "Vue.volar",
+    "Vue.vscode-typescript-vue-plugin",
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "EditorConfig.EditorConfig"
+  ]
 }

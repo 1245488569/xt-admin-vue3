@@ -1,4 +1,4 @@
-# Vue3 + Typescript + Vite + pinia + element plus + windcss
+# Vue3 + Typescript + Vite + pinia + element plus + unocss
 
 # 如果大家觉得有用，请帮忙点下star，十分感谢
 

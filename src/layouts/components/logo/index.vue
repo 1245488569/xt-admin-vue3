@@ -12,13 +12,9 @@ withDefaults(defineProps<IProps>(), {
 
 const useAppConfig = useAppConfigStore()
 // logo背景色
-const logobgcolor = computed(() => {
-  return useAppConfig.getTheme.logoBgColor
-})
+const logobgcolor = computed(() => useAppConfig.getTheme.logoBgColor)
 // logo字体颜色
-const logotextcolor = computed(() => {
-  return useAppConfig.getTheme.logoTextColor
-})
+const logotextcolor = computed(() => useAppConfig.getTheme.logoTextColor)
 const title = ref(import.meta.env.VITE_APP_TITLE)
 </script>
 

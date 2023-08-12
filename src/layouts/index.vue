@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import mainSidebar from './components/sidebar/MainSidebar.vue'
 import subSidebar from './components/sidebar/SubSidebar.vue'
+import Top from './components/top/index.vue'
 import { useAppConfigStore } from '@/stores/app'
 
 const useAppConfig = useAppConfigStore()
@@ -38,9 +39,7 @@ const sideBarWidth = computed(() => {
   <div class="h-full">
     <section class="flex flex-col h-full relative">
       <template v-if="showTop">
-        <div class="h-20 flex-shrink-0">
-          top
-        </div>
+        <Top />
       </template>
 
       <div class="flex-1 flex overflow-hidden">

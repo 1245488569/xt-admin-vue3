@@ -10,7 +10,7 @@
     margin-right: 0;
     padding: 0 20px;
     overflow: hidden;
-    background-color: var(--el-color-primary);
+    background: var(--el-color-primary);
 
     .el-dialog__title {
       font-size: 14px;
@@ -34,6 +34,6 @@
 
   .el-dialog__body {
     padding: 20px 40px 0;
-    background-color: var(--el-bg-color);
+    background: var(--el-bg-color);
   }
 }

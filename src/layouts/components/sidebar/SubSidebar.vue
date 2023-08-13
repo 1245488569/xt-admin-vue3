@@ -76,10 +76,21 @@ const menus = [
 
 <style lang="scss" scoped>
 .sub-sidebar-container {
-  background-color: v-bind(submenubgcolor);
+  background: v-bind(submenubgcolor);
 
-  .el-menu {
+  :deep(.el-menu) {
+    background: v-bind(submenubgcolor);
     border-right: none;
+  }
+}
+
+.dark {
+  .sub-sidebar-container {
+    background: var(--xt-sub-sidebar-bg-color);
+
+    :deep(.el-menu) {
+      background: var(--xt-sub-sidebar-bg-color);
+    }
   }
 }
 </style>

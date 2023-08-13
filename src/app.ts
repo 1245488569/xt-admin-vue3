@@ -29,23 +29,26 @@ const sysGlobalConfig: IGlobalConfig = {
     // mianContentBgColor: '#f5f5f5',
     // --------------logo----------------
     // logo背景色
-    logoBgColor: '#FFFFFF',
+    logoBgColor: '#cad7fe',
     // logo文字色
-    logoTextColor: '#000000',
+    logoTextColor: '#ffffff',
+
+    // --------------主菜单----------------
+    mainMenuBgColor: '#ffffff',
 
     // --------------次菜单----------------
     // 次菜单背景色
-    menuBgColor: '#ffffff',
+    menuBgColor: 'linear-gradient(to right,#c9d6ff,#e2e2e2)',
     // 选中次菜单背景色
-    menuActiveBgColor: '#ecf5ff',
+    menuActiveBgColor: '#cad7fe',
     // 鼠标经过次菜单背景色
-    menuHoverBgColor: '#ecf5ff',
+    menuHoverBgColor: '#cad7fe',
     // 次菜单文字颜色
-    menuTextColor: '#000000',
+    menuTextColor: '#2f4f4f',
     // 选中次菜单文字颜色
-    menuActiveTextColor: '#409EFF',
+    menuActiveTextColor: '#2f4f4f',
     // 鼠标经过次菜单文字颜色
-    menuHoverTextColor: '#409EFF',
+    menuHoverTextColor: '#2f4f4f',
   },
 }
 

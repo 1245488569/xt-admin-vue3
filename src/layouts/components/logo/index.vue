@@ -33,11 +33,11 @@ const title = ref(import.meta.env.VITE_APP_TITLE)
 .logo {
   width: inherit;
   color: v-bind(logotextcolor);
-  background-color: v-bind(logobgcolor);
+  background: v-bind(logobgcolor);
 }
 
 .dark .logo {
-  color: var(--xt-color-dark);
-  background-color: var(--xt-bg-color-dark);
+  color: var(--xt-sub-logo-text-color);
+  background: var(--xt-sub-logo-bg-color);
 }
 </style>

@@ -13,6 +13,14 @@ const topnavbgcolor = computed(() => {
     return useAppConfig.getTheme.menuBgColor
 })
 
+const darktopnavbgcolor = computed(() => {
+  if (useAppConfig.getLayoutMode === 'topSubSideNav')
+    return 'var(-xt-main-sidebar-bg-color)'
+
+  else if (useAppConfig.getLayoutMode === 'onlyTopNav')
+    return 'var(-xt-sub-sidebar-bg-color)'
+})
+
 const menus = [
   {
     path: '/demo1',
@@ -67,11 +75,22 @@ const menus = [
 
 <style lang="scss" scoped>
 .top-nav-container {
-  background-color: v-bind(topnavbgcolor);
+  background: v-bind(topnavbgcolor);
 
-  .el-menu {
-    background-color: v-bind(topnavbgcolor);
+  :deep(.el-menu) {
+    background: v-bind(topnavbgcolor);
     border-bottom: none;
+  }
+}
+
+.dark {
+  .top-nav-container {
+    background: v-bind(darktopnavbgcolor);
+
+    :deep(.el-menu) {
+      background: v-bind(darktopnavbgcolor);
+      border-bottom: none;
+    }
   }
 }
 </style>

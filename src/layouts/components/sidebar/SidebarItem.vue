@@ -43,44 +43,119 @@ const menuactivetextcolor = computed(() => useAppConfig.getTheme.menuActiveTextC
 
 <style lang="scss" scoped>
 .el-menu-item {
-  background-color: v-bind(menubgcolor)!important;
-  color: v-bind(menutextcolor)!important;
+  background: transparent !important;
+  color: v-bind(menutextcolor) !important;
+  transition-duration: 0s !important;
 
   &:hover {
-    transition: 300ms;
-    background-color: v-bind(menuhoverbgcolor)!important;
-    color: v-bind(menuhovertextcolor)!important;
+    background: v-bind(menuhoverbgcolor) !important;
+    color: v-bind(menuhovertextcolor) !important;
   }
 
   &.is-active {
-    transition: 300ms;
-    background-color: v-bind(menuactivebgcolor)!important;
-    color: v-bind(menuactivetextcolor)!important;
+    background: v-bind(menuactivebgcolor) !important;
+    color: v-bind(menuactivetextcolor) !important;
   }
 }
 
 :deep(.el-sub-menu__title) {
-  background-color: v-bind(menubgcolor)!important;
-  color: v-bind(menutextcolor)!important;
+  background: transparent !important;
+  color: v-bind(menutextcolor) !important;
+  transition-duration: 0s !important;
 
   &:hover {
-    transition: 300ms;
-    background-color: v-bind(menuhoverbgcolor)!important;
-    color: v-bind(menuhovertextcolor)!important;
+    background: v-bind(menuhoverbgcolor) !important;
+    color: v-bind(menuhovertextcolor) !important;
   }
 
   &:active {
-    transition: 300ms;
-    background-color: v-bind(menuactivebgcolor)!important;
-    color: v-bind(menuactivetextcolor)!important;
+    background: v-bind(menuactivebgcolor) !important;
+    color: v-bind(menuactivetextcolor) !important;
   }
 }
 
-.el-menu--horizontal > .el-sub-menu.is-active .el-sub-menu__title {
-  border-bottom: 2px solid v-bind(menuactivetextcolor)!important;
+.el-menu--horizontal .xt-sub-menu.el-sub-menu.is-active {
+  :deep(.el-sub-menu__title) {
+    border-bottom: 2px solid v-bind(menuactivetextcolor) !important;
+  }
 }
 
-.el-menu--horizontal > .el-menu-item.is-active {
-    border-bottom: 2px solid v-bind(menuactivetextcolor)!important;
+.el-menu--horizontal>.el-menu-item.is-active {
+  border-bottom: 2px solid v-bind(menuactivetextcolor) !important;
+}
+
+.dark {
+  .el-menu-item {
+    background: transparent !important;
+    color: var(--xt-sub-sidebar-text-color) !important;
+
+    &:hover {
+      background: var(--xt-sub-sidebar-hover-bg-color) !important;
+      color: var(--xt-sub-sidebar-hover-text-color) !important;
+    }
+
+    &.is-active {
+      background: var(--xt-sub-sidebar-active-bg-color) !important;
+      color: var(--xt-sub-sidebar-active-text-color) !important;
+    }
+  }
+
+  .xt-sub-menu :deep(.el-sub-menu__title) {
+    background: transparent !important;
+    color: var(--xt-sub-sidebar-text-color) !important;
+
+    &:hover {
+      background: var(--xt-sub-sidebar-hover-bg-color) !important;
+      color: var(--xt-sub-sidebar-hover-text-color) !important;
+    }
+
+    &:active {
+      background: var(--xt-sub-sidebar-active-bg-color) !important;
+      color: var(--xt-sub-sidebar-active-text-color) !important;
+    }
+  }
+
+  .el-menu--horizontal .xt-sub-menu.el-sub-menu.is-active {
+    :deep(.el-sub-menu__title) {
+      border-bottom: 2px solid var(--xt-sub-sidebar-active-text-color) !important;
+    }
+  }
+
+  .el-menu--horizontal>.el-menu-item.is-active {
+    border-bottom: 2px solid var(--xt-sub-sidebar-active-text-color) !important;
+  }
+
+  .el-popper.is-light .el-menu--horizontal .el-menu-item {
+    background: var(--xt-sub-sidebar-bg-color)!important;
+    color: v-bind(menutextcolor) !important;
+
+    &:hover {
+      background: var(--xt-sub-sidebar-hover-bg-color) !important;
+      color: var(--xt-sub-sidebar-hover-text-color) !important;
+    }
+
+    &.is-active {
+      background: var(--xt-sub-sidebar-active-bg-color) !important;
+      color: var(--xt-sub-sidebar-active-text-color) !important;
+    }
+  }
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.el-popper.is-light .el-menu--horizontal .el-menu-item {
+  background: v-bind(menubgcolor) !important;
+  color: v-bind(menutextcolor) !important;
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  &:hover {
+    background: v-bind(menuhoverbgcolor) !important;
+    color: v-bind(menuhovertextcolor) !important;
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  &.is-active {
+    background: v-bind(menuactivebgcolor) !important;
+    color: v-bind(menuactivetextcolor) !important;
+  }
 }
 </style>

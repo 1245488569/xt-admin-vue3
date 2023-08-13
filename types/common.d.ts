@@ -17,6 +17,8 @@ interface IGlobalTheme {
   logoBgColor: string
   logoTextColor: string
 
+  mainMenuBgColor: string
+
   menuBgColor: string
   menuActiveBgColor: string
   menuHoverBgColor: string

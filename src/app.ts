@@ -34,7 +34,18 @@ const sysGlobalConfig: IGlobalConfig = {
     logoTextColor: '#ffffff',
 
     // --------------主菜单----------------
-    mainMenuBgColor: '#ffffff',
+    // 次菜单背景色
+    mainMenuBgColor: 'linear-gradient(to right,#c9d6ff,#e2e2e2)',
+    // 选中次菜单背景色
+    mainMenuActiveBgColor: '#cad7fe',
+    // 鼠标经过次菜单背景色
+    mainMenuHoverBgColor: '#cad7fe',
+    // 次菜单文字颜色
+    mainMenuTextColor: '#2f4f4f',
+    // 选中次菜单文字颜色
+    mainMenuActiveTextColor: '#2f4f4f',
+    // 鼠标经过次菜单文字颜色
+    mainMenuHoverTextColor: '#2f4f4f',
 
     // --------------次菜单----------------
     // 次菜单背景色

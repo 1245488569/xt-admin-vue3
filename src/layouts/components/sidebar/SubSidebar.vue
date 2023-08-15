@@ -86,10 +86,10 @@ const menus = [
 
 .dark {
   .sub-sidebar-container {
-    background: var(--xt-sub-sidebar-bg-color);
+    background: var(--xt-sub-menu-bg-color);
 
     :deep(.el-menu) {
-      background: var(--xt-sub-sidebar-bg-color);
+      background: var(--xt-sub-menu-bg-color);
     }
   }
 }

@@ -11,12 +11,20 @@
   // Logo区域
   --xt-sub-logo-bg-color: #060D12; // Logo背景色
   --xt-sub-logo-text-color: #fff; // Logo字体色
+  
+  // 主导航
+  --xt-main-menu-bg-color: #141414; // 次导航背景色
+  --xt-main-menu-text-color: #7a6b7e; // 次导航字体色
+  --xt-main-menu-hover-bg-color: #14424b; // 次导航鼠标经过背景色
+  --xt-main-menu-hover-text-color: #fff; // 次导航鼠标经过字体色
+  --xt-main-menu-active-bg-color: #14424b; // 次导航选中背景色
+  --xt-main-menu-active-text-color: #fff; // 次导航选中字体色
 
   // 次导航区域
-  --xt-sub-sidebar-bg-color: #141414; // 次导航背景色
-  --xt-sub-sidebar-text-color: #7a6b7e; // 次导航字体色
-  --xt-sub-sidebar-hover-bg-color: #14424b; // 次导航鼠标经过背景色
-  --xt-sub-sidebar-hover-text-color: #fff; // 次导航鼠标经过字体色
-  --xt-sub-sidebar-active-bg-color: #14424b; // 次导航选中背景色
-  --xt-sub-sidebar-active-text-color: #fff; // 次导航选中字体色
+  --xt-sub-menu-bg-color: #141414; // 次导航背景色
+  --xt-sub-menu-text-color: #7a6b7e; // 次导航字体色
+  --xt-sub-menu-hover-bg-color: #14424b; // 次导航鼠标经过背景色
+  --xt-sub-menu-hover-text-color: #fff; // 次导航鼠标经过字体色
+  --xt-sub-menu-active-bg-color: #14424b; // 次导航选中背景色
+  --xt-sub-menu-active-text-color: #fff; // 次导航选中字体色
 }

@@ -87,56 +87,56 @@ const menuactivetextcolor = computed(() => useAppConfig.getTheme.menuActiveTextC
 .dark {
   .el-menu-item {
     background: transparent !important;
-    color: var(--xt-sub-sidebar-text-color) !important;
+    color: var(--xt-sub-menu-text-color) !important;
 
     &:hover {
-      background: var(--xt-sub-sidebar-hover-bg-color) !important;
-      color: var(--xt-sub-sidebar-hover-text-color) !important;
+      background: var(--xt-sub-menu-hover-bg-color) !important;
+      color: var(--xt-sub-menu-hover-text-color) !important;
     }
 
     &.is-active {
-      background: var(--xt-sub-sidebar-active-bg-color) !important;
-      color: var(--xt-sub-sidebar-active-text-color) !important;
+      background: var(--xt-sub-menu-active-bg-color) !important;
+      color: var(--xt-sub-menu-active-text-color) !important;
     }
   }
 
   .xt-sub-menu :deep(.el-sub-menu__title) {
     background: transparent !important;
-    color: var(--xt-sub-sidebar-text-color) !important;
+    color: var(--xt-sub-menu-text-color) !important;
 
     &:hover {
-      background: var(--xt-sub-sidebar-hover-bg-color) !important;
-      color: var(--xt-sub-sidebar-hover-text-color) !important;
+      background: var(--xt-sub-menu-hover-bg-color) !important;
+      color: var(--xt-sub-menu-hover-text-color) !important;
     }
 
     &:active {
-      background: var(--xt-sub-sidebar-active-bg-color) !important;
-      color: var(--xt-sub-sidebar-active-text-color) !important;
+      background: var(--xt-sub-menu-active-bg-color) !important;
+      color: var(--xt-sub-menu-active-text-color) !important;
     }
   }
 
   .el-menu--horizontal .xt-sub-menu.el-sub-menu.is-active {
     :deep(.el-sub-menu__title) {
-      border-bottom: 2px solid var(--xt-sub-sidebar-active-text-color) !important;
+      border-bottom: 2px solid var(--xt-sub-menu-active-text-color) !important;
     }
   }
 
   .el-menu--horizontal>.el-menu-item.is-active {
-    border-bottom: 2px solid var(--xt-sub-sidebar-active-text-color) !important;
+    border-bottom: 2px solid var(--xt-sub-menu-active-text-color) !important;
   }
 
   .el-popper.is-light .el-menu--horizontal .el-menu-item {
-    background: var(--xt-sub-sidebar-bg-color)!important;
+    background: var(--xt-sub-menu-bg-color)!important;
     color: v-bind(menutextcolor) !important;
 
     &:hover {
-      background: var(--xt-sub-sidebar-hover-bg-color) !important;
-      color: var(--xt-sub-sidebar-hover-text-color) !important;
+      background: var(--xt-sub-menu-hover-bg-color) !important;
+      color: var(--xt-sub-menu-hover-text-color) !important;
     }
 
     &.is-active {
-      background: var(--xt-sub-sidebar-active-bg-color) !important;
-      color: var(--xt-sub-sidebar-active-text-color) !important;
+      background: var(--xt-sub-menu-active-bg-color) !important;
+      color: var(--xt-sub-menu-active-text-color) !important;
     }
   }
 }

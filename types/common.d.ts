@@ -18,6 +18,11 @@ interface IGlobalTheme {
   logoTextColor: string
 
   mainMenuBgColor: string
+  mainMenuActiveBgColor: string
+  mainMenuHoverBgColor: string
+  mainMenuTextColor: string
+  mainMenuActiveTextColor: string
+  mainMenuHoverTextColor: string
 
   menuBgColor: string
   menuActiveBgColor: string
@@ -43,7 +48,9 @@ declare namespace Menu {
   }
 
   interface recordMainRaw {
-    meta: RouteMeta
+    title: string
+    icon: string
+    parentIndex?: number
     children: recordRaw[]
   }
 }

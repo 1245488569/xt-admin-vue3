@@ -1,5 +1,6 @@
 :root {
-  --xt-main-sidebar-width: 70px; // 侧边主导航宽度
+  --xt-main-sidebar-width: 90px; // 侧边主导航宽度
+  --xt-main-sidebar-item-height: 60px; // 侧边主每一项的高度
   --xt-sub-sidebar-width: 250px; // 侧边次导航宽度
   --xt-sub-sidebar-collapse-width: 63px; // 侧边次导航收缩时宽度
   --xt-logo-height: 50px;// Logo的高度
@@ -9,16 +10,16 @@
 
   // 暗黑模式下的颜色
   // Logo区域
-  --xt-sub-logo-bg-color: #060D12; // Logo背景色
-  --xt-sub-logo-text-color: #fff; // Logo字体色
+  // --xt-sub-logo-bg-color: #060D12; // Logo背景色
+  --xt-logo-text-color: #fff; // Logo字体色
   
   // 主导航
-  --xt-main-menu-bg-color: #141414; // 次导航背景色
-  --xt-main-menu-text-color: #7a6b7e; // 次导航字体色
-  --xt-main-menu-hover-bg-color: #14424b; // 次导航鼠标经过背景色
-  --xt-main-menu-hover-text-color: #fff; // 次导航鼠标经过字体色
-  --xt-main-menu-active-bg-color: #14424b; // 次导航选中背景色
-  --xt-main-menu-active-text-color: #fff; // 次导航选中字体色
+  --xt-main-menu-bg-color: #303643; // 主导航背景色
+  --xt-main-menu-text-color: #7a6b7e; // 主导航字体色
+  --xt-main-menu-hover-bg-color: #3375b9; // 主导航鼠标经过背景色
+  --xt-main-menu-hover-text-color: #fff; // 主导航鼠标经过字体色
+  --xt-main-menu-active-bg-color: #3375b9; // 主导航选中背景色
+  --xt-main-menu-active-text-color: #fff; // 主导航选中字体色
 
   // 次导航区域
   --xt-sub-menu-bg-color: #141414; // 次导航背景色

@@ -28,24 +28,24 @@ const sysGlobalConfig: IGlobalConfig = {
     // 主区域背景色
     // mianContentBgColor: '#f5f5f5',
     // --------------logo----------------
-    // logo背景色
-    logoBgColor: '#cad7fe',
+    // logo背景色（目前是让logo的背景色跟随菜单主题）
+    // logoBgColor: '#cad7fe',
     // logo文字色
     logoTextColor: '#ffffff',
 
     // --------------主菜单----------------
-    // 次菜单背景色
-    mainMenuBgColor: 'linear-gradient(to right,#c9d6ff,#e2e2e2)',
-    // 选中次菜单背景色
-    mainMenuActiveBgColor: '#cad7fe',
-    // 鼠标经过次菜单背景色
-    mainMenuHoverBgColor: '#cad7fe',
-    // 次菜单文字颜色
-    mainMenuTextColor: '#2f4f4f',
-    // 选中次菜单文字颜色
-    mainMenuActiveTextColor: '#2f4f4f',
-    // 鼠标经过次菜单文字颜色
-    mainMenuHoverTextColor: '#2f4f4f',
+    // 主菜单背景色
+    mainMenuBgColor: '#303643',
+    // 选中主菜单背景色
+    mainMenuActiveBgColor: '#FF6600',
+    // 鼠标经过主菜单背景色
+    mainMenuHoverBgColor: '#FF6600',
+    // 主菜单文字颜色
+    mainMenuTextColor: '#d6d7d9',
+    // 选中主菜单文字颜色
+    mainMenuActiveTextColor: '#ffffff',
+    // 鼠标经过主菜单文字颜色
+    mainMenuHoverTextColor: '#ffffff',
 
     // --------------次菜单----------------
     // 次菜单背景色

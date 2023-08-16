@@ -12,7 +12,7 @@ withDefaults(defineProps<IProps>(), {
 
 const useAppConfig = useAppConfigStore()
 // logo背景色
-const logobgcolor = computed(() => useAppConfig.getTheme.logoBgColor)
+// const logobgcolor = computed(() => useAppConfig.getTheme.logoBgColor)
 // logo字体颜色
 const logotextcolor = computed(() => useAppConfig.getTheme.logoTextColor)
 const title = ref(import.meta.env.VITE_APP_TITLE)
@@ -24,7 +24,7 @@ const title = ref(import.meta.env.VITE_APP_TITLE)
     :title="title"
     class="logo flex h-[var(--xt-logo-height)] px-2 items-center justify-center flex-shrink-0"
   >
-    <el-avatar v-if="showLogoImage" class="flex-shrink-0" :class="useAppConfig.getCollapse ? '' : 'mr-2'" shape="square" :size="40" src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png" />
+    <el-avatar v-if="showLogoImage" class="flex-shrink-0 mr-2" shape="square" :size="40" src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png" />
     <span v-if="showLogoText" class="font-bold truncate">{{ title }}</span>
   </router-link>
 </template>
@@ -33,11 +33,11 @@ const title = ref(import.meta.env.VITE_APP_TITLE)
 .logo {
   width: inherit;
   color: v-bind(logotextcolor);
-  background: v-bind(logobgcolor);
+  background: transparent;
 }
 
 .dark .logo {
-  color: var(--xt-sub-logo-text-color);
-  background: var(--xt-sub-logo-bg-color);
+  color: var(--xt-logo-text-color);
+  background: transparent;
 }
 </style>

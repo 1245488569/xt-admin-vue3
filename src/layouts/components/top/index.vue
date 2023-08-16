@@ -189,6 +189,8 @@ const menus = [
 
   .main-menu {
     .el-menu-item {
+      margin-right: 8px;
+      border-radius: 8px;
       background: transparent !important;
       color: v-bind(topnavtextcolor) !important;
       transition-duration: 0s !important;
@@ -196,6 +198,7 @@ const menus = [
       &:hover {
         background: v-bind(topnavhoverbgcolor) !important;
         color: v-bind(topnavhovertextcolor) !important;
+        border-bottom: 2px solid v-bind(topnavhovertextcolor) !important;
       }
 
       &.is-active {
@@ -225,6 +228,7 @@ const menus = [
         &:hover {
           background: v-bind(darktopnavhoverbgcolor) !important;
           color: v-bind(darktopnavhovertextcolor) !important;
+          border-bottom: 2px solid v-bind(darktopnavhovertextcolor) !important;
         }
 
         &.is-active {

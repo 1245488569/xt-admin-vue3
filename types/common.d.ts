@@ -14,7 +14,7 @@ interface IGlobalNav {
 }
 
 interface IGlobalTheme {
-  logoBgColor: string
+  // logoBgColor: string
   logoTextColor: string
 
   mainMenuBgColor: string

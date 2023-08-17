@@ -24,6 +24,10 @@ const menus = [
     children: [
       {
         path: '/demo1-1',
+        meta: {
+          icon: 'ep:service',
+          title: 'demo1-1',
+        },
         children: [
           {
             path: '/demo1-1-1',
@@ -32,11 +36,14 @@ const menus = [
               title: 'demo1-1-1',
             },
           },
+          {
+            path: '/demo1-1-2',
+            meta: {
+              icon: 'ep:service',
+              title: 'demo1-1-2',
+            },
+          },
         ],
-        meta: {
-          icon: 'ep:service',
-          title: 'demo1-1',
-        },
       },
     ],
     meta: {

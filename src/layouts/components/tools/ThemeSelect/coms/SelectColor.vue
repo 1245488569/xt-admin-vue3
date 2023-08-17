@@ -1,7 +1,7 @@
 <script lang="ts" setup name="SelectColor">
 import { useAppConfigStore } from '@/stores/app'
 
-type Key = 'logoBgColor' | 'logoTextColor' | 'menuBgColor' | 'menuActiveBgColor' | 'menuHoverBgColor' | 'menuTextColor' | 'menuActiveTextColor' | 'menuHoverTextColor'
+type Key = 'logoTextColor' | 'mainMenuBgColor' | 'mainMenuActiveBgColor' | 'mainMenuHoverBgColor' | 'mainMenuTextColor' | 'mainMenuActiveTextColor' | 'mainMenuHoverTextColor' | 'menuBgColor' | 'menuActiveBgColor' | 'menuHoverBgColor' | 'menuTextColor' | 'menuActiveTextColor' | 'menuHoverTextColor'
 interface IThemeData {
   title: string
   key: Key
@@ -12,15 +12,50 @@ const useAppConfig = useAppConfigStore()
 // logo主题数据
 const logoThemeData = computed<IThemeData[]>(() => {
   return [
-    {
-      title: '背景色',
-      key: 'logoBgColor',
-      value: useAppConfig.getTheme.logoBgColor,
-    },
+    // {
+    //   title: '背景色',
+    //   key: 'logoBgColor',
+    //   value: useAppConfig.getTheme.logoBgColor,
+    // },
     {
       title: '文字颜色',
       key: 'logoTextColor',
       value: useAppConfig.getTheme.logoTextColor,
+    },
+  ]
+})
+
+const mainMenuThemeData = computed<IThemeData[]>(() => {
+  return [
+    {
+      title: '背景色',
+      key: 'mainMenuBgColor',
+      value: useAppConfig.getTheme.mainMenuBgColor,
+    },
+    {
+      title: '选中背景色',
+      key: 'mainMenuActiveBgColor',
+      value: useAppConfig.getTheme.mainMenuActiveBgColor,
+    },
+    {
+      title: '鼠标经过背景色',
+      key: 'mainMenuHoverBgColor',
+      value: useAppConfig.getTheme.mainMenuHoverBgColor,
+    },
+    {
+      title: '文字颜色',
+      key: 'mainMenuTextColor',
+      value: useAppConfig.getTheme.mainMenuTextColor,
+    },
+    {
+      title: '选中文字颜色',
+      key: 'mainMenuActiveTextColor',
+      value: useAppConfig.getTheme.mainMenuActiveTextColor,
+    },
+    {
+      title: '鼠标经过文字颜色',
+      key: 'mainMenuHoverTextColor',
+      value: useAppConfig.getTheme.mainMenuHoverTextColor,
     },
   ]
 })
@@ -81,6 +116,14 @@ defineExpose({
       <el-divider>logo</el-divider>
       <div class="flex">
         <div v-for="item in logoThemeData" :key="item.value" class="color-select-content">
+          <span class="mb-1">{{ item.title }}</span>
+          <el-color-picker v-model="item.value" show-alpha @change="themeChange(item.key, $event as string)" />
+        </div>
+      </div>
+
+      <el-divider>主导航</el-divider>
+      <div class="flex">
+        <div v-for="item in mainMenuThemeData" :key="item.value" class="color-select-content">
           <span class="mb-1">{{ item.title }}</span>
           <el-color-picker v-model="item.value" show-alpha @change="themeChange(item.key, $event as string)" />
         </div>

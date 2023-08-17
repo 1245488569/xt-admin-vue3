@@ -51,15 +51,15 @@ const sysGlobalConfig: IGlobalConfig = {
     // 次菜单背景色
     menuBgColor: 'linear-gradient(to right,#c9d6ff,#e2e2e2)',
     // 选中次菜单背景色
-    menuActiveBgColor: '#cad7fe',
+    menuActiveBgColor: '#409eff',
     // 鼠标经过次菜单背景色
-    menuHoverBgColor: '#cad7fe',
+    menuHoverBgColor: '#409eff',
     // 次菜单文字颜色
     menuTextColor: '#2f4f4f',
     // 选中次菜单文字颜色
-    menuActiveTextColor: '#2f4f4f',
+    menuActiveTextColor: '#ffffff',
     // 鼠标经过次菜单文字颜色
-    menuHoverTextColor: '#2f4f4f',
+    menuHoverTextColor: '#ffffff',
   },
 }
 

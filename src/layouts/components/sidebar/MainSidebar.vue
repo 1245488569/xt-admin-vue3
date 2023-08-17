@@ -40,14 +40,14 @@ function cliclMainMenu(index: number) {
         <template v-for="(item, index) in allMainMenu" :key="index">
           <li
             v-if="item.children.length"
-            class="rounded-lg cursor-pointer flex flex-col h-[var(--xt-main-sidebar-item-height)] mx-2 mb-1 justify-center items-center main-menu-item"
+            class="rounded-lg cursor-pointer flex flex-col h-[var(--xt-main-sidebar-item-height)] mx-2 mb-1 justify-center items-center main-menu-item px-1 text-14px"
             :class="index === active ? 'is-active' : ''"
             @click="cliclMainMenu(index)"
           >
             <el-icon v-if="item.icon" :size="20">
               <svg-icon :name="item.icon" />
             </el-icon>
-            <span class="truncate">{{ item.title }}</span>
+            <span class="truncate w-full text-center" :title="item.title">{{ item.title }}</span>
           </li>
         </template>
       </ul>

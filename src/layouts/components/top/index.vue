@@ -118,24 +118,26 @@ const allMainMenu = [
 const menus = [
   {
     path: '/demo1',
-    children: [
-      {
-        path: '/demo1-1',
-        children: [
-          {
-            path: '/demo1-1-1',
-            meta: {
-              icon: 'ep:service',
-              title: 'demo1-1-1',
-            },
-          },
-        ],
+    children: [{
+      path: '/demo1-1',
+      meta: {
+        icon: 'ep:service',
+        title: 'demo1-1',
+      },
+      children: [{
+        path: '/demo1-1-1',
         meta: {
           icon: 'ep:service',
-          title: 'demo1-1',
+          title: 'demo1-1-1',
         },
+      }],
+    }, {
+      path: '/demo1-2',
+      meta: {
+        icon: 'ep:service',
+        title: 'demo1-2',
       },
-    ],
+    }],
     meta: {
       icon: 'ep:service',
       title: 'demo1',
@@ -146,6 +148,13 @@ const menus = [
     meta: {
       icon: 'ep:service',
       title: 'demo2',
+    },
+  },
+  {
+    path: '/demo3',
+    meta: {
+      icon: 'ep:service',
+      title: 'demo3',
     },
   },
 ]

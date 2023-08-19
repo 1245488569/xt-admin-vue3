@@ -4,6 +4,6 @@
 
 <template>
   <div>
-    demo
+    demo2
   </div>
 </template>

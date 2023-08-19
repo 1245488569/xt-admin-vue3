@@ -3,6 +3,10 @@ const sysGlobalConfig: IGlobalConfig = {
   elementSize: 'default',
   app: {
     /**
+     * 是否开启权限功能
+     */
+    enablePermission: false,
+    /**
      * 布局模式
      * onlyTopNav 只有顶部导航
      * onlySubSideNav 只有侧边栏导航

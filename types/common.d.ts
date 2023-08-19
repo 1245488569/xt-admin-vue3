@@ -5,6 +5,7 @@ type LayoutMode = 'onlyTopNav' | 'onlySubSideNav' | 'mainSubSideNav' | 'topSubSi
 type ColorScheme = '' | 'light' | 'dark'
 
 interface IGlobalApp {
+  enablePermission: boolean
   layoutMode: LayoutMode
   colorScheme: ColorScheme
 }

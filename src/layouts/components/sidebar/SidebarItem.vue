@@ -95,6 +95,12 @@ const menuactivetextcolor = computed(() => useAppConfig.getTheme.menuActiveTextC
   margin-right: 8px;
 }
 
+.el-menu--horizontal .xt-sub-menu.el-sub-menu {
+  :deep(.el-sub-menu__title) {
+    margin-right: 8px;
+  }
+}
+
 .el-menu--horizontal .xt-sub-menu.el-sub-menu.is-active {
   :deep(.el-sub-menu__title) {
     background: v-bind(menuactivebgcolor) !important;
@@ -214,6 +220,7 @@ const menuactivetextcolor = computed(() => useAppConfig.getTheme.menuActiveTextC
 /* stylelint-disable-next-line no-descending-specificity */
 .xt-popper-menu .xt-sub-menu.el-sub-menu {
   :deep(.el-sub-menu__title) {
+    margin-right: 0;
     background: v-bind(menubgcolor) !important;
     color: v-bind(menutextcolor) !important;
 

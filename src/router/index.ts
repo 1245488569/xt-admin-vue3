@@ -18,7 +18,7 @@ router.beforeEach(async (to, from, next) => {
     sign = true
     console.log(filterRoutes)
     filterRoutes.forEach((item) => {
-      router.addRoute('root', item)
+      router.addRoute(item)
     })
     next(to.fullPath)
   }

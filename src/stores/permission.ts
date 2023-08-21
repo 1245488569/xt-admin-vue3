@@ -5,7 +5,7 @@ import constantRoutes from '@/router/constant'
 
 export const usePermissionStore = defineStore('route', () => {
   // 过滤完成的路由表（固定路由+动态路由）
-  let routes = [] as RouteRecordRaw[]
+  const routes = ref<RouteRecordRaw[]>([])
 
   const allPrivateChildrenRoutes = computed(() => {
     // let routes: RouteRecordRaw[] = []
@@ -17,7 +17,7 @@ export const usePermissionStore = defineStore('route', () => {
   })
 
   function setRoutes(needDynamicallyAddRoutes: RouteRecordRaw[]) {
-    routes = [...constantRoutes, ...needDynamicallyAddRoutes]
+    routes.value = [...constantRoutes, ...needDynamicallyAddRoutes]
   }
 
   function filterPermissionsRoutes(): Promise<RouteRecordRaw[]> {

@@ -46,7 +46,7 @@ const menuactivetextcolor = computed(() => useAppConfig.getTheme.menuActiveTextC
   border-radius: 8px;
   background: transparent !important;
   color: v-bind(menutextcolor) !important;
-  transition-duration: 0s !important;
+  transition-duration: 0.3s !important;
 
   &:hover {
     background: v-bind(menuhoverbgcolor) !important;
@@ -63,7 +63,7 @@ const menuactivetextcolor = computed(() => useAppConfig.getTheme.menuActiveTextC
   border-radius: 8px;
   background: transparent !important;
   color: v-bind(menutextcolor) !important;
-  transition-duration: 0s !important;
+  transition-duration: 0.3s !important;
 
   &:hover {
     background: v-bind(menuhoverbgcolor) !important;

@@ -202,7 +202,7 @@ const menus = [
       border-radius: 8px;
       background: transparent !important;
       color: v-bind(topnavtextcolor) !important;
-      transition-duration: 0s !important;
+      transition-duration: 0.3s !important;
 
       &:hover {
         background: v-bind(topnavhoverbgcolor) !important;
@@ -232,7 +232,7 @@ const menus = [
       .el-menu-item {
         background: transparent !important;
         color: v-bind(darktopnavtextcolor) !important;
-        transition-duration: 0s !important;
+        transition-duration: 0.3s !important;
 
         &:hover {
           background: v-bind(darktopnavhoverbgcolor) !important;

@@ -16,7 +16,6 @@ router.beforeEach(async (to, from, next) => {
   if (!sign && !usePermission.routes.length) {
     const filterRoutes = await usePermission.filterPermissionsRoutes()
     sign = true
-    console.log(filterRoutes)
     filterRoutes.forEach((item) => {
       router.addRoute(item)
     })

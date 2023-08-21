@@ -9,6 +9,10 @@ export default {
       path: '',
       name: 'demo2-1',
       component: () => import('@/views/demo2/index.vue'),
+      meta: {
+        title: '演示2-1',
+        icon: 'ep:apple',
+      },
     },
   ],
 } as RouteRecordRaw

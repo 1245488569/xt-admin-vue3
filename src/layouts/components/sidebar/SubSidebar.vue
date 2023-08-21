@@ -1,6 +1,7 @@
 <script setup lang="ts" name="SubSidebar">
 import logo from '../logo/index.vue'
 import sidebarItem from './SidebarItem.vue'
+import useMenus from '@/hooks/useMenus'
 import { useAppConfigStore } from '@/stores/app'
 
 const useAppConfig = useAppConfigStore()
@@ -17,48 +18,7 @@ const subSidebarWidth = computed(() => {
   else
     return 'w-[var(--xt-sub-sidebar-collapse-width)]'
 })
-
-const menus = [
-  {
-    path: '/demo1',
-    children: [
-      {
-        path: '/demo1-1',
-        meta: {
-          icon: 'ep:service',
-          title: 'demo1-1',
-        },
-        children: [
-          {
-            path: '/demo1-1-1',
-            meta: {
-              icon: 'ep:service',
-              title: 'demo1-1-1',
-            },
-          },
-          {
-            path: '/demo1-1-2',
-            meta: {
-              icon: 'ep:service',
-              title: 'demo1-1-2',
-            },
-          },
-        ],
-      },
-    ],
-    meta: {
-      icon: 'ep:service',
-      title: 'demo1',
-    },
-  },
-  {
-    path: '/demo2',
-    meta: {
-      icon: 'ep:service',
-      title: 'demo2',
-    },
-  },
-]
+const { menus } = useMenus()
 </script>
 
 <template>

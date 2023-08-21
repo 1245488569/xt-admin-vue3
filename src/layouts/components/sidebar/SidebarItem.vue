@@ -1,8 +1,9 @@
 <script setup lang="ts" name="SidebarItem">
+import type { RouteRecordRaw } from 'vue-router'
 import { useAppConfigStore } from '@/stores/app'
 
 interface IProps {
-  menu: Menu.recordRaw
+  menu: RouteRecordRaw
 }
 withDefaults(defineProps<IProps>(), {})
 
@@ -19,10 +20,10 @@ const menuactivetextcolor = computed(() => useAppConfig.getTheme.menuActiveTextC
   <!-- 支持渲染多级 menu 菜单 -->
   <el-sub-menu v-if="menu.children?.length" class="xt-sub-menu" :index="menu.path" popper-class="xt-popper-menu">
     <template #title>
-      <el-icon v-if="menu.meta.icon" :size="20">
+      <el-icon v-if="menu.meta?.icon" :size="20">
         <svg-icon :name="menu.meta.icon" />
       </el-icon>
-      <span class="flex-1 mr-1 truncate" :title="menu.meta.title">{{ menu.meta.title }}</span>
+      <span class="flex-1 mr-1 truncate" :title="menu.meta?.title">{{ menu.meta?.title }}</span>
     </template>
     <!-- 循环渲染 -->
     <sidebar-item
@@ -34,10 +35,10 @@ const menuactivetextcolor = computed(() => useAppConfig.getTheme.menuActiveTextC
 
   <!-- 渲染 item 项 -->
   <el-menu-item v-else :index="menu.path">
-    <el-icon v-if="menu.meta.icon" :size="20">
+    <el-icon v-if="menu.meta?.icon" :size="20">
       <svg-icon :name="menu.meta.icon" />
     </el-icon>
-    <span class="truncate" :title="menu.meta.title">{{ menu.meta.title }}</span>
+    <span class="truncate" :title="menu.meta?.title">{{ menu.meta?.title }}</span>
   </el-menu-item>
 </template>
 

@@ -42,12 +42,6 @@ declare interface IGlobalConfig {
 }
 
 declare namespace Menu {
-  interface recordRaw {
-    path: string
-    meta: RouteMeta
-    children?: recordRaw[]
-  }
-
   interface recordMainRaw {
     title: string
     icon: string

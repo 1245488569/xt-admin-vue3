@@ -2,6 +2,7 @@
 import sidebarItem from '../sidebar/SidebarItem.vue'
 import Logo from '../logo/index.vue'
 import { useAppConfigStore } from '@/stores/app'
+import useMenus from '@/hooks/useMenus'
 
 const useAppConfig = useAppConfigStore()
 
@@ -115,49 +116,7 @@ const allMainMenu = [
     children: [{}],
   },
 ]
-const menus = [
-  {
-    path: '/demo1',
-    children: [{
-      path: '/demo1-1',
-      meta: {
-        icon: 'ep:service',
-        title: 'demo1-1',
-      },
-      children: [{
-        path: '/demo1-1-1',
-        meta: {
-          icon: 'ep:service',
-          title: 'demo1-1-1',
-        },
-      }],
-    }, {
-      path: '/demo1-2',
-      meta: {
-        icon: 'ep:service',
-        title: 'demo1-2',
-      },
-    }],
-    meta: {
-      icon: 'ep:service',
-      title: 'demo1',
-    },
-  },
-  {
-    path: '/demo2',
-    meta: {
-      icon: 'ep:service',
-      title: 'demo2',
-    },
-  },
-  {
-    path: '/demo3',
-    meta: {
-      icon: 'ep:service',
-      title: 'demo3',
-    },
-  },
-]
+const { menus } = useMenus()
 </script>
 
 <template>
@@ -178,7 +137,7 @@ const menus = [
     </template>
     <!-- 只有顶部导航 -->
     <template v-if="useAppConfig.getLayoutMode === 'onlyTopNav'">
-      <el-menu mode="horizontal" :unique-opened="true" class="flex-1">
+      <el-menu mode="horizontal" router :default-active="$route.meta?.activeMenu || $route.path" :unique-opened="true" class="flex-1">
         <template v-for="item in menus" :key="item.path">
           <sidebar-item :menu="item" />
         </template>

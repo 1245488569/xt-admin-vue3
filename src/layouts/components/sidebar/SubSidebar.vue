@@ -28,7 +28,7 @@ const { menus } = useMenus()
       :show-logo-image="useAppConfig.getLayoutMode === 'mainSubSideNav' ? false : true"
       :show-logo-text="useAppConfig.getLayoutMode === 'onlySubSideNav' && useAppConfig.getCollapse ? false : true"
     />
-    <div class="flex-1 overflow-hidden hover:overflow-y-auto">
+    <div class="flex-1 overflow-hidden hover:overflow-y-auto py-2">
       <el-menu
         router
         :default-active="$route.meta?.activeMenu || $route.path"

@@ -1,7 +1,9 @@
 <script setup lang="ts" name="MainSidebar">
 import logo from '../logo/index.vue'
+import useMenus from '@/hooks/useMenus'
 
 import { useAppConfigStore } from '@/stores/app'
+import { usePermissionStore } from '@/stores/permission'
 
 const useAppConfig = useAppConfigStore()
 const mainmenubgcolor = computed(() => useAppConfig.getTheme.mainMenuBgColor)
@@ -11,25 +13,14 @@ const mainmenuhovertextcolor = computed(() => useAppConfig.getTheme.mainMenuHove
 const mainmenuactivebgcolor = computed(() => useAppConfig.getTheme.mainMenuActiveBgColor)
 const mainmenuactivetextcolor = computed(() => useAppConfig.getTheme.mainMenuActiveTextColor)
 
-const allMainMenu = [
-  {
-    title: '演示1',
-    icon: 'ep:apple',
-    parentIndex: 0,
-    children: [{}],
-  },
-  {
-    title: '演示2',
-    icon: 'ep:apple',
-    parentIndex: 1,
-    children: [{}],
-  },
-]
+const usePermission = usePermissionStore()
+const { allMainMenu } = useMenus()
 
-const active = ref(0)
-function cliclMainMenu(index: number) {
-  active.value = index
+function clickMainMenu(parentIndex: number) {
+  usePermission.changeMainMenu(parentIndex)
 }
+
+// TODO: 切换主导航栏时，选中主导航栏的第一个子导航栏
 </script>
 
 <template>
@@ -41,8 +32,8 @@ function cliclMainMenu(index: number) {
           <li
             v-if="item.children.length"
             class="rounded-lg cursor-pointer flex flex-col h-[var(--xt-main-sidebar-item-height)] mx-2 mb-1 justify-center items-center main-menu-item px-1 text-14px"
-            :class="index === active ? 'is-active' : ''"
-            @click="cliclMainMenu(index)"
+            :class="item.parentIndex === usePermission.mainMenuActive ? 'is-active' : ''"
+            @click="clickMainMenu(item.parentIndex!)"
           >
             <el-icon v-if="item.icon" :size="20">
               <svg-icon :name="item.icon" />

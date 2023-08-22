@@ -3,6 +3,7 @@ import sidebarItem from '../sidebar/SidebarItem.vue'
 import Logo from '../logo/index.vue'
 import { useAppConfigStore } from '@/stores/app'
 import useMenus from '@/hooks/useMenus'
+import { usePermissionStore } from '@/stores/permission'
 
 const useAppConfig = useAppConfigStore()
 
@@ -102,21 +103,12 @@ const darktopnavactivetextcolor = computed(() => {
     return 'var(--xt-sub-menu-active-text-color)'
 })
 
-const allMainMenu = [
-  {
-    title: '演示1',
-    icon: 'ep:apple',
-    parentIndex: 0,
-    children: [{}],
-  },
-  {
-    title: '演示2',
-    icon: 'ep:apple',
-    parentIndex: 1,
-    children: [{}],
-  },
-]
-const { menus } = useMenus()
+const usePermission = usePermissionStore()
+const { menus, allMainMenu } = useMenus()
+
+function clickMainMenu(parentIndex: number) {
+  usePermission.changeMainMenu(parentIndex)
+}
 </script>
 
 <template>
@@ -126,7 +118,7 @@ const { menus } = useMenus()
     <template v-if="useAppConfig.getLayoutMode === 'topSubSideNav'">
       <el-menu mode="horizontal" :unique-opened="true" class="flex-1 main-menu">
         <template v-for="(item, index) in allMainMenu" :key="index">
-          <el-menu-item v-if="item.children.length" :index="`${item.parentIndex}`">
+          <el-menu-item v-if="item.children.length" :index="`${item.parentIndex}`" @click="clickMainMenu(item.parentIndex!)">
             <el-icon v-if="item.icon" :size="20">
               <svg-icon :name="item.icon" />
             </el-icon>

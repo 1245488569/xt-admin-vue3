@@ -5,17 +5,17 @@ import type { IPrivateRoutes } from './types/privateRoutes'
 
 const privateRoutes: IPrivateRoutes[] = [
   {
-    title: '演示1',
+    title: '主导航1',
     icon: 'ep:apple',
     children: [demoRoutes],
   },
   {
-    title: '演示1',
+    title: '主导航2',
     icon: 'ep:apple',
     children: [demoRoutes2],
   },
   {
-    title: '组件',
+    title: '主导航3',
     icon: 'ep:apple',
     children: [components],
   },

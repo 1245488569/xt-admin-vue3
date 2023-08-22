@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import * as path from 'path-browserify'
+import cloneDeep from 'lodash/cloneDeep'
 import { usePermissionStore } from '@/stores/permission'
 import { useAppConfigStore } from '@/stores/app'
 import { isEmpty } from '@/utils'
@@ -47,19 +48,30 @@ function generateMenus(allMergePathRoutes: RouteRecordRaw[]) {
 export default function useMenus() {
   const usePermission = usePermissionStore()
   const useAppConfig = useAppConfigStore()
-  const allMergePathRoutes = mergeRoutePath(JSON.parse(JSON.stringify(usePermission.routes)))
+  const allMergePathRoutes = mergeRoutePath(cloneDeep(usePermission.routes))
   const allSubMenu = generateMenus(allMergePathRoutes)
-  console.log(allSubMenu)
+
+  const allMainMenu = computed(() => {
+    return usePermission.addIndexPrivateRoutes.map((v) => {
+      return {
+        parentIndex: v.parentIndex,
+        title: v.title,
+        icon: v.icon,
+        children: allSubMenu.filter(k => k.parentIndex === v.parentIndex),
+      }
+    })
+  })
 
   const menus = computed(() => {
     if (['onlyTopNav', 'onlySubSideNav'].includes(useAppConfig.getLayoutMode))
       return allSubMenu
 
     else
-      return []
+      return allMainMenu.value[usePermission.mainMenuActive].children
   })
 
   return {
     menus,
+    allMainMenu,
   }
 }

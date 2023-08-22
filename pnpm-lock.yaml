@@ -8,6 +8,7 @@ specifiers:
   '@iconify-json/ri': ^1.1.11
   '@iconify/vue': ^4.1.1
   '@tsconfig/node18': ^18.2.0
+  '@types/lodash': ^4.14.197
   '@types/mockjs': ^1.0.7
   '@types/node': ^18.17.0
   '@types/path-browserify': ^1.0.0
@@ -22,6 +23,7 @@ specifiers:
   eslint: ^8.46.0
   husky: ^8.0.3
   lint-staged: ^13.2.3
+  lodash: ^4.17.21
   mockjs: ^1.1.0
   npm-run-all: ^4.1.5
   path-browserify: ^1.0.1
@@ -52,6 +54,7 @@ dependencies:
   '@unocss/reset': 0.54.1
   axios: 1.4.0
   element-plus: 2.3.8_vue@3.3.4
+  lodash: 4.17.21
   mockjs: 1.1.0
   path-browserify: 1.0.1
   pinia: 2.1.6_typescript@5.1.6+vue@3.3.4
@@ -67,6 +70,7 @@ devDependencies:
   '@iconify-json/ri': 1.1.11
   '@iconify/vue': 4.1.1_vue@3.3.4
   '@tsconfig/node18': 18.2.0
+  '@types/lodash': 4.14.197
   '@types/mockjs': 1.0.7
   '@types/node': 18.17.1
   '@types/path-browserify': 1.0.0
@@ -979,12 +983,11 @@ packages:
   /@types/lodash-es/4.17.8:
     resolution: {integrity: sha512-euY3XQcZmIzSy7YH5+Unb3b2X12Wtk54YWINBvvGQ5SmMvwb11JQskGsfkH/5HXK77Kr8GF0wkVDIxzAisWtog==}
     dependencies:
-      '@types/lodash': 4.14.196
+      '@types/lodash': 4.14.197
     dev: false
 
-  /@types/lodash/4.14.196:
-    resolution: {integrity: sha512-22y3o88f4a94mKljsZcanlNWPzO0uBsBdzLAngf2tp533LzZcQzb6+eZPJ+vCTt+bqF2XnvT9gejTLsAcJAJyQ==}
-    dev: false
+  /@types/lodash/4.14.197:
+    resolution: {integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==}
 
   /@types/mdast/3.0.12:
     resolution: {integrity: sha512-DT+iNIRNX884cx0/Q1ja7NyUPpZuv0KPyL5rGNxm1WC1OtHstl7n4Jb7nk+xacNShQMbczJjt8uFzznpp6kYBg==}
@@ -2476,7 +2479,7 @@ packages:
       '@element-plus/icons-vue': 2.1.0_vue@3.3.4
       '@floating-ui/dom': 1.5.1
       '@popperjs/core': /@sxzz/popperjs-es/2.11.7
-      '@types/lodash': 4.14.196
+      '@types/lodash': 4.14.197
       '@types/lodash-es': 4.17.8
       '@vueuse/core': 9.13.0_vue@3.3.4
       async-validator: 4.2.5

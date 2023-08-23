@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import type { RouteRecordRaw } from 'vue-router'
 import sidebarItem from '../sidebar/SidebarItem.vue'
 import Logo from '../logo/index.vue'
 import { useAppConfigStore } from '@/stores/app'
 import useMenus from '@/hooks/useMenus'
 import { usePermissionStore } from '@/stores/permission'
+import { isEmpty } from '@/utils'
 
 const useAppConfig = useAppConfigStore()
 
@@ -104,11 +106,40 @@ const darktopnavactivetextcolor = computed(() => {
 })
 
 const usePermission = usePermissionStore()
-const { menus, allMainMenu } = useMenus()
+const { menus, allSubMenu, allMainMenu } = useMenus()
 
 function clickMainMenu(parentIndex: number) {
   usePermission.changeMainMenu(parentIndex)
 }
+
+function findCurItemByPath(path: string, allSubMenu: RouteRecordRaw[]): RouteRecordRaw | undefined {
+  if (isEmpty(allSubMenu))
+    return undefined
+  for (const item of allSubMenu) {
+    if (item.path === path)
+      return item
+
+    if (!isEmpty(item.children)) {
+      const res = findCurItemByPath(path, item.children!)
+      if (res)
+        return res
+    }
+  }
+}
+
+const route = useRoute()
+watch(() => route, (val) => {
+  const { path } = val
+
+  usePermission.changeMainMenu(
+    findCurItemByPath(path, allSubMenu)?.parentIndex ?? 0,
+  )
+}, {
+  immediate: true,
+  deep: true,
+})
+
+// TODO: 切换主导航栏时，选中主导航栏的第一个子导航栏
 </script>
 
 <template>
@@ -116,7 +147,7 @@ function clickMainMenu(parentIndex: number) {
     <Logo class="mr-4 text-xl" />
     <!-- 顶部主导航+侧边次导航 -->
     <template v-if="useAppConfig.getLayoutMode === 'topSubSideNav'">
-      <el-menu mode="horizontal" :unique-opened="true" class="flex-1 main-menu">
+      <el-menu mode="horizontal" :default-active="`${usePermission.mainMenuActive}`" :unique-opened="true" class="flex-1 main-menu">
         <template v-for="(item, index) in allMainMenu" :key="index">
           <el-menu-item v-if="item.children.length" :index="`${item.parentIndex}`" @click="clickMainMenu(item.parentIndex!)">
             <el-icon v-if="item.icon" :size="20">

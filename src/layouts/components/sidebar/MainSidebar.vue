@@ -1,9 +1,11 @@
 <script setup lang="ts" name="MainSidebar">
+import type { RouteRecordRaw } from 'vue-router'
 import logo from '../logo/index.vue'
 import useMenus from '@/hooks/useMenus'
 
 import { useAppConfigStore } from '@/stores/app'
 import { usePermissionStore } from '@/stores/permission'
+import { isEmpty } from '@/utils'
 
 const useAppConfig = useAppConfigStore()
 const mainmenubgcolor = computed(() => useAppConfig.getTheme.mainMenuBgColor)
@@ -14,11 +16,38 @@ const mainmenuactivebgcolor = computed(() => useAppConfig.getTheme.mainMenuActiv
 const mainmenuactivetextcolor = computed(() => useAppConfig.getTheme.mainMenuActiveTextColor)
 
 const usePermission = usePermissionStore()
-const { allMainMenu } = useMenus()
+const { allMainMenu, allSubMenu } = useMenus()
 
 function clickMainMenu(parentIndex: number) {
   usePermission.changeMainMenu(parentIndex)
 }
+
+function findCurItemByPath(path: string, allSubMenu: RouteRecordRaw[]): RouteRecordRaw | undefined {
+  if (isEmpty(allSubMenu))
+    return undefined
+  for (const item of allSubMenu) {
+    if (item.path === path)
+      return item
+
+    if (!isEmpty(item.children)) {
+      const res = findCurItemByPath(path, item.children!)
+      if (res)
+        return res
+    }
+  }
+}
+
+const route = useRoute()
+watch(() => route, (val) => {
+  const { path } = val
+
+  usePermission.changeMainMenu(
+    findCurItemByPath(path, allSubMenu)?.parentIndex ?? 0,
+  )
+}, {
+  immediate: true,
+  deep: true,
+})
 
 // TODO: 切换主导航栏时，选中主导航栏的第一个子导航栏
 </script>

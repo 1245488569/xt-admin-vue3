@@ -72,6 +72,7 @@ export default function useMenus() {
 
   return {
     menus,
+    allSubMenu,
     allMainMenu,
   }
 }

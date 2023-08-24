@@ -16,10 +16,13 @@
   },
   "dependencies": {
     "@unocss/reset": "^0.54.1",
+    "@vueuse/core": "^10.3.0",
+    "@vueuse/integrations": "^10.3.0",
     "axios": "^1.4.0",
     "element-plus": "^2.3.8",
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
+    "nprogress": "^0.2.0",
     "path-browserify": "^1.0.1",
     "pinia": "^2.1.4",
     "pinia-plugin-persistedstate": "^3.2.0",

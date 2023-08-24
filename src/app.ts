@@ -6,6 +6,10 @@ const sysGlobalConfig: IGlobalConfig = {
      * 是否开启权限功能
      */
     enablePermission: false,
+    // 是否开启载入进度条
+    enableProgress: true,
+    // 是否开启动态标题
+    enableDynamicTitle: true,
     /**
      * 布局模式
      * onlyTopNav 只有顶部导航

@@ -5,6 +5,8 @@ export const useUserStore = defineStore('user', () => {
   const token = ref('')
   const userInfo = ref(null)
 
+  const getToken = computed(() => token.value)
+
   // 登录
   function login() {
     return loginApi().then((res) => {
@@ -12,7 +14,7 @@ export const useUserStore = defineStore('user', () => {
       userInfo.value = res.result
     })
   }
-  return { token, userInfo, login }
+  return { token, userInfo, getToken, login }
 }, {
   persist: {
     key: `${STORAGE_PREFIX}${USER}`,

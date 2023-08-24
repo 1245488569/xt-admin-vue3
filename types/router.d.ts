@@ -22,6 +22,8 @@ declare module 'vue-router' {
      cache?: boolean | string | string[]
      // 不缓存的页面name（当cache存在才生效）
      noCache?: string | string[]
+    //  是不是白名单
+    isWhite?: boolean
   }
 
   interface _RouteRecordBase {

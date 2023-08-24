@@ -4,6 +4,7 @@ import { useTitle } from '@vueuse/core'
 import constantRoutes from './constant'
 import { usePermissionStore } from '@/stores/permission'
 import { useAppConfigStore } from '@/stores/app'
+import { useUserStore } from '@/stores/user'
 
 const { isLoading } = useNProgress()
 const router = createRouter({
@@ -15,6 +16,7 @@ const router = createRouter({
 
 let sign = false
 router.beforeEach(async (to, from, next) => {
+  const useUser = useUserStore()
   const useAppConfig = useAppConfigStore()
   const usePermission = usePermissionStore()
 
@@ -25,16 +27,31 @@ router.beforeEach(async (to, from, next) => {
   else
     title.value = import.meta.env.VITE_APP_TITLE
 
-  if (!sign && !usePermission.routes.length) {
-    const filterRoutes = await usePermission.filterPermissionsRoutes()
-    sign = true
-    filterRoutes.forEach((item) => {
-      router.addRoute(item)
-    })
-    next(to.fullPath)
+  if (useUser.getToken) {
+    if (!sign && !usePermission.routes.length) {
+      const filterRoutes = await usePermission.filterPermissionsRoutes()
+      sign = true
+      filterRoutes.forEach((item) => {
+        router.addRoute(item)
+      })
+      next(to.fullPath)
+    }
+    else {
+      next()
+    }
   }
   else {
-    next()
+    if (to.meta.isWhite) {
+      next()
+    }
+    else {
+      next({
+        path: '/login',
+        query: {
+          redirectPath: to.fullPath,
+        },
+      })
+    }
   }
 })
 

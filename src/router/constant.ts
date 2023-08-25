@@ -17,8 +17,8 @@ const constantRoutes: RouteRecordRaw[] = [
       {
         parentIndex: 0,
         path: '',
-        name: 'dashboard',
-        component: () => import('@/views/dashboard/index.vue'),
+        name: 'frame_dashboard',
+        component: () => import('@/views/frame_dashboard/index.vue'),
         meta: {
           title: '首页',
           icon: 'ep:home',

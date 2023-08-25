@@ -10,6 +10,8 @@ const sysGlobalConfig: IGlobalConfig = {
     enableProgress: true,
     // 是否开启动态标题
     enableDynamicTitle: true,
+    // 是否开启boshboard(设置为false，登录后框架会跳转到菜单中的第一个模块)
+    enableDashboard: false,
     /**
      * 布局模式
      * onlyTopNav 只有顶部导航

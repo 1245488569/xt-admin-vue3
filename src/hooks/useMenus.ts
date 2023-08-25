@@ -16,6 +16,7 @@ function mergeRoutePath(routes: RouteRecordRaw[], basePath = '') {
 }
 
 function generateMenus(allMergePathRoutes: RouteRecordRaw[]) {
+  const useAppConfig = useAppConfigStore()
   const result: RouteRecordRaw[] = []
   for (const item of allMergePathRoutes) {
     if (isEmpty(item.meta) && isEmpty(item.children))
@@ -32,8 +33,9 @@ function generateMenus(allMergePathRoutes: RouteRecordRaw[]) {
       }
 
       if (route.meta?.title && !route.meta.hideInMenu) {
-        // TODO: dashboard页面是否开启的判断
-        // ...
+        if (!useAppConfig.appConfig.app.enableDashboard && route.name === 'frame_dashboard')
+          continue
+
         result.push(route)
       }
 

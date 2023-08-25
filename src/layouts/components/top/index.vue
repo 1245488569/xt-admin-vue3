@@ -112,32 +112,34 @@ function clickMainMenu(parentIndex: number) {
   usePermission.changeMainMenu(parentIndex)
 }
 
-function findCurItemByPath(path: string, allSubMenu: RouteRecordRaw[]): RouteRecordRaw | undefined {
-  if (isEmpty(allSubMenu))
-    return undefined
-  for (const item of allSubMenu) {
-    if (item.path === path)
-      return item
+if (useAppConfig.getLayoutMode === 'topSubSideNav') {
+  function findCurItemByPath(path: string, allSubMenu: RouteRecordRaw[]): RouteRecordRaw | undefined {
+    if (isEmpty(allSubMenu))
+      return undefined
+    for (const item of allSubMenu) {
+      if (item.path === path)
+        return item
 
-    if (!isEmpty(item.children)) {
-      const res = findCurItemByPath(path, item.children!)
-      if (res)
-        return res
+      if (!isEmpty(item.children)) {
+        const res = findCurItemByPath(path, item.children!)
+        if (res)
+          return res
+      }
     }
   }
+
+  const route = useRoute()
+  watch(() => route, (val) => {
+    const { path } = val
+
+    usePermission.changeMainMenu(
+      findCurItemByPath(path, allSubMenu)?.parentIndex ?? 0,
+    )
+  }, {
+    immediate: true,
+    deep: true,
+  })
 }
-
-const route = useRoute()
-watch(() => route, (val) => {
-  const { path } = val
-
-  usePermission.changeMainMenu(
-    findCurItemByPath(path, allSubMenu)?.parentIndex ?? 0,
-  )
-}, {
-  immediate: true,
-  deep: true,
-})
 
 // TODO: 切换主导航栏时，选中主导航栏的第一个子导航栏
 </script>

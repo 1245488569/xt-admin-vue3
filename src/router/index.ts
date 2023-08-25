@@ -1,10 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { useNProgress } from '@vueuse/integrations/useNProgress'
 import { useTitle } from '@vueuse/core'
+import { ElMessage } from 'element-plus'
 import constantRoutes from './constant'
 import { usePermissionStore } from '@/stores/permission'
 import { useAppConfigStore } from '@/stores/app'
 import { useUserStore } from '@/stores/user'
+import useMenus from '@/hooks/useMenus'
 
 const { isLoading } = useNProgress()
 const router = createRouter({
@@ -28,7 +30,7 @@ router.beforeEach(async (to, from, next) => {
     title.value = import.meta.env.VITE_APP_TITLE
 
   if (useUser.getToken) {
-    if (!sign && !usePermission.routes.length) {
+    if (!sign || !usePermission.routes.length) {
       const filterRoutes = await usePermission.filterPermissionsRoutes()
       sign = true
       filterRoutes.forEach((item) => {
@@ -37,7 +39,34 @@ router.beforeEach(async (to, from, next) => {
       next(to.fullPath)
     }
     else {
-      next()
+      if (to.name === 'login') {
+        next({
+          name: 'frame_dashboard',
+          replace: true,
+        })
+      }
+      else if (to.name === 'frame_dashboard' && !useAppConfig.appConfig.app.enableDashboard) {
+        const { allSubMenu } = useMenus()
+
+        console.log(allSubMenu)
+
+        if (allSubMenu.length) {
+          next({
+            path: allSubMenu[0].path,
+            replace: true,
+          })
+        }
+        else {
+          ElMessage.error('请先配置菜单')
+          next({
+            name: 'NotFound',
+            replace: true,
+          })
+        }
+      }
+      else {
+        next()
+      }
     }
   }
   else {

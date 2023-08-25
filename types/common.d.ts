@@ -8,6 +8,7 @@ interface IGlobalApp {
   enablePermission: boolean
   enableProgress: boolean
   enableDynamicTitle: boolean
+  enableDashboard: boolean
   layoutMode: LayoutMode
   colorScheme: ColorScheme
 }

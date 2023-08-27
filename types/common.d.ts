@@ -15,6 +15,23 @@ interface IGlobalApp {
 
 interface IGlobalNav {
   subMenuCollapse: boolean
+  fixed: boolean
+}
+interface IGlobalTabbar {
+  enable: boolean
+}
+
+interface IGlobalToolbar {
+  enable: boolean
+  enableSidebarCollapse: boolean
+  enableBreadcrumb: boolean
+  enableMenuSearch: boolean
+  enableNotification: boolean
+  enableI18n: boolean
+  enableFullscreen: boolean
+  enableChangeTheme: boolean
+  enablePageReload: boolean
+  enableAppSetting: boolean
 }
 
 interface IGlobalTheme {
@@ -41,6 +58,8 @@ declare interface IGlobalConfig {
   elementSize: ElementSize
   app: IGlobalApp
   nav: IGlobalNav
+  tabbar: IGlobalTabbar
+  toolbar: IGlobalToolbar
   theme: IGlobalTheme
 }
 

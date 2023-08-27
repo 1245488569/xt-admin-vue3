@@ -1,5 +1,14 @@
 const sysGlobalConfig: IGlobalConfig = {
+  // 默认语言. zh-cn: 简体中文 zh-tw: 繁体中文 en: 英文
   defaultLanguage: 'zh-cn',
+  /**
+   * Element 组件尺寸
+   * 这里有和主内容区默认文字大小关联
+   * 可选：large、default、small
+   * large 主内容区默认文字大小 16px
+   * default 主内容区默认文字大小 14px
+   * small 主内容区默认文字大小 12px
+   */
   elementSize: 'default',
   app: {
     /**
@@ -11,7 +20,7 @@ const sysGlobalConfig: IGlobalConfig = {
     // 是否开启动态标题
     enableDynamicTitle: true,
     // 是否开启boshboard(设置为false，登录后框架会跳转到菜单中的第一个模块)
-    enableDashboard: false,
+    enableDashboard: true,
     /**
      * 布局模式
      * onlyTopNav 只有顶部导航
@@ -19,7 +28,7 @@ const sysGlobalConfig: IGlobalConfig = {
      * mainSubSideNav 侧边主导航+侧边次栏导航
      * topSubSideNav 顶部主导航+侧边次栏导航
      */
-    layoutMode: 'mainSubSideNav',
+    layoutMode: 'onlySubSideNav',
     /**
      * 颜色方案
      * '' 用户系统默认
@@ -31,6 +40,36 @@ const sysGlobalConfig: IGlobalConfig = {
   nav: {
     // 次导航栏是否收起
     subMenuCollapse: false,
+    // 操作栏（tabbar和toolbar）是否固定
+    fixed: true,
+  },
+  // 标签栏
+  tabbar: {
+    // 是否开启
+    enable: true,
+  },
+  // 工具栏
+  toolbar: {
+    // 是否开启
+    enable: true,
+    // 是否开启全屏
+    enableFullscreen: true,
+    // 是否开启换肤
+    enableChangeTheme: true,
+    // 是否开启国际化
+    enableI18n: true,
+    // 是否开启侧边栏展开收起按钮
+    enableSidebarCollapse: true,
+    // 是否开启面包屑导航
+    enableBreadcrumb: true,
+    // 是否开启页面刷新
+    enablePageReload: true,
+    // 是否开启菜单搜索
+    enableMenuSearch: true,
+    // 是否开启应用配置（建议在生产环境关闭）
+    enableAppSetting: true,
+    // 是否开启通知中心
+    enableNotification: false,
   },
   // 样式设置
   theme: {

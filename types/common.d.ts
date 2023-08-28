@@ -51,6 +51,14 @@ interface IGlobalTheme {
   menuTextColor: string
   menuActiveTextColor: string
   menuHoverTextColor: string
+
+  tabbarBgColor: string
+  tabbarItemBgColor: string
+  tabbarItemActiveBgColor: string
+  tabbarItemHoverBgColor: string
+  tabbarItemTextColor: string
+  tabbarItemActiveTextColor: string
+  tabbarItemHoverTextColor: string
 }
 
 declare interface IGlobalConfig {

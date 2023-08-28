@@ -2,6 +2,7 @@
 import mainSidebar from './components/sidebar/MainSidebar.vue'
 import subSidebar from './components/sidebar/SubSidebar.vue'
 import Top from './components/top/index.vue'
+import Tabbar from './components/tabbar/index.vue'
 import { useAppConfigStore } from '@/stores/app'
 
 const useAppConfig = useAppConfigStore()
@@ -131,9 +132,7 @@ const routerViewContentFontSize = computed(() => {
 
         <main class="flex-1 main-box flex flex-col" :class="useAppConfig.appConfig.nav.fixed ? '' : 'overflow-auto'">
           <div class="right-0" :class="[fixedActionbar, actionbarLeft, actionbarTop]">
-            <div class="h-50px bg-red">
-              Tabbar
-            </div>
+            <Tabbar v-if="showTabbar" />
             <div class="h-50px bg-red">
               ToolBar
             </div>

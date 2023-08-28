@@ -109,6 +109,22 @@ const sysGlobalConfig: IGlobalConfig = {
     menuActiveTextColor: '#ffffff',
     // 鼠标经过次菜单文字颜色
     menuHoverTextColor: '#ffffff',
+
+    // --------------tabbar----------------
+    // tabbar背景色
+    tabbarBgColor: '#f2f3f5',
+    // tabbarItem背景色
+    tabbarItemBgColor: '#f2f3f5',
+    // 选中tabbarItem背景色
+    tabbarItemActiveBgColor: '#ffffff',
+    // 鼠标经过tabbarItem背景色
+    tabbarItemHoverBgColor: '#e4e4e4',
+    // tabbarItem文字色
+    tabbarItemTextColor: '#999',
+    // 选中tabbarItem文字色
+    tabbarItemActiveTextColor: '#42b983',
+    // 鼠标经过tabbarItem文字色
+    tabbarItemHoverTextColor: '#999',
   },
 }
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup name="SelectColor">
 import { useAppConfigStore } from '@/stores/app'
 
-type Key = 'logoTextColor' | 'mainMenuBgColor' | 'mainMenuActiveBgColor' | 'mainMenuHoverBgColor' | 'mainMenuTextColor' | 'mainMenuActiveTextColor' | 'mainMenuHoverTextColor' | 'menuBgColor' | 'menuActiveBgColor' | 'menuHoverBgColor' | 'menuTextColor' | 'menuActiveTextColor' | 'menuHoverTextColor'
+type Key = keyof IGlobalTheme
 interface IThemeData {
   title: string
   key: Key
@@ -95,6 +95,46 @@ const menuThemeData = computed<IThemeData[]>(() => {
   ]
 })
 
+const tabbarThemeData = computed<IThemeData[]>(() => {
+  return [
+    {
+      title: 'tabbar背景色',
+      key: 'tabbarBgColor',
+      value: useAppConfig.getTheme.tabbarBgColor,
+    },
+    {
+      title: 'tabbarItem背景色',
+      key: 'tabbarItemBgColor',
+      value: useAppConfig.getTheme.tabbarItemBgColor,
+    },
+    {
+      title: '选中背景色',
+      key: 'tabbarItemActiveBgColor',
+      value: useAppConfig.getTheme.tabbarItemActiveBgColor,
+    },
+    {
+      title: '鼠标经过背景色',
+      key: 'tabbarItemHoverBgColor',
+      value: useAppConfig.getTheme.tabbarItemHoverBgColor,
+    },
+    {
+      title: '文字颜色',
+      key: 'tabbarItemTextColor',
+      value: useAppConfig.getTheme.tabbarItemTextColor,
+    },
+    {
+      title: '选中文字颜色',
+      key: 'tabbarItemActiveTextColor',
+      value: useAppConfig.getTheme.tabbarItemActiveTextColor,
+    },
+    {
+      title: '鼠标经过文字颜色',
+      key: 'tabbarItemHoverTextColor',
+      value: useAppConfig.getTheme.tabbarItemHoverTextColor,
+    },
+  ]
+})
+
 function themeChange(key: Key, color: string) {
   useAppConfig.appConfig.theme[key] = color
 }
@@ -135,6 +175,14 @@ defineExpose({
           <span class="mb-1">{{ item.title }}</span>
           <el-color-picker v-model="item.value" show-alpha @change="themeChange(item.key, $event as string)" />
         </div>
+      </div>
+
+      <el-divider>tabbar</el-divider>
+      <div class="flex">
+        <section v-for="item in tabbarThemeData" :key="item.value" class="color-select-content">
+          <span class="mb-1">{{ item.title }}</span>
+          <el-color-picker v-model="item.value" show-alpha @change="themeChange(item.key, $event as string)" />
+        </section>
       </div>
     </div>
   </xt-dialog>

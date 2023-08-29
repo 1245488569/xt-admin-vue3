@@ -135,6 +135,21 @@ const tabbarThemeData = computed<IThemeData[]>(() => {
   ]
 })
 
+const toolbarThemeData = computed<IThemeData[]>(() => {
+  return [
+    {
+      title: '背景色',
+      key: 'toolbarBgColor',
+      value: useAppConfig.getTheme.toolbarBgColor,
+    },
+    {
+      title: '文字颜色',
+      key: 'toolbarTextColor',
+      value: useAppConfig.getTheme.toolbarTextColor,
+    },
+  ]
+})
+
 function themeChange(key: Key, color: string) {
   useAppConfig.appConfig.theme[key] = color
 }
@@ -151,7 +166,7 @@ defineExpose({
 </script>
 
 <template>
-  <xt-dialog v-model="dialogVisible" title="设置主题色" append-to-body width="800px" :show-cancel="false" :show-confirm="false">
+  <xt-dialog v-model="dialogVisible" title="设置主题色" append-to-body width="900px" :show-cancel="false" :show-confirm="false">
     <div>
       <el-divider>logo</el-divider>
       <div class="flex">
@@ -180,6 +195,14 @@ defineExpose({
       <el-divider>tabbar</el-divider>
       <div class="flex">
         <section v-for="item in tabbarThemeData" :key="item.value" class="color-select-content">
+          <span class="mb-1">{{ item.title }}</span>
+          <el-color-picker v-model="item.value" show-alpha @change="themeChange(item.key, $event as string)" />
+        </section>
+      </div>
+
+      <el-divider>toolbar</el-divider>
+      <div class="flex">
+        <section v-for="item in toolbarThemeData" :key="item.value" class="color-select-content">
           <span class="mb-1">{{ item.title }}</span>
           <el-color-picker v-model="item.value" show-alpha @change="themeChange(item.key, $event as string)" />
         </section>

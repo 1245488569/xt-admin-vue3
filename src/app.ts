@@ -54,6 +54,8 @@ const sysGlobalConfig: IGlobalConfig = {
     enable: true,
     // 是否开启全屏
     enableFullscreen: true,
+    // 是否开启颜色系统（明亮暗黑模式）
+    enableColorScheme: true,
     // 是否开启换肤
     enableChangeTheme: true,
     // 是否开启国际化
@@ -125,6 +127,12 @@ const sysGlobalConfig: IGlobalConfig = {
     tabbarItemActiveTextColor: '#42b983',
     // 鼠标经过tabbarItem文字色
     tabbarItemHoverTextColor: '#999',
+
+    // --------------toolbar----------------
+    // toolbar背景色
+    toolbarBgColor: '#ffffff',
+    // toolbar文字色
+    toolbarTextColor: '#000000',
   },
 }
 

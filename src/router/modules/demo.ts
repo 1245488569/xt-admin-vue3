@@ -19,6 +19,15 @@ export default {
         icon: 'ep:apple',
       },
     },
+    {
+      path: 'demo1-2',
+      name: 'demo1-2',
+      component: () => import('@/views/demo/index2.vue'),
+      meta: {
+        title: '演示1-2',
+        icon: 'ep:apple',
+      },
+    },
   ],
 
 } as RouteRecordRaw

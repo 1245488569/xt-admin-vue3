@@ -17,12 +17,14 @@ function handleClick() {
 </script>
 
 <template>
-  <el-icon :size="size" @click="handleClick">
-    <svg-icon
-      class="cursor-pointer"
-      name="ri:palette-line"
-    />
-  </el-icon>
-  <!-- 展示弹出层 -->
-  <SelectColor ref="selectColorRef" />
+  <div class="flex items-center">
+    <el-icon :size="size" @click="handleClick">
+      <svg-icon
+        class="cursor-pointer"
+        name="ri:palette-line"
+      />
+    </el-icon>
+    <!-- 展示弹出层 -->
+    <SelectColor ref="selectColorRef" />
+  </div>
 </template>

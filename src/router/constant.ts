@@ -24,6 +24,11 @@ const constantRoutes: RouteRecordRaw[] = [
           icon: 'ep:apple',
         },
       },
+      {
+        path: 'reload',
+        name: 'reload',
+        component: () => import('@/views/reload.vue'),
+      },
     ],
   },
   {

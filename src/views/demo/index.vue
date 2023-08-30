@@ -1,5 +1,5 @@
-<script setup lang="ts">
-
+<script setup lang="ts" name="demo">
+// asdadddadada
 </script>
 
 <template>

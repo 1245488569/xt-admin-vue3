@@ -25,44 +25,36 @@ const tabbarItemTextColor = computed(() => useAppConfig.getTheme.tabbarItemTextC
 const tabbarItemActiveTextColor = computed(() => useAppConfig.getTheme.tabbarItemActiveTextColor)
 const tabbarItemHoverTextColor = computed(() => useAppConfig.getTheme.tabbarItemHoverTextColor)
 
-const demolist = ref<any[]>([
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-  {},
-])
+const demolist = ref<any[]>([])
 
-const demoIndex = ref(0)
+const route = useRoute()
+const router = useRouter()
+watch(() => route, (val) => {
+  if (!val.meta || !val.meta.title)
+    return
 
-function demo(index: number) {
-  demoIndex.value = index
-  bs.value.refresh()
-  bs.value.scrollToElement(scrollItemRef.value.children[index], 500, true)
-}
+  const { path, fullPath, meta, matched } = val
+  if (demolist.value.find(v => v.fullPath === fullPath))
+    return
+
+  demolist.value.push({
+    fullPath,
+    meta,
+    name: matched.find(v => v.path === path)?.components?.default.name || '',
+  })
+
+  nextTick(() => {
+    bs.value.refresh()
+
+    const scrollIndex = demolist.value.findIndex(v => v.fullPath === fullPath)
+    console.log(scrollItemRef.value.children[scrollIndex])
+    if (scrollIndex !== -1 && scrollItemRef.value?.children)
+      bs.value.scrollToElement(scrollItemRef.value.children[scrollIndex], 500, true)
+  })
+}, {
+  immediate: true,
+  deep: true,
+})
 
 const visible = ref(false)
 const menuStyle = reactive({
@@ -93,8 +85,8 @@ watch(visible, (val) => {
   <div ref="scrollRef" class="h-[var(--xt-tabbar-height)] text-xs flex items-center w-full whitespace-nowrap overflow-hidden tabbar-content">
     <div ref="scrollItemRef" class="px-2 flex h-full py-1">
       <template v-for="(tag, tagI) in demolist" :key="tagI">
-        <div class="tabbar-item mr-2 px-2 flex items-center h-full rounded-md cursor-pointer duration-300" :class="tagI === demoIndex ? 'active' : ''" @click="demo(tagI)" @contextmenu.prevent="openMenu">
-          <span class="w-20 truncate">tag-{{ tagI + 1 }}</span>
+        <div class="tabbar-item mr-2 px-2 flex items-center h-full rounded-md cursor-pointer duration-300" :class="tag.fullPath === route.fullPath ? 'active' : ''" @click="router.push(tag.fullPath)" @contextmenu.prevent="openMenu">
+          <span class="w-20 truncate">{{ tag.meta.title }}</span>
           <el-icon v-show="demolist.length > 1" class="ml-2">
             <svg-icon name="ep:close" />
           </el-icon>

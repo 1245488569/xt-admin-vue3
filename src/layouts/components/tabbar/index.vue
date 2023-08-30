@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BScroll from '@better-scroll/core'
+import ContextMenu from './ContextMenu/index.vue'
 import { useAppConfigStore } from '@/stores/app'
 
 const scrollRef = ref()
@@ -62,13 +63,37 @@ function demo(index: number) {
   bs.value.refresh()
   bs.value.scrollToElement(scrollItemRef.value.children[index], 500, true)
 }
+
+const visible = ref(false)
+const menuStyle = reactive({
+  left: '0',
+  top: '0',
+})
+function openMenu(e: MouseEvent) {
+  const { x, y } = e
+  menuStyle.left = `${x}px`
+  menuStyle.top = `${y}px`
+  visible.value = true
+}
+
+function closeMenu() {
+  visible.value = false
+}
+
+watch(visible, (val) => {
+  if (val)
+    document.body.addEventListener('click', closeMenu)
+
+  else
+    document.body.removeEventListener('click', closeMenu)
+})
 </script>
 
 <template>
   <div ref="scrollRef" class="h-[var(--xt-tabbar-height)] text-xs flex items-center w-full whitespace-nowrap overflow-hidden tabbar-content">
     <div ref="scrollItemRef" class="px-2 flex h-full py-1">
       <template v-for="(tag, tagI) in demolist" :key="tagI">
-        <div class="tabbar-item mr-2 px-2 flex items-center h-full rounded-md cursor-pointer duration-300" :class="tagI === demoIndex ? 'active' : ''" @click="demo(tagI)">
+        <div class="tabbar-item mr-2 px-2 flex items-center h-full rounded-md cursor-pointer duration-300" :class="tagI === demoIndex ? 'active' : ''" @click="demo(tagI)" @contextmenu.prevent="openMenu">
           <span class="w-20 truncate">tag-{{ tagI + 1 }}</span>
           <el-icon v-show="demolist.length > 1" class="ml-2">
             <svg-icon name="ep:close" />
@@ -76,6 +101,10 @@ function demo(index: number) {
         </div>
       </template>
     </div>
+
+    <teleport to="body">
+      <ContextMenu v-show="visible" :style="menuStyle" />
+    </teleport>
   </div>
 </template>
 

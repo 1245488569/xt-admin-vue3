@@ -2,6 +2,7 @@
 import BScroll from '@better-scroll/core'
 import ContextMenu from './ContextMenu/index.vue'
 import { useAppConfigStore } from '@/stores/app'
+import { useTabbarStore } from '@/stores/tabbar'
 
 const scrollRef = ref()
 const scrollItemRef = ref()
@@ -25,19 +26,15 @@ const tabbarItemTextColor = computed(() => useAppConfig.getTheme.tabbarItemTextC
 const tabbarItemActiveTextColor = computed(() => useAppConfig.getTheme.tabbarItemActiveTextColor)
 const tabbarItemHoverTextColor = computed(() => useAppConfig.getTheme.tabbarItemHoverTextColor)
 
-const demolist = ref<any[]>([])
-
 const route = useRoute()
 const router = useRouter()
+const useTabbar = useTabbarStore()
 watch(() => route, (val) => {
   if (!val.meta || !val.meta.title)
     return
 
   const { path, fullPath, meta, matched } = val
-  if (demolist.value.find(v => v.fullPath === fullPath))
-    return
-
-  demolist.value.push({
+  useTabbar.add({
     fullPath,
     meta,
     name: matched.find(v => v.path === path)?.components?.default.name || '',
@@ -45,9 +42,7 @@ watch(() => route, (val) => {
 
   nextTick(() => {
     bs.value.refresh()
-
-    const scrollIndex = demolist.value.findIndex(v => v.fullPath === fullPath)
-    console.log(scrollItemRef.value.children[scrollIndex])
+    const scrollIndex = useTabbar.list.findIndex(v => v.fullPath === fullPath)
     if (scrollIndex !== -1 && scrollItemRef.value?.children)
       bs.value.scrollToElement(scrollItemRef.value.children[scrollIndex], 500, true)
   })
@@ -56,15 +51,27 @@ watch(() => route, (val) => {
   deep: true,
 })
 
+function closeTab(clickIndex: number) {
+  const activeIndex = useTabbar.list.findIndex(v => v.fullPath === route.fullPath)
+
+  if (activeIndex === clickIndex)
+    useTabbar.remove('self', clickIndex)
+
+  else
+    useTabbar.remove('otherOnce', clickIndex)
+}
+
 const visible = ref(false)
 const menuStyle = reactive({
   left: '0',
   top: '0',
 })
-function openMenu(e: MouseEvent) {
+const contextMenuClickIndex = ref(-1)
+function openMenu(e: MouseEvent, clickIndex: number) {
   const { x, y } = e
   menuStyle.left = `${x}px`
   menuStyle.top = `${y}px`
+  contextMenuClickIndex.value = clickIndex
   visible.value = true
 }
 
@@ -84,10 +91,10 @@ watch(visible, (val) => {
 <template>
   <div ref="scrollRef" class="h-[var(--xt-tabbar-height)] text-xs flex items-center w-full whitespace-nowrap overflow-hidden tabbar-content">
     <div ref="scrollItemRef" class="px-2 flex h-full py-1">
-      <template v-for="(tag, tagI) in demolist" :key="tagI">
-        <div class="tabbar-item mr-2 px-2 flex items-center h-full rounded-md cursor-pointer duration-300" :class="tag.fullPath === route.fullPath ? 'active' : ''" @click="router.push(tag.fullPath)" @contextmenu.prevent="openMenu">
+      <template v-for="(tag, tagI) in useTabbar.list" :key="tag.fullPath">
+        <div class="tabbar-item mr-2 px-2 flex items-center h-full rounded-md cursor-pointer duration-300" :class="tag.fullPath === route.fullPath ? 'active' : ''" @click="router.push(tag.fullPath)" @contextmenu.prevent="openMenu($event, tagI)">
           <span class="w-20 truncate">{{ tag.meta.title }}</span>
-          <el-icon v-show="demolist.length > 1" class="ml-2">
+          <el-icon v-show="useTabbar.list.length > 1" class="ml-2" @click.stop="closeTab(tagI)">
             <svg-icon name="ep:close" />
           </el-icon>
         </div>
@@ -95,7 +102,7 @@ watch(visible, (val) => {
     </div>
 
     <teleport to="body">
-      <ContextMenu v-show="visible" :style="menuStyle" />
+      <ContextMenu v-show="visible" :click-index="contextMenuClickIndex" :style="menuStyle" />
     </teleport>
   </div>
 </template>

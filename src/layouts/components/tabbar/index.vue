@@ -55,10 +55,10 @@ function closeTab(clickIndex: number) {
   const activeIndex = useTabbar.list.findIndex(v => v.fullPath === route.fullPath)
 
   if (activeIndex === clickIndex)
-    useTabbar.remove('self', clickIndex)
+    useTabbar.remove('self', clickIndex, activeIndex)
 
   else
-    useTabbar.remove('otherOnce', clickIndex)
+    useTabbar.remove('otherOnce', clickIndex, activeIndex)
 }
 
 const visible = ref(false)

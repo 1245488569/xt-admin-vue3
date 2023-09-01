@@ -27,7 +27,7 @@ export const useTabbarStore = defineStore('tabbar', () => {
     }
   }
 
-  function remove(type: ITabbarRemoveType, clickIndex: number, activeIndex?: number) {
+  function remove(type: ITabbarRemoveType, clickIndex: number, activeIndex: number) {
     // TODO: 有缓存需要清除缓存
     // ...
 
@@ -41,6 +41,21 @@ export const useTabbarStore = defineStore('tabbar', () => {
         break
       case 'otherOnce':
         list.value.splice(clickIndex, 1)
+        break
+      case 'left':
+        if (activeIndex < clickIndex)
+          router.push(list.value[clickIndex].fullPath)
+        list.value.splice(0, clickIndex)
+        break
+      case 'right':
+        if (activeIndex > clickIndex)
+          router.push(list.value[clickIndex].fullPath)
+        list.value.splice(clickIndex + 1, list.value.length - (clickIndex + 1))
+        break
+      case 'otherAll':
+        if (activeIndex !== clickIndex)
+          router.push(list.value[clickIndex].fullPath)
+        list.value = list.value.filter(item => item.fullPath === list.value[clickIndex].fullPath)
         break
     }
   }

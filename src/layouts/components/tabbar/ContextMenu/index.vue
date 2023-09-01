@@ -16,6 +16,9 @@ const activeIndex = computed(() => useTabbar.list.findIndex(v => v.fullPath === 
 
 const disabledReload = computed(() => props.clickIndex !== activeIndex.value)
 const disabledDelOnce = computed(() => useTabbar.list.length <= 1)
+const disabledDelLeft = computed(() => props.clickIndex === 0)
+const disabledDelRight = computed(() => props.clickIndex === useTabbar.list.length - 1)
+const disabledDelOtherAll = computed(() => useTabbar.list.length <= 1)
 
 function reload() {
   if (disabledReload.value)
@@ -34,6 +37,12 @@ function closeTab(type?: ITabbarRemoveType) {
 
   if (type === 'self' && disabledDelOnce.value)
     return
+  if (type === 'left' && disabledDelLeft.value)
+    return
+  if (type === 'right' && disabledDelRight.value)
+    return
+  if (type === 'otherAll' && disabledDelOtherAll.value)
+    return
   useTabbar.remove(type, props.clickIndex, activeIndex.value)
 }
 </script>
@@ -46,13 +55,13 @@ function closeTab(type?: ITabbarRemoveType) {
     <li :class="{ disabled: disabledDelOnce }" @click="closeTab()">
       关闭
     </li>
-    <li>
+    <li :class="{ disabled: disabledDelLeft }" @click="closeTab('left')">
       关闭左侧
     </li>
-    <li>
+    <li :class="{ disabled: disabledDelRight }" @click="closeTab('right')">
       关闭右侧
     </li>
-    <li>
+    <li :class="{ disabled: disabledDelOtherAll }" @click="closeTab('otherAll')">
       关闭其他
     </li>
   </ul>

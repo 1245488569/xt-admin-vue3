@@ -142,7 +142,11 @@ const routerViewContentFontSize = computed(() => {
               'overflow-auto': useAppConfig.appConfig.nav.fixed,
             }]"
           >
-            <router-view />
+            <router-view v-slot="{ Component, route }">
+              <keep-alive>
+                <component :is="Component" :key="route.fullPath" />
+              </keep-alive>
+            </router-view>
           </section>
         </main>
       </div>

@@ -34,6 +34,8 @@ watch(() => route, (val) => {
     return
 
   const { path, fullPath, meta, matched } = val
+  console.log(matched)
+
   useTabbar.add({
     fullPath,
     meta,

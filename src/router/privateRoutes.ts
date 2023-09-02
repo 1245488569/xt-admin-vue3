@@ -1,23 +1,23 @@
+import cacheRoutes from './modules/cache'
 import demoRoutes from './modules/demo'
 import demoRoutes2 from './modules/demo2'
-import components from './modules/components'
 import type { IPrivateRoutes } from './types/privateRoutes'
 
 const privateRoutes: IPrivateRoutes[] = [
   {
-    title: '主导航1',
+    title: '演示',
     icon: 'ep:apple',
-    children: [demoRoutes],
+    children: [cacheRoutes],
   },
   {
     title: '主导航2',
     icon: 'ep:apple',
-    children: [demoRoutes2],
+    children: [demoRoutes],
   },
   {
     title: '主导航3',
     icon: 'ep:apple',
-    children: [components],
+    children: [demoRoutes2],
   },
 ]
 

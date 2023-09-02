@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" name="cache2">
 const input = ref('')
 </script>
 

@@ -5,8 +5,10 @@ import Top from './components/top/index.vue'
 import Tabbar from './components/tabbar/index.vue'
 import Toolbar from './components/toolbar/index.vue'
 import { useAppConfigStore } from '@/stores/app'
+import { useKeepAliveStore } from '@/stores/keepAlive'
 
 const useAppConfig = useAppConfigStore()
+const useKeepAlice = useKeepAliveStore()
 
 const showTop = computed(() => {
   return ['onlyTopNav', 'topSubSideNav'].includes(useAppConfig.getLayoutMode)
@@ -143,7 +145,7 @@ const routerViewContentFontSize = computed(() => {
             }]"
           >
             <router-view v-slot="{ Component, route }">
-              <keep-alive>
+              <keep-alive :include="[...useKeepAlice.list]">
                 <component :is="Component" :key="route.fullPath" />
               </keep-alive>
             </router-view>

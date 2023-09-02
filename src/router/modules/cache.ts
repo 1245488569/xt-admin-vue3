@@ -51,6 +51,8 @@ export default {
       name: 'cache2',
       meta: {
         title: '导航2',
+        cache: true,
+        noCache: ['demo2-1'],
       },
       component: () => import('@/views/cache/cache2.vue'),
     },

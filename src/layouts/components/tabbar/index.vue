@@ -39,7 +39,7 @@ watch(() => route, (val) => {
   useTabbar.add({
     fullPath,
     meta,
-    name: matched.find(v => v.path === path)?.components?.default.name || '',
+    componentName: matched.find(v => v.path === path)?.components?.default.name || '',
   })
 
   nextTick(() => {

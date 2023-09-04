@@ -99,7 +99,7 @@ router.afterEach((to, from) => {
   }
 
   if (from.meta.cache) {
-    const componentName = from.matched[to.matched.length - 1].components?.default.name || null
+    const componentName = from.matched[from.matched.length - 1].components?.default.name || null
 
     if (componentName) {
       switch (typeof from.meta.cache) {

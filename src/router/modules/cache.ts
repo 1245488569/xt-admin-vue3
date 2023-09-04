@@ -32,6 +32,7 @@ export default {
               component: () => import('@/views/cache/cache1.vue'),
               meta: {
                 title: '导航1-1-1',
+                cache: true,
               },
             },
           ],
@@ -42,6 +43,7 @@ export default {
           component: () => import('@/views/cache/cache1-2.vue'),
           meta: {
             title: '导航1-2',
+            cache: true,
           },
         },
       ],
@@ -52,7 +54,6 @@ export default {
       meta: {
         title: '导航2',
         cache: true,
-        noCache: ['demo2-1'],
       },
       component: () => import('@/views/cache/cache2.vue'),
     },

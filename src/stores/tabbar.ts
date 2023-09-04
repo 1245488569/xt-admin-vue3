@@ -1,10 +1,11 @@
 import type { RouteMeta } from 'vue-router'
+import { useKeepAliveStore } from './keepAlive'
 import router from '@/router'
 
 export interface ITabbarItem {
   fullPath: string
   meta: RouteMeta
-  name: string
+  componentName: string
 }
 
 export type ITabbarRemoveType = 'self' | 'otherOnce' | 'right' | 'left' | 'otherAll'
@@ -28,11 +29,11 @@ export const useTabbarStore = defineStore('tabbar', () => {
   }
 
   function remove(type: ITabbarRemoveType, clickIndex: number, activeIndex: number) {
-    // TODO: 有缓存需要清除缓存
-    // ...
-
+    const useKeepAlive = useKeepAliveStore()
     switch (type) {
       case 'self':
+        if (list.value[clickIndex].meta.cache)
+          useKeepAlive.remove(list.value[clickIndex].componentName)
         if (clickIndex < list.value.length - 1)
           router.push(list.value[clickIndex + 1].fullPath)
         else
@@ -40,23 +41,41 @@ export const useTabbarStore = defineStore('tabbar', () => {
         list.value.splice(clickIndex, 1)
         break
       case 'otherOnce':
+        if (list.value[clickIndex].meta.cache)
+          useKeepAlive.remove(list.value[clickIndex].componentName)
         list.value.splice(clickIndex, 1)
         break
-      case 'left':
+      case 'left': {
         if (activeIndex < clickIndex)
           router.push(list.value[clickIndex].fullPath)
-        list.value.splice(0, clickIndex)
+        const leftRemoveArr = list.value.splice(0, clickIndex)
+        leftRemoveArr.forEach((item) => {
+          if (item.meta.cache)
+            useKeepAlive.remove(item.componentName)
+        })
         break
-      case 'right':
+      }
+      case 'right': {
         if (activeIndex > clickIndex)
           router.push(list.value[clickIndex].fullPath)
-        list.value.splice(clickIndex + 1, list.value.length - (clickIndex + 1))
+        const rightRemoveArr = list.value.splice(clickIndex + 1, list.value.length - (clickIndex + 1))
+        rightRemoveArr.forEach((item) => {
+          if (item.meta.cache)
+            useKeepAlive.remove(item.componentName)
+        })
         break
-      case 'otherAll':
+      }
+      case 'otherAll': {
         if (activeIndex !== clickIndex)
           router.push(list.value[clickIndex].fullPath)
+        const otherAllRemoveArr = list.value.filter(item => item.fullPath !== list.value[clickIndex].fullPath)
+        otherAllRemoveArr.forEach((item) => {
+          if (item.meta.cache)
+            useKeepAlive.remove(item.componentName)
+        })
         list.value = list.value.filter(item => item.fullPath === list.value[clickIndex].fullPath)
         break
+      }
     }
   }
 

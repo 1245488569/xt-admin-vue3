@@ -1,4 +1,8 @@
 <script setup lang="ts">
+defineOptions({
+  name: 'Cache1',
+})
+
 const input = ref('')
 </script>
 

@@ -133,7 +133,7 @@ const routerViewContentFontSize = computed(() => {
           </div>
         </template>
 
-        <main class="flex-1 main-box flex flex-col" :class="useAppConfig.appConfig.nav.fixed ? '' : 'overflow-auto'">
+        <main class="flex-1 main-box flex flex-col overflow-x-hidden" :class="useAppConfig.appConfig.nav.fixed ? '' : 'overflow-auto'">
           <div class="right-0" :class="[fixedActionbar, actionbarLeft, actionbarTop]">
             <Tabbar v-if="showTabbar" />
             <Toolbar v-if="showToolbar" />

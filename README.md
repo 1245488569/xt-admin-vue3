@@ -4,6 +4,9 @@
 
 # 说明：master分支为最新版本（正在更新），oldMaster为旧版本，旧版本不再维护
 
+# 演示地址（已失效，请自行下载代码运行，查看）
+http://www.xt-admin.com.cn/#/login
+
 
 ## 特点
 1. Vue3

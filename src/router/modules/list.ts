@@ -16,6 +16,7 @@ export default {
       component: () => import('@/views/list/user/index.vue'),
       meta: {
         title: '用户列表',
+        auth: ['user.read1'],
       },
     },
     {

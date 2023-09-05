@@ -18,4 +18,19 @@ export default [
       }
     },
   },
+
+  {
+    url: '/api/user/permission',
+    method: 'get',
+    response: () => {
+      return {
+        code: 200,
+        message: '请求成功',
+        type: 'success',
+        result: {
+          permissions: ['user.read', 'user.detail'],
+        },
+      }
+    },
+  },
 ] as MockMethod[]

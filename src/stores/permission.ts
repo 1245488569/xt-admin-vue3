@@ -1,10 +1,46 @@
 import type { RouteRecordRaw } from 'vue-router'
 import cloneDeep from 'lodash/cloneDeep'
 import { useAppConfigStore } from './app'
+import { useUserStore } from './user'
+import type { Ipermissions } from './types/permission'
 import privateRoutes from '@/router/privateRoutes'
 import constantRoutes from '@/router/constant'
 import type { IPrivateRoutes } from '@/router/types/privateRoutes'
 import { isEmpty } from '@/utils'
+
+function hasPermission(permissions: Ipermissions, route: RouteRecordRaw) {
+  let isAuth = false
+  if (route.meta?.auth) {
+    isAuth = permissions.some((auth) => {
+      if (typeof route.meta?.auth === 'string')
+        return route.meta.auth === auth
+
+      else
+        return route.meta?.auth?.includes(auth)
+    })
+  }
+  else {
+    isAuth = true
+  }
+  return isAuth
+}
+
+function filterPrivateRoutes(routes: RouteRecordRaw[], permissions: Ipermissions) {
+  const res = [] as RouteRecordRaw[]
+  routes.forEach((route) => {
+    const tmpRoute = cloneDeep(route)
+    if (hasPermission(permissions, tmpRoute)) {
+      if (tmpRoute.children) {
+        tmpRoute.children = filterPrivateRoutes(tmpRoute.children, permissions)
+        tmpRoute.children.length && res.push(tmpRoute)
+      }
+      else {
+        res.push(tmpRoute)
+      }
+    }
+  })
+  return res
+}
 
 function addPrivateChildrenIndex(privateChildrenRoutes: RouteRecordRaw[], parentIndex: number) {
   privateChildrenRoutes.forEach((item) => {
@@ -49,10 +85,19 @@ export const usePermissionStore = defineStore('route', () => {
 
   function filterPermissionsRoutes(): Promise<RouteRecordRaw[]> {
     const useAppConfig = useAppConfigStore()
-    return new Promise((resolve) => {
+    // eslint-disable-next-line no-async-promise-executor
+    return new Promise(async (resolve) => {
       let routes: RouteRecordRaw[] = []
       if (useAppConfig.getEnablePermission) {
-        // TODO: 按权限过滤路由
+        const useUser = useUserStore()
+        if (useAppConfig.appConfig.app.routeMode === 'backend') {
+          // ...
+        }
+        else {
+          const permissions = await useUser.getPermissions()
+          routes = filterPrivateRoutes(allPrivateChildrenRoutes.value, permissions)
+          console.log(routes)
+        }
       }
       else {
         routes = [...allPrivateChildrenRoutes.value]

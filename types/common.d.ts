@@ -3,9 +3,11 @@ type Language = 'zh-cn' | 'zh-tw' | 'en'
 type ElementSize = 'large' | 'default' | 'small'
 type LayoutMode = 'onlyTopNav' | 'onlySubSideNav' | 'mainSubSideNav' | 'topSubSideNav'
 type ColorScheme = '' | 'light' | 'dark'
+type RouteMode = 'frontend' | 'backend'
 
 interface IGlobalApp {
   enablePermission: boolean
+  routeMode: RouteMode
   enableProgress: boolean
   enableDynamicTitle: boolean
   enableDashboard: boolean

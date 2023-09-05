@@ -1,9 +1,11 @@
-import { loginApi } from '@/api/test'
+import type { Ipermissions } from './types/permission'
+import { loginApi, permissionApi } from '@/api/test'
 import { STORAGE_PREFIX, USER } from '@/config/cache'
 
 export const useUserStore = defineStore('user', () => {
   const token = ref('')
   const userInfo = ref(null)
+  const permissions = ref<Ipermissions>([])
 
   const getToken = computed(() => token.value)
 
@@ -14,7 +16,16 @@ export const useUserStore = defineStore('user', () => {
       userInfo.value = res.result
     })
   }
-  return { token, userInfo, getToken, login }
+
+  // 获取权限
+  function getPermissions() {
+    return permissionApi().then((res) => {
+      permissions.value = res.result.permissions
+      return permissions.value
+    })
+  }
+
+  return { token, userInfo, getToken, login, getPermissions }
 }, {
   persist: {
     key: `${STORAGE_PREFIX}${USER}`,

@@ -15,15 +15,22 @@ export const useTabbarStore = defineStore('tabbar', () => {
 
   function add(tab: ITabbarItem) {
     if (tab.meta.mergeTabbarPath) {
-      // TODO: mergeTabbarPath
-      // ...
+      const mergeTabIndex = list.value.findIndex(item => item.fullPath === tab.meta.mergeTabbarPath)
+      if (mergeTabIndex !== -1)
+        list.value.splice(mergeTabIndex, 1, tab)
+
+      else
+        list.value.push(tab)
     }
     else {
       const isFind = list.value.some(item => item.fullPath === tab.fullPath)
       if (!isFind) {
-        // TODO: mergeTabbarPath是否在tabbar中
-        // ...
-        list.value.push(tab)
+        const isMergeIndex = list.value.findIndex(item => tab.fullPath === item.meta.mergeTabbarPath)
+        if (isMergeIndex !== -1)
+          list.value.splice(isMergeIndex, 1, tab)
+
+        else
+          list.value.push(tab)
       }
     }
   }

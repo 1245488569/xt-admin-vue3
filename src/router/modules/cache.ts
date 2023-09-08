@@ -4,7 +4,7 @@ export default {
   path: '/cache',
   name: 'cache',
   component: () => import('@/layouts/index.vue'),
-  redirect: { name: 'cache1' },
+  redirect: '/cache/cache1',
   meta: {
     title: '多级导航缓存',
     icon: 'ri:menu-3-line',
@@ -13,7 +13,7 @@ export default {
     {
       path: 'cache1',
       name: 'cache1',
-      redirect: { name: 'cache1-1' },
+      redirect: '/cache/cache1/cache1-1',
       meta: {
         title: '导航1',
       },
@@ -21,7 +21,7 @@ export default {
         {
           path: 'cache1-1',
           name: 'cache1-1',
-          redirect: { name: 'cache1-1-1' },
+          redirect: '/cache/cache1/cache1-1/cache1-1-1',
           meta: {
             title: '导航1-1',
           },

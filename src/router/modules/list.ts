@@ -4,7 +4,7 @@ export default {
   path: '/list',
   name: 'List',
   component: () => import('@/layouts/index.vue'),
-  redirect: { name: 'UserIndex' },
+  redirect: '/list/user',
   meta: {
     title: '列表',
     icon: 'ep:list',
@@ -29,13 +29,14 @@ export default {
         hideInSearch: true,
         activeMenu: '/list/user',
         mergeTabbarPath: '/list/user',
+        auth: 'user.detail',
       },
     },
 
     {
       path: 'goods',
       name: 'Goods',
-      redirect: { name: 'GoodsIndex' },
+      redirect: '/list/goods/index',
       meta: {
         title: '商品列表',
       },

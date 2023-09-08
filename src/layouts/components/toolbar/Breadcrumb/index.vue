@@ -4,21 +4,43 @@ import type { RouteLocationMatched } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 
-const breadcrumbDta = ref<RouteLocationMatched[]>([])
+const breadcrumbData = ref<RouteLocationMatched[]>([])
 
-const stopWatchRoute = watch(() => route, (val) => {
-  breadcrumbDta.value = val.matched.filter(item => item.meta && item.meta.title && !item.meta.hideInBreadcrumb)
-}, {
-  immediate: true,
-  deep: true,
+const clickBreadcrumbItem = ref<RouteLocationMatched | null>(null)
+
+breadcrumbData.value = route.matched.filter(item => item.meta && item.meta.title && !item.meta.hideInBreadcrumb)
+
+const stop = router.beforeEach((to, from, next) => {
+  if (to.name === 'NotFound') {
+    if (clickBreadcrumbItem.value?.children?.length) {
+      const item = clickBreadcrumbItem.value.children.find(item => !item.meta?.hideInMenu)
+      if (item) {
+        if (item.name) {
+          next({ name: item.name })
+          // next({ name: 'NotFound', replace: true })
+        }
+        else {
+          console.warn('请在路由中设置唯一的name字段')
+          next({ name: 'NotFound', replace: true })
+        }
+      }
+      else {
+        next({ name: 'NotFound', replace: true })
+      }
+    }
+  }
+  else {
+    breadcrumbData.value = to.matched.filter(item => item.meta && item.meta.title && !item.meta.hideInBreadcrumb)
+    next()
+  }
 })
 
 onUnmounted(() => {
-  stopWatchRoute()
+  stop()
 })
 
 function onLinkClick(item: RouteLocationMatched) {
-  // TODO: 做了权限后，这里需要判断是否有权限
+  clickBreadcrumbItem.value = item
   router.push(item.path)
 }
 </script>
@@ -26,8 +48,8 @@ function onLinkClick(item: RouteLocationMatched) {
 <template>
   <el-breadcrumb class="text-sm inline-block" separator="/">
     <transition-group name="breadcrumb">
-      <el-breadcrumb-item v-for="(item, index) in breadcrumbDta" :key="index">
-        <span v-if="index === breadcrumbDta.length - 1">{{ item.meta.title }}</span>
+      <el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="index">
+        <span v-if="index === breadcrumbData.length - 1">{{ item.meta.title }}</span>
         <a v-else @click="onLinkClick(item)"> {{ item.meta.title }}</a>
       </el-breadcrumb-item>
     </transition-group>

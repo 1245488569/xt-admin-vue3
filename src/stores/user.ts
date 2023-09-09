@@ -1,5 +1,5 @@
 import type { Ipermissions } from './types/permission'
-import { loginApi, permissionApi } from '@/api/test'
+import { backendRoutesApi, loginApi, permissionApi } from '@/api/test'
 import { STORAGE_PREFIX, USER } from '@/config/cache'
 
 export const useUserStore = defineStore('user', () => {
@@ -25,7 +25,15 @@ export const useUserStore = defineStore('user', () => {
     })
   }
 
-  return { token, userInfo, getToken, login, getPermissions }
+  // 后端路由
+  function getBackendRoutes() {
+    return backendRoutesApi().then((res) => {
+      permissions.value = res.result.permissions
+      return res.result.backendRoutes
+    })
+  }
+
+  return { token, userInfo, getToken, login, getPermissions, getBackendRoutes }
 }, {
   persist: {
     key: `${STORAGE_PREFIX}${USER}`,

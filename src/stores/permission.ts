@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import cloneDeep from 'lodash/cloneDeep'
+import { isObject } from 'lodash'
 import { useAppConfigStore } from './app'
 import { useUserStore } from './user'
 import type { Ipermissions } from './types/permission'
@@ -39,6 +40,46 @@ function filterPrivateRoutes(routes: RouteRecordRaw[], permissions: Ipermissions
       }
     }
   })
+  return res
+}
+
+function hasBackRoutePermission(backendRoutes: any[], route: RouteRecordRaw) {
+  let isAuth = false
+  if (backendRoutes.some(v => v.name === route.name))
+    isAuth = true
+
+  return isAuth
+}
+
+function filterBackendRoutes(routes: RouteRecordRaw[], backendRoutes: any[]) {
+  const res = [] as RouteRecordRaw[]
+
+  routes.forEach((route) => {
+    const tmpRoute = cloneDeep(route)
+    if (hasBackRoutePermission(backendRoutes, tmpRoute)) {
+      const backendRouteItem = backendRoutes.find(item => item.name === tmpRoute.name)
+      if (tmpRoute.children?.length) {
+        tmpRoute.children = filterBackendRoutes(tmpRoute.children, backendRoutes)
+        if (tmpRoute.children.length) {
+          if (isObject(tmpRoute.meta) && isObject(backendRouteItem.meta)) {
+            Object.keys(backendRouteItem.meta).forEach((key) => {
+              tmpRoute.meta![key] = backendRouteItem.meta[key]
+            })
+          }
+          res.push(tmpRoute)
+        }
+      }
+      else {
+        if (isObject(tmpRoute.meta) && isObject(backendRouteItem.meta)) {
+          Object.keys(backendRouteItem.meta).forEach((key) => {
+            tmpRoute.meta![key] = backendRouteItem.meta[key]
+          })
+        }
+        res.push(tmpRoute)
+      }
+    }
+  })
+
   return res
 }
 
@@ -91,12 +132,12 @@ export const usePermissionStore = defineStore('route', () => {
       if (useAppConfig.getEnablePermission) {
         const useUser = useUserStore()
         if (useAppConfig.appConfig.app.routeMode === 'backend') {
-          // ...
+          const backendRoutes = await useUser.getBackendRoutes()
+          routes = filterBackendRoutes(allPrivateChildrenRoutes.value, backendRoutes)
         }
         else {
           const permissions = await useUser.getPermissions()
           routes = filterPrivateRoutes(allPrivateChildrenRoutes.value, permissions)
-          console.log(routes)
         }
       }
       else {

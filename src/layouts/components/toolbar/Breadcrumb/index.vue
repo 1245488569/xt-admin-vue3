@@ -17,7 +17,6 @@ const stop = router.beforeEach((to, from, next) => {
       if (item) {
         if (item.name) {
           next({ name: item.name })
-          // next({ name: 'NotFound', replace: true })
         }
         else {
           console.warn('请在路由中设置唯一的name字段')

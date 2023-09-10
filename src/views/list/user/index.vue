@@ -28,7 +28,6 @@ const tableData = [
 
 const router = useRouter()
 function goDeatil(item: any) {
-  console.log(item)
   router.push({
     name: 'UserDetail',
     query: {
@@ -41,6 +40,9 @@ function goDeatil(item: any) {
 <template>
   <div class="p-5">
     <div>用户列表</div>
+    <el-button v-auth="'user.add'" type="primary">
+      添加
+    </el-button>
     <el-table :data="tableData" style="width: 100%" border>
       <el-table-column prop="date" label="Date" width="180" />
       <el-table-column prop="name" label="Name" width="180" />

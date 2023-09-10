@@ -28,7 +28,7 @@ export default [
         message: '请求成功',
         type: 'success',
         result: {
-          permissions: ['user.read', 'user.detail'],
+          permissions: ['user.read', 'user.detail', 'user.add', 'user.edit'],
         },
       }
     },

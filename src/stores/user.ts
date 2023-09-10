@@ -33,7 +33,7 @@ export const useUserStore = defineStore('user', () => {
     })
   }
 
-  return { token, userInfo, getToken, login, getPermissions, getBackendRoutes }
+  return { token, userInfo, getToken, permissions, login, getPermissions, getBackendRoutes }
 }, {
   persist: {
     key: `${STORAGE_PREFIX}${USER}`,

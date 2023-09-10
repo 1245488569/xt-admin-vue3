@@ -4,6 +4,8 @@ import pinia from './stores'
 import App from './App.vue'
 import router from './router'
 
+import directive from '@/utils/directive'
+
 import 'virtual:svg-icons-register'
 import 'virtual:uno.css'
 import '@/assets/styles/index.scss'
@@ -14,5 +16,7 @@ const app = createApp(App)
 app.use(ElementPlus)
 app.use(router)
 app.use(pinia)
+
+directive(app)
 
 app.mount('#app')

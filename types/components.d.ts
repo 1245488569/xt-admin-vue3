@@ -7,6 +7,9 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Auth: typeof import('./../src/components/Auth/index.vue')['default']
+    AuthAll: typeof import('./../src/components/AuthAll/index.vue')['default']
+    copy: typeof import('./../src/components/Auth copy/index.vue')['default']
     IEpMagicStick: typeof import('~icons/ep/magic-stick')['default']
     IIonArrowRedo: typeof import('~icons/ion/arrow-redo')['default']
     NoticeSlide: typeof import('./../src/components/NoticeSlide/index.vue')['default']

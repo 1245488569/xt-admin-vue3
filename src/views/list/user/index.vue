@@ -43,6 +43,18 @@ function goDeatil(item: any) {
     <el-button v-auth="'user.add'" type="primary">
       添加
     </el-button>
+
+    <auth value="user.add1">
+      <el-button type="primary">
+        有权限
+      </el-button>
+      <template #no-auth>
+        <el-button type="primary" disabled>
+          没权限
+        </el-button>
+      </template>
+    </auth>
+
     <el-table :data="tableData" style="width: 100%" border>
       <el-table-column prop="date" label="Date" width="180" />
       <el-table-column prop="name" label="Name" width="180" />

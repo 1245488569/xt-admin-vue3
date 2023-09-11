@@ -3,6 +3,7 @@ import SidebarCollapse from '../tools/SidebarCollapse/index.vue'
 import ChangeColorScheme from '../tools/ChangeColorScheme/index.vue'
 import ThemeSelect from '../tools/ThemeSelect/index.vue'
 import Reload from '../tools/Reload/index.vue'
+import Personal from '../personal/index.vue'
 import Breadcrumb from './Breadcrumb/index.vue'
 import { useAppConfigStore } from '@/stores/app'
 
@@ -23,6 +24,7 @@ const toolbarTextColor = computed(() => useAppConfig.getTheme.toolbarTextColor)
       <Reload v-if="useAppConfig.appConfig.toolbar.enablePageReload" class="mr-2" />
       <ChangeColorScheme v-if="useAppConfig.appConfig.toolbar.enableColorScheme" class="mr-2" />
       <ThemeSelect v-if="useAppConfig.appConfig.toolbar.enableChangeTheme" class="mr-2" />
+      <Personal />
     </div>
   </div>
 </template>

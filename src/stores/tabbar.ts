@@ -13,6 +13,10 @@ export type ITabbarRemoveType = 'self' | 'otherOnce' | 'right' | 'left' | 'other
 export const useTabbarStore = defineStore('tabbar', () => {
   const list = ref<ITabbarItem[]>([])
 
+  function init() {
+    list.value = []
+  }
+
   function add(tab: ITabbarItem) {
     if (tab.meta.mergeTabbarPath) {
       const mergeTabIndex = list.value.findIndex(item => item.fullPath === tab.meta.mergeTabbarPath)
@@ -86,5 +90,5 @@ export const useTabbarStore = defineStore('tabbar', () => {
     }
   }
 
-  return { list, add, remove }
+  return { list, init, add, remove }
 })

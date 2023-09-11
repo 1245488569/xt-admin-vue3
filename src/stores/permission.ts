@@ -120,6 +120,11 @@ export const usePermissionStore = defineStore('route', () => {
     return addIndexPrivateRoutes.value.map(item => item.children).flat()
   })
 
+  function init() {
+    routes.value = []
+    mainMenuActive.value = 0
+  }
+
   function setRoutes(needDynamicallyAddRoutes: RouteRecordRaw[]) {
     routes.value = [...constantRoutes, ...needDynamicallyAddRoutes]
   }
@@ -154,5 +159,5 @@ export const usePermissionStore = defineStore('route', () => {
     mainMenuActive.value = index
   }
 
-  return { routes, mainMenuActive, addIndexPrivateRoutes, filterPermissionsRoutes, changeMainMenu }
+  return { routes, mainMenuActive, addIndexPrivateRoutes, init, filterPermissionsRoutes, changeMainMenu }
 })

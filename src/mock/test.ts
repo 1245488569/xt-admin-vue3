@@ -65,4 +65,17 @@ export default [
       }
     },
   },
+
+  {
+    url: '/api/logout',
+    method: 'get',
+    response: () => {
+      return {
+        code: 200,
+        message: '请求成功',
+        type: 'success',
+        result: {},
+      }
+    },
+  },
 ] as MockMethod[]

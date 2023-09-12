@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
+import useLocalI18n from '@/hooks/useLocalI18n'
 
 defineOptions({
   name: 'PersonalSelect',
 })
+
+const { generateTitle } = useLocalI18n()
 
 const useUser = useUserStore()
 const router = useRouter()
@@ -27,10 +30,10 @@ function logout() {
     <template #dropdown>
       <el-dropdown-menu>
         <router-link to="/personal">
-          <el-dropdown-item> 个人设置 </el-dropdown-item>
+          <el-dropdown-item> {{ generateTitle('personal.personal') }} </el-dropdown-item>
         </router-link>
         <el-dropdown-item divided @click="logout">
-          退出
+          {{ generateTitle('personal.loginOut') }}
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>

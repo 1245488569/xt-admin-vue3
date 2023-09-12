@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import useLocalI18n from '@/hooks/useLocalI18n'
+
+const { generateTitle } = useLocalI18n()
 const router = useRouter()
 function goHome() {
   router.push('/')
@@ -12,14 +15,14 @@ function goHome() {
         404
       </div>
       <div class="font-medium py-8 text-6xl dark:text-dark-900">
-        未找到页面
+        {{ generateTitle('notfound.title') }}
       </div>
       <div class="font-medium pb-8 text-2xl dark:text-dark-900">
-        您正在寻找的页面不存在
+        {{ generateTitle('notfound.desc') }}
       </div>
       <div>
         <button class="back-btn" @click="goHome">
-          首页
+          {{ generateTitle('notfound.back') }}
         </button>
       </div>
     </div>

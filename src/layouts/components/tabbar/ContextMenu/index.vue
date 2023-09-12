@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import useLayoutTools from '@/hooks/useLayoutTools'
 import { type ITabbarRemoveType, useTabbarStore } from '@/stores/tabbar'
-
-interface IProps {
-  clickIndex: number
-}
+import useLocalI18n from '@/hooks/useLocalI18n'
 
 const props = withDefaults(defineProps<IProps>(), {
 
 })
+const { generateTitle } = useLocalI18n()
+interface IProps {
+  clickIndex: number
+}
 
 const route = useRoute()
 const useTabbar = useTabbarStore()
@@ -50,19 +51,19 @@ function closeTab(type?: ITabbarRemoveType) {
 <template>
   <ul class="context-menu-container">
     <li :class="{ disabled: disabledReload }" @click="reload">
-      刷新
+      {{ generateTitle('tabbar.refresh') }}
     </li>
     <li :class="{ disabled: disabledDelOnce }" @click="closeTab()">
-      关闭
+      {{ generateTitle('tabbar.delete') }}
     </li>
     <li :class="{ disabled: disabledDelLeft }" @click="closeTab('left')">
-      关闭左侧
+      {{ generateTitle('tabbar.deleteLeft') }}
     </li>
     <li :class="{ disabled: disabledDelRight }" @click="closeTab('right')">
-      关闭右侧
+      {{ generateTitle('tabbar.deleteRight') }}
     </li>
     <li :class="{ disabled: disabledDelOtherAll }" @click="closeTab('otherAll')">
-      关闭其他
+      {{ generateTitle('tabbar.deleteOther') }}
     </li>
   </ul>
 </template>

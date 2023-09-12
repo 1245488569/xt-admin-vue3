@@ -1,5 +1,8 @@
 <script lang="ts" setup name="SelectColor">
 import { useAppConfigStore } from '@/stores/app'
+import useLocalI18n from '@/hooks/useLocalI18n'
+
+const { generateTitle } = useLocalI18n()
 
 type Key = keyof IGlobalTheme
 interface IThemeData {
@@ -18,132 +21,136 @@ const logoThemeData = computed<IThemeData[]>(() => {
     //   value: useAppConfig.getTheme.logoBgColor,
     // },
     {
-      title: '文字颜色',
+      title: generateTitle('theme.logoTextColor'),
       key: 'logoTextColor',
       value: useAppConfig.getTheme.logoTextColor,
     },
   ]
 })
 
+// 主菜单主题数据
 const mainMenuThemeData = computed<IThemeData[]>(() => {
   return [
     {
-      title: '背景色',
+      title: generateTitle('theme.bgColor'),
       key: 'mainMenuBgColor',
       value: useAppConfig.getTheme.mainMenuBgColor,
     },
     {
-      title: '选中背景色',
+      title: generateTitle('theme.activeBgColor'),
       key: 'mainMenuActiveBgColor',
       value: useAppConfig.getTheme.mainMenuActiveBgColor,
     },
     {
-      title: '鼠标经过背景色',
+      title: generateTitle('theme.hoverBgColor'),
       key: 'mainMenuHoverBgColor',
       value: useAppConfig.getTheme.mainMenuHoverBgColor,
     },
     {
-      title: '文字颜色',
+      title: generateTitle('theme.textColor'),
       key: 'mainMenuTextColor',
       value: useAppConfig.getTheme.mainMenuTextColor,
     },
     {
-      title: '选中文字颜色',
+      title: generateTitle('theme.activeTextColor'),
       key: 'mainMenuActiveTextColor',
       value: useAppConfig.getTheme.mainMenuActiveTextColor,
     },
     {
-      title: '鼠标经过文字颜色',
+      title: generateTitle('theme.hoverTextColor'),
       key: 'mainMenuHoverTextColor',
       value: useAppConfig.getTheme.mainMenuHoverTextColor,
     },
   ]
 })
 
+// 次菜单主题数据
 const menuThemeData = computed<IThemeData[]>(() => {
   return [
     {
-      title: '背景色',
+      title: generateTitle('theme.bgColor'),
       key: 'menuBgColor',
       value: useAppConfig.getTheme.menuBgColor,
     },
     {
-      title: '选中背景色',
+      title: generateTitle('theme.activeBgColor'),
       key: 'menuActiveBgColor',
       value: useAppConfig.getTheme.menuActiveBgColor,
     },
     {
-      title: '鼠标经过背景色',
+      title: generateTitle('theme.hoverBgColor'),
       key: 'menuHoverBgColor',
       value: useAppConfig.getTheme.menuHoverBgColor,
     },
     {
-      title: '文字颜色',
+      title: generateTitle('theme.textColor'),
       key: 'menuTextColor',
       value: useAppConfig.getTheme.menuTextColor,
     },
     {
-      title: '选中文字颜色',
+      title: generateTitle('theme.activeTextColor'),
       key: 'menuActiveTextColor',
       value: useAppConfig.getTheme.menuActiveTextColor,
     },
     {
-      title: '鼠标经过文字颜色',
+      title: generateTitle('theme.hoverTextColor'),
       key: 'menuHoverTextColor',
       value: useAppConfig.getTheme.menuHoverTextColor,
     },
   ]
 })
 
+// tabbar主题数据
 const tabbarThemeData = computed<IThemeData[]>(() => {
   return [
     {
-      title: 'tabbar背景色',
+      title: `tabbar${generateTitle('theme.bgColor')}`,
       key: 'tabbarBgColor',
       value: useAppConfig.getTheme.tabbarBgColor,
     },
     {
-      title: 'tabbarItem背景色',
+      title: `tabbarItem${generateTitle('theme.bgColor')}`,
       key: 'tabbarItemBgColor',
       value: useAppConfig.getTheme.tabbarItemBgColor,
     },
     {
-      title: '选中背景色',
+      title: generateTitle('theme.bgColor'),
       key: 'tabbarItemActiveBgColor',
       value: useAppConfig.getTheme.tabbarItemActiveBgColor,
     },
     {
-      title: '鼠标经过背景色',
+      title: generateTitle('theme.hoverBgColor'),
       key: 'tabbarItemHoverBgColor',
       value: useAppConfig.getTheme.tabbarItemHoverBgColor,
     },
     {
-      title: '文字颜色',
+      title: generateTitle('theme.textColor'),
       key: 'tabbarItemTextColor',
       value: useAppConfig.getTheme.tabbarItemTextColor,
     },
     {
-      title: '选中文字颜色',
+      title: generateTitle('theme.activeTextColor'),
       key: 'tabbarItemActiveTextColor',
       value: useAppConfig.getTheme.tabbarItemActiveTextColor,
     },
     {
-      title: '鼠标经过文字颜色',
+      title: generateTitle('theme.hoverTextColor'),
       key: 'tabbarItemHoverTextColor',
       value: useAppConfig.getTheme.tabbarItemHoverTextColor,
     },
   ]
 })
 
+// toolbar主题数据
 const toolbarThemeData = computed<IThemeData[]>(() => {
   return [
     {
-      title: '背景色',
+      title: generateTitle('theme.bgColor'),
       key: 'toolbarBgColor',
       value: useAppConfig.getTheme.toolbarBgColor,
     },
     {
-      title: '文字颜色',
+      title: generateTitle('theme.textColor'),
       key: 'toolbarTextColor',
       value: useAppConfig.getTheme.toolbarTextColor,
     },
@@ -166,33 +173,33 @@ defineExpose({
 </script>
 
 <template>
-  <xt-dialog v-model="dialogVisible" title="设置主题色" append-to-body width="900px" :show-cancel="false" :show-confirm="false">
+  <xt-dialog v-model="dialogVisible" :title="generateTitle('theme.themeChange')" append-to-body width="900px" :show-cancel="false" :show-confirm="false">
     <div>
       <el-divider>logo</el-divider>
       <div class="flex">
-        <div v-for="item in logoThemeData" :key="item.value" class="color-select-content">
+        <section v-for="item in logoThemeData" :key="item.value" class="color-select-content">
           <span class="mb-1">{{ item.title }}</span>
           <el-color-picker v-model="item.value" show-alpha @change="themeChange(item.key, $event as string)" />
-        </div>
+        </section>
       </div>
 
-      <el-divider>主导航</el-divider>
+      <el-divider>{{ generateTitle('theme.mianNav') }}</el-divider>
       <div class="flex">
-        <div v-for="item in mainMenuThemeData" :key="item.value" class="color-select-content">
+        <section v-for="item in mainMenuThemeData" :key="item.value" class="color-select-content">
           <span class="mb-1">{{ item.title }}</span>
           <el-color-picker v-model="item.value" show-alpha @change="themeChange(item.key, $event as string)" />
-        </div>
+        </section>
       </div>
 
-      <el-divider>侧导航</el-divider>
+      <el-divider>{{ generateTitle('theme.subNav') }}</el-divider>
       <div class="flex">
-        <div v-for="item in menuThemeData" :key="item.value" class="color-select-content">
+        <section v-for="item in menuThemeData" :key="item.value" class="color-select-content">
           <span class="mb-1">{{ item.title }}</span>
           <el-color-picker v-model="item.value" show-alpha @change="themeChange(item.key, $event as string)" />
-        </div>
+        </section>
       </div>
 
-      <el-divider>tabbar</el-divider>
+      <el-divider>{{ generateTitle('theme.tabbar') }}</el-divider>
       <div class="flex">
         <section v-for="item in tabbarThemeData" :key="item.value" class="color-select-content">
           <span class="mb-1">{{ item.title }}</span>
@@ -200,7 +207,7 @@ defineExpose({
         </section>
       </div>
 
-      <el-divider>toolbar</el-divider>
+      <el-divider>{{ generateTitle('theme.toolbar') }}</el-divider>
       <div class="flex">
         <section v-for="item in toolbarThemeData" :key="item.value" class="color-select-content">
           <span class="mb-1">{{ item.title }}</span>

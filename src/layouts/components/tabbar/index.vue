@@ -3,7 +3,9 @@ import BScroll from '@better-scroll/core'
 import ContextMenu from './ContextMenu/index.vue'
 import { useAppConfigStore } from '@/stores/app'
 import { useTabbarStore } from '@/stores/tabbar'
+import useLocalI18n from '@/hooks/useLocalI18n'
 
+const { generateTitle } = useLocalI18n()
 const scrollRef = ref()
 const scrollItemRef = ref()
 const bs = ref()
@@ -95,7 +97,7 @@ watch(visible, (val) => {
     <div ref="scrollItemRef" class="px-2 flex h-full py-1">
       <template v-for="(tag, tagI) in useTabbar.list" :key="tag.fullPath">
         <div class="tabbar-item mr-2 px-2 flex items-center h-full rounded-md cursor-pointer duration-300" :class="tag.fullPath === route.fullPath ? 'active' : ''" @click="router.push(tag.fullPath)" @contextmenu.prevent="openMenu($event, tagI)">
-          <span class="w-20 truncate">{{ tag.meta.title }}</span>
+          <span class="w-20 truncate" :title="generateTitle(tag.meta.title || '')">{{ generateTitle(tag.meta.title || '') }}</span>
           <el-icon v-show="useTabbar.list.length > 1" class="ml-2" @click.stop="closeTab(tagI)">
             <svg-icon name="ep:close" />
           </el-icon>

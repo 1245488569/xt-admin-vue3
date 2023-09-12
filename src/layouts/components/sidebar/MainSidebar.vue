@@ -6,7 +6,9 @@ import useMenus from '@/hooks/useMenus'
 import { useAppConfigStore } from '@/stores/app'
 import { usePermissionStore } from '@/stores/permission'
 import { isEmpty } from '@/utils'
+import useLocalI18n from '@/hooks/useLocalI18n'
 
+const { generateTitle } = useLocalI18n()
 const useAppConfig = useAppConfigStore()
 const mainmenubgcolor = computed(() => useAppConfig.getTheme.mainMenuBgColor)
 const mainmenutextcolor = computed(() => useAppConfig.getTheme.mainMenuTextColor)
@@ -67,7 +69,7 @@ watch(() => route, (val) => {
             <el-icon v-if="item.icon" :size="20">
               <svg-icon :name="item.icon" />
             </el-icon>
-            <span class="truncate w-full text-center" :title="item.title">{{ item.title }}</span>
+            <span class="truncate w-full text-center" :title="generateTitle(item.title)">{{ generateTitle(item.title) }}</span>
           </li>
         </template>
       </ul>

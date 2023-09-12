@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import type { FormInstance, FormRules } from 'element-plus'
 import { useUserStore } from '@/stores/user'
+import useLocalI18n from '@/hooks/useLocalI18n'
+import LangSelect from '@/layouts/components/tools/LangSelect/index.vue'
+import { useAppConfigStore } from '@/stores/app'
+
+const { generateTitle } = useLocalI18n()
+const useAppConfig = useAppConfigStore()
 
 const loginFormRef = ref<FormInstance>()
 const loginRules = reactive<FormRules>({
@@ -59,12 +65,13 @@ function handleLogin() {
 
       <div class="w-full z-999">
         <div class="flex items-center justify-center text-3xl my-6">
-          用户登录
+          {{ generateTitle('login.title') }}
+          <LangSelect v-if="useAppConfig.appConfig.toolbar.enableI18n" class="ml-2" />
         </div>
 
         <el-form ref="loginFormRef" class="mx-auto w-full px-4 sm:w-2/3 lg:px-0" :model="loginForm" :rules="loginRules">
           <el-form-item prop="account">
-            <el-input v-model="loginForm.account">
+            <el-input v-model="loginForm.account" :placeholder="generateTitle('login.account')">
               <template #prefix>
                 <el-icon :size="20">
                   <svg-icon name="ep:avatar" />
@@ -72,7 +79,7 @@ function handleLogin() {
               </template>
             </el-input>
           </el-form-item>
-          <el-form-item prop="password">
+          <el-form-item prop="password" :placeholder="generateTitle('login.password')">
             <el-input v-model="loginForm.password" type="password" show-password @keyup.enter="handleLogin">
               <template #prefix>
                 <el-icon :size="20">
@@ -82,7 +89,7 @@ function handleLogin() {
             </el-input>
           </el-form-item>
           <el-button class="w-full" type="primary" size="large" :loading="submitLoading" @click="handleLogin">
-            登录
+            {{ generateTitle('login.loginBtn') }}
           </el-button>
         </el-form>
       </div>

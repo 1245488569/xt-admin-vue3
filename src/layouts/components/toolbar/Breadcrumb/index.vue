@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { RouteLocationMatched } from 'vue-router'
+import useLocalI18n from '@/hooks/useLocalI18n'
 
+const { generateTitle } = useLocalI18n()
 const route = useRoute()
 const router = useRouter()
 
@@ -48,8 +50,8 @@ function onLinkClick(item: RouteLocationMatched) {
   <el-breadcrumb class="text-sm inline-block" separator="/">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="index">
-        <span v-if="index === breadcrumbData.length - 1">{{ item.meta.title }}</span>
-        <a v-else @click="onLinkClick(item)"> {{ item.meta.title }}</a>
+        <span v-if="index === breadcrumbData.length - 1">{{ generateTitle(item.meta.title || '') }}</span>
+        <a v-else @click="onLinkClick(item)"> {{ generateTitle(item.meta.title || '') }}</a>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>

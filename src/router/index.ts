@@ -8,6 +8,7 @@ import { useAppConfigStore } from '@/stores/app'
 import { useUserStore } from '@/stores/user'
 import useMenus from '@/hooks/useMenus'
 import { useKeepAliveStore } from '@/stores/keepAlive'
+import { i18n } from '@/locales'
 
 const { isLoading } = useNProgress()
 const router = createRouter({
@@ -25,10 +26,14 @@ router.beforeEach(async (to, from, next) => {
 
   useAppConfig.appConfig.app.enableProgress && (isLoading.value = true)
   const title = useTitle()
-  if (useAppConfig.appConfig.app.enableDynamicTitle)
-    to.meta.title ? title.value = to.meta.title : title.value = import.meta.env.VITE_APP_TITLE
-  else
-    title.value = import.meta.env.VITE_APP_TITLE
+  if (useAppConfig.appConfig.app.enableDynamicTitle) {
+    if (to.meta.title)
+      title.value = i18n.global.te(to.meta.title) ? i18n.global.t(to.meta.title) : to.meta.title
+
+    else
+      title.value = import.meta.env.VITE_APP_TITLE
+  }
+  else { title.value = import.meta.env.VITE_APP_TITLE }
 
   if (useUser.getToken) {
     if (!sign || !usePermission.routes.length) {

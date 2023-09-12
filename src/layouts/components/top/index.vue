@@ -6,7 +6,9 @@ import { useAppConfigStore } from '@/stores/app'
 import useMenus from '@/hooks/useMenus'
 import { usePermissionStore } from '@/stores/permission'
 import { isEmpty } from '@/utils'
+import useLocalI18n from '@/hooks/useLocalI18n'
 
+const { generateTitle } = useLocalI18n()
 const useAppConfig = useAppConfigStore()
 
 const topnavbgcolor = computed(() => {
@@ -155,7 +157,7 @@ if (useAppConfig.getLayoutMode === 'topSubSideNav') {
             <el-icon v-if="item.icon" :size="20">
               <svg-icon :name="item.icon" />
             </el-icon>
-            <span class="truncate">{{ item.title }}</span>
+            <span class="truncate">{{ generateTitle(item.title) }}</span>
           </el-menu-item>
         </template>
       </el-menu>

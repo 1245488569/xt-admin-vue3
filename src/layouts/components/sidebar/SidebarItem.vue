@@ -1,11 +1,14 @@
 <script setup lang="ts" name="SidebarItem">
 import type { RouteRecordRaw } from 'vue-router'
 import { useAppConfigStore } from '@/stores/app'
+import useLocalI18n from '@/hooks/useLocalI18n'
 
 interface IProps {
   menu: RouteRecordRaw
 }
 withDefaults(defineProps<IProps>(), {})
+
+const { generateTitle } = useLocalI18n()
 
 const useAppConfig = useAppConfigStore()
 const menubgcolor = computed(() => useAppConfig.getTheme.menuBgColor)
@@ -23,7 +26,7 @@ const menuactivetextcolor = computed(() => useAppConfig.getTheme.menuActiveTextC
       <el-icon v-if="menu.meta?.icon" :size="20">
         <svg-icon :name="menu.meta.icon" />
       </el-icon>
-      <span class="flex-1 mr-1 truncate" :title="menu.meta?.title">{{ menu.meta?.title }}</span>
+      <span class="flex-1 mr-1 truncate" :title="generateTitle(menu.meta?.title || '')">{{ generateTitle(menu.meta?.title || '') }}</span>
     </template>
     <!-- 循环渲染 -->
     <sidebar-item
@@ -38,7 +41,7 @@ const menuactivetextcolor = computed(() => useAppConfig.getTheme.menuActiveTextC
     <el-icon v-if="menu.meta?.icon" :size="20">
       <svg-icon :name="menu.meta.icon" />
     </el-icon>
-    <span class="truncate" :title="menu.meta?.title">{{ menu.meta?.title }}</span>
+    <span class="truncate" :title="generateTitle(menu.meta?.title || '')">{{ generateTitle(menu.meta?.title || '') }}</span>
   </el-menu-item>
 </template>
 

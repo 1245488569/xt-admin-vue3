@@ -20,7 +20,7 @@ const constantRoutes: RouteRecordRaw[] = [
         name: 'frame_dashboard',
         component: () => import('@/views/frame_dashboard/index.vue'),
         meta: {
-          title: '首页',
+          title: 'route.dashboard',
           icon: 'ep:apple',
         },
       },

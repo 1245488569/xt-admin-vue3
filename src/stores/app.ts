@@ -26,7 +26,11 @@ export const useAppConfigStore = defineStore('app', () => {
     return appConfig.value.theme
   })
 
-  return { appConfig, getEnablePermission, getLayoutMode, getCollapse, getColorScheme, getTheme }
+  const getLanguage = computed(() => {
+    return appConfig.value.defaultLanguage
+  })
+
+  return { appConfig, getEnablePermission, getLayoutMode, getCollapse, getColorScheme, getTheme, getLanguage }
 }, {
   persist: {
     key: `${STORAGE_PREFIX}${APP_CONFIG}`,

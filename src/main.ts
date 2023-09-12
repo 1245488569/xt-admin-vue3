@@ -4,6 +4,8 @@ import pinia from './stores'
 import App from './App.vue'
 import router from './router'
 
+import setupI18n from './locales/index'
+
 import directive from '@/utils/directive'
 
 import 'virtual:svg-icons-register'
@@ -16,6 +18,8 @@ const app = createApp(App)
 app.use(ElementPlus)
 app.use(router)
 app.use(pinia)
+
+setupI18n(app)
 
 directive(app)
 

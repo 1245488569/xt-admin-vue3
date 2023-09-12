@@ -45,3 +45,9 @@ function handleSetLanguage(lang: Language) {
     </template>
   </el-dropdown>
 </template>
+
+<style scoped lang="scss">
+  .el-dropdown {
+    color: var(--xt-toolbar-text-color);
+  }
+</style>

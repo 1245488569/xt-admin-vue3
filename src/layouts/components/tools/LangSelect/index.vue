@@ -16,6 +16,8 @@ withDefaults(defineProps<IProps>(), {
 
 const useAppConfig = useAppConfigStore()
 
+const toolbarTextColor = computed(() => useAppConfig.getTheme.toolbarTextColor)
+
 const language = computed(() => useAppConfig.getLanguage)
 
 const i18n = useI18n()
@@ -48,6 +50,10 @@ function handleSetLanguage(lang: Language) {
 
 <style scoped lang="scss">
   .el-dropdown {
+    color: v-bind(toolbarTextColor);
+  }
+
+  .dark .el-dropdown {
     color: var(--xt-toolbar-text-color);
   }
 </style>

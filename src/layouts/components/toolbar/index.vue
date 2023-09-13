@@ -5,6 +5,7 @@ import ThemeSelect from '../tools/ThemeSelect/index.vue'
 import Reload from '../tools/Reload/index.vue'
 import LangSelect from '../tools/LangSelect/index.vue'
 import Screenfull from '../tools/Screenfull/index.vue'
+import MenuSearch from '../tools/MenuSearch/index.vue'
 import Personal from '../personal/index.vue'
 import Breadcrumb from './Breadcrumb/index.vue'
 import { useAppConfigStore } from '@/stores/app'
@@ -23,6 +24,7 @@ const toolbarTextColor = computed(() => useAppConfig.getTheme.toolbarTextColor)
     </div>
 
     <div class="ml-auto flex items-center">
+      <MenuSearch v-if="useAppConfig.appConfig.toolbar.enableMenuSearch" class="mr-2" />
       <Reload v-if="useAppConfig.appConfig.toolbar.enablePageReload" class="mr-2" />
       <LangSelect v-if="useAppConfig.appConfig.toolbar.enableI18n" class="mr-2" />
       <Screenfull v-if="useAppConfig.appConfig.toolbar.enableFullscreen" class="mr-2" />

@@ -5,6 +5,10 @@ interface IProps {
   size?: number
 }
 
+defineOptions({
+  name: 'Reload',
+})
+
 withDefaults(defineProps<IProps>(), {
   size: 20,
 })

@@ -2,7 +2,8 @@
 import { ElTreeSelect } from 'element-plus'
 import cloneDeep from 'lodash/cloneDeep'
 import type { RouteRecordRaw } from 'vue-router'
-import { onClickOutside } from '@vueuse/core'
+
+// import { onClickOutside } from '@vueuse/core'
 import useMenus from '@/hooks/useMenus'
 import { i18n } from '@/locales'
 import useLocalI18n from '@/hooks/useLocalI18n'
@@ -79,10 +80,10 @@ function onSelectChange() {
   onClose()
 }
 
-onClickOutside(targetRef, () => {
-  if (isShow.value)
-    onClose()
-})
+// onClickOutside(targetRef, () => {
+//   if (isShow.value)
+//     onClose()
+// })
 </script>
 
 <template>

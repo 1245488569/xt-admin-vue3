@@ -79,8 +79,8 @@ function handleLogin() {
               </template>
             </el-input>
           </el-form-item>
-          <el-form-item prop="password" :placeholder="generateTitle('login.password')">
-            <el-input v-model="loginForm.password" type="password" show-password @keyup.enter="handleLogin">
+          <el-form-item prop="password">
+            <el-input v-model="loginForm.password" type="password" show-password :placeholder="generateTitle('login.password')" @keyup.enter="handleLogin">
               <template #prefix>
                 <el-icon :size="20">
                   <svg-icon name="ep:lock" />

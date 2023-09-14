@@ -1,13 +1,21 @@
-# Vue3 + Typescript + Vite + pinia + element plus + unocss
+## Vue3 + Typescript + Vite + pinia + element plus + unocss
 
-# 如果大家觉得有用，请帮忙点下star，十分感谢
-
-# 说明：master分支为最新版本（正在更新），oldMaster为旧版本，旧版本不再维护
-
-# 演示地址（已失效，请自行下载代码运行，查看）
-http://www.xt-admin.com.cn/#/login
+## 本项目配套了讲解视频，教你一步一步的自己搭建一个后台管理系统模板，有购买意愿的可以给我发私信或扫码添加
 
 
+<p>
+  <img src="https://gitee.com/nideweixiaonuannuande/vue3-beike/raw/master/IMG_202309143802_791x772.jpg" width="150"  />
+</p>
+
+## 试看连接：https://www.bilibili.com/video/BV1uo4y1v7ot/?spm_id_from=333.999.0.0&vd_source=cb84374b498a3c0a374554582dfced70
+## 如果大家觉得有用，请帮忙点下star，十分感谢
+
+## 说明：master分支为演示分支,会持续更新；course分支为教学分支，old为旧版本，旧版本不再维护
+
+## 演示地址
+码云：http://nideweixiaonuannuande.gitee.io/xt-admin-vue3/#/login
+github：https://1245488569.github.io/#/login
+（目前账号密码可以随便输入）
 ## 特点
 1. Vue3
 2. Vite4
@@ -42,7 +50,7 @@ http://www.xt-admin.com.cn/#/login
 31. 其余的（请查看app.ts 或者 .env文件 或者assets/styles/globals/layout.scss）
 
 ## `node` 版本推荐
-最低16
+最低16，推荐18
 
 ## 使用（请一定使用pnpm）
 

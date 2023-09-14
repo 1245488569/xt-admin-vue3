@@ -1,0 +1,1 @@
+import{d as a,r as e,f as l,o as s,g as n,i as o,m as u,j as t,O as d}from"./index-bb00e862.js";const r=a({name:"cache2"}),c=a({...r,setup(a){const r=e("");return(a,e)=>{const c=l("el-input");return s(),n("div",null,[o(" cache2 "),u(c,{modelValue:t(r),"onUpdate:modelValue":e[0]||(e[0]=a=>d(r)?r.value=a:null),placeholder:"请输入内容"},null,8,["modelValue"])])}}});export{c as default};

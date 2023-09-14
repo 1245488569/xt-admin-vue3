@@ -4,6 +4,7 @@ import subSidebar from './components/sidebar/SubSidebar.vue'
 import Top from './components/top/index.vue'
 import Tabbar from './components/tabbar/index.vue'
 import Toolbar from './components/toolbar/index.vue'
+import Setting from './components/tools/Setting/index.vue'
 import { useAppConfigStore } from '@/stores/app'
 import { useKeepAliveStore } from '@/stores/keepAlive'
 
@@ -40,7 +41,7 @@ const sideBarWidth = computed(() => {
 
 const fixedActionbar = computed(() => {
   if (useAppConfig.appConfig.nav.fixed)
-    return 'fixed z-1'
+    return 'fixed'
 
   return ''
 })
@@ -155,5 +156,9 @@ const routerViewContentFontSize = computed(() => {
     </section>
 
     <el-backtop target=".main-box" :right="20" :bottom="20" />
+
+    <div v-if="useAppConfig.appConfig.toolbar.enableAppSetting" class="fixed top-50% right-0">
+      <Setting />
+    </div>
   </div>
 </template>

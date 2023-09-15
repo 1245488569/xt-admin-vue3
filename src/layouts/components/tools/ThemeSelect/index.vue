@@ -1,9 +1,13 @@
-<script setup lang="ts" name="ThemeSelect">
+<script setup lang="ts">
 import SelectColor from './coms/SelectColor.vue'
 
 interface IProps {
   size?: number
 }
+
+defineOptions({
+  name: 'ThemeSelect',
+})
 
 withDefaults(defineProps<IProps>(), {
   size: 20,

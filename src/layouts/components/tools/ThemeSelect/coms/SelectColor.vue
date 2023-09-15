@@ -1,6 +1,10 @@
-<script lang="ts" setup name="SelectColor">
+<script lang="ts" setup>
 import { useAppConfigStore } from '@/stores/app'
 import useLocalI18n from '@/hooks/useLocalI18n'
+
+defineOptions({
+  name: 'SelectColor',
+})
 
 const { generateTitle } = useLocalI18n()
 

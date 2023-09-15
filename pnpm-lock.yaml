@@ -163,9 +163,6 @@ devDependencies:
   vite-plugin-svg-icons:
     specifier: ^2.0.1
     version: 2.0.1(vite@4.4.8)
-  vite-plugin-vue-setup-extend-plus:
-    specifier: ^0.1.0
-    version: 0.1.0
   vue-tsc:
     specifier: ^1.8.6
     version: 1.8.8(typescript@5.1.6)
@@ -6693,10 +6690,6 @@ packages:
       vite: 4.4.8(@types/node@18.17.1)(sass@1.64.2)(terser@5.19.4)
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /vite-plugin-vue-setup-extend-plus@0.1.0:
-    resolution: {integrity: sha512-pa27KIsHIBvBMv4xz9uB3UCfAuP2tr7PLlFhCS9vw+aXd326LEHsvhqd3hCQDOR5MjlQVyQH6vwuGr3u+KRiiw==}
     dev: true
 
   /vite@4.4.8(@types/node@18.17.1)(sass@1.64.2)(terser@5.19.4):

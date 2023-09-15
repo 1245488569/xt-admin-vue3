@@ -1,4 +1,4 @@
-<script setup lang="ts" name="XtDialog">
+<script setup lang="ts">
 interface IProps {
   modelValue: boolean
   loading?: boolean
@@ -7,6 +7,10 @@ interface IProps {
   cancelButtonText?: string
   confirmButtonText?: string
 }
+
+defineOptions({
+  name: 'XtDialog',
+})
 
 const props = withDefaults(defineProps<IProps>(), {
   loading: false,

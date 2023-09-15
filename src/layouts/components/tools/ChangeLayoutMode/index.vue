@@ -1,5 +1,9 @@
-<script setup lang="ts" name="ChangeLayoutMode">
+<script setup lang="ts">
 import { useAppConfigStore } from '@/stores/app'
+
+defineOptions({
+  name: 'ChangeLayoutMode',
+})
 
 const useAppConfig = useAppConfigStore()
 const layoutMode = ref(useAppConfig.getLayoutMode)

@@ -1,4 +1,4 @@
-<script setup lang="ts" name="SidebarItem">
+<script setup lang="ts">
 import type { RouteRecordRaw } from 'vue-router'
 import { useAppConfigStore } from '@/stores/app'
 import useLocalI18n from '@/hooks/useLocalI18n'
@@ -6,6 +6,10 @@ import useLocalI18n from '@/hooks/useLocalI18n'
 interface IProps {
   menu: RouteRecordRaw
 }
+defineOptions({
+  name: 'SidebarItem',
+})
+
 withDefaults(defineProps<IProps>(), {})
 
 const { generateTitle } = useLocalI18n()

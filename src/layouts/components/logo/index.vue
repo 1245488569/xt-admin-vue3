@@ -1,10 +1,14 @@
-<script setup lang="ts" name="Logo">
+<script setup lang="ts">
 import { useAppConfigStore } from '@/stores/app'
 
 interface IProps {
   showLogoImage?: boolean
   showLogoText?: boolean
 }
+defineOptions({
+  name: 'Logo',
+})
+
 withDefaults(defineProps<IProps>(), {
   showLogoImage: true,
   showLogoText: true,

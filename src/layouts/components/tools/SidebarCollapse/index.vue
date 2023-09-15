@@ -1,9 +1,13 @@
-<script setup lang="ts" name="SidebarCollapse">
+<script setup lang="ts">
 import { useAppConfigStore } from '@/stores/app'
 
 interface IProps {
   size?: number
 }
+
+defineOptions({
+  name: 'SidebarCollapse',
+})
 
 withDefaults(defineProps<IProps>(), {
   size: 20,

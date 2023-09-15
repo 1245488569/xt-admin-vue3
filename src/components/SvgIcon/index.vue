@@ -1,10 +1,14 @@
-<script setup lang="ts" name="SvgIcon">
+<script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
 interface IProps {
   name: string
   prefix?: string
 }
+
+defineOptions({
+  name: 'SvgIcon',
+})
 
 const props = withDefaults(defineProps<IProps>(), {
   prefix: 'icon',

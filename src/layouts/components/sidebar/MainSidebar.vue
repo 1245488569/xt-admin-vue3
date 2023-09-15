@@ -1,4 +1,4 @@
-<script setup lang="ts" name="MainSidebar">
+<script setup lang="ts">
 import type { RouteRecordRaw } from 'vue-router'
 import logo from '../logo/index.vue'
 import useMenus from '@/hooks/useMenus'
@@ -7,6 +7,10 @@ import { useAppConfigStore } from '@/stores/app'
 import { usePermissionStore } from '@/stores/permission'
 import { isEmpty } from '@/utils'
 import useLocalI18n from '@/hooks/useLocalI18n'
+
+defineOptions({
+  name: 'MainSidebar',
+})
 
 const { generateTitle } = useLocalI18n()
 const useAppConfig = useAppConfigStore()

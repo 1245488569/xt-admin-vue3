@@ -1,8 +1,12 @@
-<script setup lang="ts" name="SubSidebar">
+<script setup lang="ts">
 import logo from '../logo/index.vue'
 import sidebarItem from './SidebarItem.vue'
 import useMenus from '@/hooks/useMenus'
 import { useAppConfigStore } from '@/stores/app'
+
+defineOptions({
+  name: 'SubSidebar',
+})
 
 const useAppConfig = useAppConfigStore()
 

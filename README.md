@@ -7,12 +7,12 @@
   <img src="https://gitee.com/nideweixiaonuannuande/img-cache/raw/master/IMG_202309143802_791x772.jpg" width="150"  />
 </p>
 
-## 试看连接：https://www.bilibili.com/video/BV1uo4y1v7ot/?spm_id_from=333.999.0.0&vd_source=cb84374b498a3c0a374554582dfced70
-## 如果大家觉得有用，请帮忙点下star，十分感谢
+### 试看连接：https://www.bilibili.com/video/BV1nu4y1r7Hb/?spm_id_from=333.788&vd_source=cb84374b498a3c0a374554582dfced70
+### 如果大家觉得有用，请帮忙点下star，十分感谢
 
-## 说明：master分支为演示分支,会持续更新；course分支为教学分支，old为旧版本，旧版本不再维护
+### 说明：master分支为演示分支,会持续更新；course分支为教学分支，old为旧版本，旧版本不再维护
 
-## 演示地址
+### 演示地址
 1. 常用：http://nideweixiaonuannuande.gitee.io/xt-admin-vue3/#/login
 2. 备用：https://1245488569.github.io/#/login
 （目前账号密码可以随便输入）

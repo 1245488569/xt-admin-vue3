@@ -31,7 +31,7 @@ function goDeatil(item: any) {
 </script>
 
 <template>
-  <div class="p-5">
+  <page-main>
     <div>商品列表</div>
     <el-table :data="tableData" style="width: 100%" border>
       <el-table-column prop="name" label="Name" width="180" />
@@ -43,5 +43,5 @@ function goDeatil(item: any) {
         </template>
       </el-table-column>
     </el-table>
-  </div>
+  </page-main>
 </template>

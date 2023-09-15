@@ -4,7 +4,7 @@
 
 
 <p>
-  <img src="https://gitee.com/nideweixiaonuannuande/vue3-beike/raw/master/IMG_202309143802_791x772.jpg" width="150"  />
+  <img src="https://gitee.com/nideweixiaonuannuande/img-cache/raw/master/IMG_202309143802_791x772.jpg" width="150"  />
 </p>
 
 ## 试看连接：https://www.bilibili.com/video/BV1uo4y1v7ot/?spm_id_from=333.999.0.0&vd_source=cb84374b498a3c0a374554582dfced70

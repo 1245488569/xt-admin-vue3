@@ -12,6 +12,10 @@
 
 ### 说明：master分支为演示分支,会持续更新；course分支为教学分支，old为旧版本，旧版本不再维护
 
+### 代码地址
+1. 码云：https://gitee.com/nideweixiaonuannuande/xt-admin-vue3
+2. github：https://github.com/1245488569/xt-admin-vue3
+
 ### 演示地址
 1. 常用：http://nideweixiaonuannuande.gitee.io/xt-admin-vue3/#/login
 2. 备用：https://1245488569.github.io/#/login

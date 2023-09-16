@@ -36,7 +36,7 @@ const sysGlobalConfig: IGlobalConfig = {
      * mainSubSideNav 侧边主导航+侧边次栏导航
      * topSubSideNav 顶部主导航+侧边次栏导航
      */
-    layoutMode: 'onlySubSideNav',
+    layoutMode: 'topSubSideNav',
     /**
      * 颜色方案
      * '' 用户系统默认

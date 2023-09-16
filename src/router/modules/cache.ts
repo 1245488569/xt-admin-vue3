@@ -6,7 +6,7 @@ export default {
   component: () => import('@/layouts/index.vue'),
   redirect: '/cache/cache1',
   meta: {
-    title: '多级导航缓存',
+    title: 'route.multimenu.root',
     icon: 'ri:menu-3-line',
   },
   children: [
@@ -15,7 +15,7 @@ export default {
       name: 'cache1',
       redirect: '/cache/cache1/cache1-1',
       meta: {
-        title: '导航1',
+        title: 'route.multimenu.page1',
       },
       children: [
         {
@@ -23,7 +23,7 @@ export default {
           name: 'cache1-1',
           redirect: '/cache/cache1/cache1-1/cache1-1-1',
           meta: {
-            title: '导航1-1',
+            title: 'route.multimenu.level2.page1',
           },
           children: [
             {
@@ -31,7 +31,7 @@ export default {
               name: 'cache1-1-1',
               component: () => import('@/views/cache/cache1.vue'),
               meta: {
-                title: '导航1-1-1',
+                title: 'route.multimenu.level2.level3.page',
                 cache: true,
               },
             },
@@ -42,7 +42,7 @@ export default {
           name: 'cache1-2',
           component: () => import('@/views/cache/cache1-2.vue'),
           meta: {
-            title: '导航1-2',
+            title: 'route.multimenu.level2.page2',
             cache: true,
           },
         },
@@ -52,7 +52,7 @@ export default {
       path: 'cache2',
       name: 'cache2',
       meta: {
-        title: '导航2',
+        title: 'route.multimenu.page2',
         cache: true,
       },
       component: () => import('@/views/cache/cache2.vue'),

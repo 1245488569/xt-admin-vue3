@@ -3,6 +3,25 @@ export default {
     login: '登錄',
     personal: '個人設置',
     dashboard: '首頁',
+    multimenu: {
+      root: '多級導航緩存',
+      page1: '導航1',
+      page2: '導航2',
+      level2: {
+        page1: '導航1-1',
+        page2: '導航1-2',
+        level3: {
+          page: '導航1-1-1',
+        },
+      },
+    },
+    list: {
+      root: '列表',
+      page1: '用戶列表',
+      page2: '商品列表',
+      detail1: '用戶詳情',
+      detail2: '商品詳情',
+    },
   },
   tabbar: {
     refresh: '刷新',

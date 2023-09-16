@@ -1,7 +1,9 @@
-import { get } from '@/request'
+import { get, post } from '@/request'
 
-export function loginApi() {
-  return get('/login')
+export function loginApi(form: any) {
+  return post('/login', {
+    data: form,
+  })
 }
 
 export function logoutApi() {

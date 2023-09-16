@@ -3,6 +3,25 @@ export default {
     login: '登录',
     dashboard: '首页',
     personal: '个人设置',
+    multimenu: {
+      root: '多级导航缓存',
+      page1: '导航1',
+      page2: '导航2',
+      level2: {
+        page1: '导航1-1',
+        page2: '导航1-2',
+        level3: {
+          page: '导航1-1-1',
+        },
+      },
+    },
+    list: {
+      root: '列表',
+      page1: '用户列表',
+      page2: '商品列表',
+      detail1: '用户列表',
+      detail2: '商品详情',
+    },
   },
   tabbar: {
     refresh: '刷新',

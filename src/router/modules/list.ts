@@ -6,7 +6,7 @@ export default {
   component: () => import('@/layouts/index.vue'),
   redirect: '/list/user',
   meta: {
-    title: '列表',
+    title: 'route.list.root',
     icon: 'ep:list',
   },
   children: [
@@ -15,7 +15,7 @@ export default {
       name: 'UserIndex',
       component: () => import('@/views/list/user/index.vue'),
       meta: {
-        title: '用户列表',
+        title: 'route.list.page1',
         auth: 'user.read',
       },
     },
@@ -24,7 +24,7 @@ export default {
       name: 'UserDetail',
       component: () => import('@/views/list/user/detail.vue'),
       meta: {
-        title: '用户详情',
+        title: 'route.list.detail1',
         hideInMenu: true,
         hideInSearch: true,
         activeMenu: '/list/user',
@@ -38,7 +38,7 @@ export default {
       name: 'Goods',
       redirect: '/list/goods/index',
       meta: {
-        title: '商品列表',
+        title: 'route.list.page2',
       },
       children: [
         {
@@ -46,7 +46,7 @@ export default {
           name: 'GoodsIndex',
           component: () => import('@/views/list/goods/index.vue'),
           meta: {
-            title: '商品列表',
+            title: 'route.list.page2',
             hideInMenu: true,
             hideInBreadcrumb: true,
             activeMenu: '/list/goods',
@@ -57,7 +57,7 @@ export default {
           name: 'GoodsDetail',
           component: () => import('@/views/list/goods/detail.vue'),
           meta: {
-            title: '商品详情',
+            title: 'route.list.detail2',
             hideInMenu: true,
             hideInSearch: true,
             activeMenu: '/list/goods',

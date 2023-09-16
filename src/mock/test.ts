@@ -1,19 +1,22 @@
 import { Random } from 'mockjs'
+
 import type { MockMethod } from 'vite-plugin-mock'
 
 export default [
   {
     url: '/api/login',
-    method: 'get',
-    response: () => {
+    method: 'post',
+    response: ({ body }: any) => {
+      console.log('--------------', body)
+
       return {
         code: 200,
         message: '请求成功',
         type: 'success',
         result: {
-          name: '小天',
+          name: body.account,
           age: 18,
-          token: Random.string(10),
+          token: `${body.account}_${Random.string(10)}`,
         },
       }
     },
@@ -22,13 +25,13 @@ export default [
   {
     url: '/api/user/permission',
     method: 'get',
-    response: () => {
+    response: ({ headers }: any) => {
       return {
         code: 200,
         message: '请求成功',
         type: 'success',
         result: {
-          permissions: ['user.read', 'user.detail', 'user.add', 'user.edit'],
+          permissions: headers.token && headers.token.includes('test') ? ['user.edit'] : ['user.read', 'user.detail', 'user.add', 'user.edit'],
         },
       }
     },

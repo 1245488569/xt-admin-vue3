@@ -4,7 +4,7 @@ const id = route.query.id
 </script>
 
 <template>
-  <div>
+  <page-main>
     goods_detail + {{ id }}
-  </div>
+  </page-main>
 </template>

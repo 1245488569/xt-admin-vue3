@@ -22,8 +22,8 @@ export const useUserStore = defineStore('user', () => {
   }
 
   // 登录
-  function login() {
-    return loginApi().then((res) => {
+  function login(form: any) {
+    return loginApi(form).then((res) => {
       token.value = res.result.token
       userInfo.value = res.result
     })

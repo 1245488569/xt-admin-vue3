@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div>
-    personal
-  </div>
+  <page-main>
+    个人介绍页面
+  </page-main>
 </template>

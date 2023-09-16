@@ -38,22 +38,10 @@ function goDeatil(item: any) {
 </script>
 
 <template>
-  <div class="p-5">
-    <div>用户列表</div>
-    <el-button v-auth="'user.add'" type="primary">
-      添加
-    </el-button>
-
-    <auth value="user.add1">
-      <el-button type="primary">
-        有权限
-      </el-button>
-      <template #no-auth>
-        <el-button type="primary" disabled>
-          没权限
-        </el-button>
-      </template>
-    </auth>
+  <page-main>
+    <div class="mb-2">
+      用户列表: 点击detail按钮，注意查看上方tab和面包屑的变化  （和商品列表做对比，你就能体验出不同）
+    </div>
 
     <el-table :data="tableData" style="width: 100%" border>
       <el-table-column prop="date" label="Date" width="180" />
@@ -67,5 +55,5 @@ function goDeatil(item: any) {
         </template>
       </el-table-column>
     </el-table>
-  </div>
+  </page-main>
 </template>

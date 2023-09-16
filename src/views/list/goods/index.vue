@@ -32,7 +32,9 @@ function goDeatil(item: any) {
 
 <template>
   <page-main>
-    <div>商品列表</div>
+    <div class="mb-2">
+      商品列表: 点击detail按钮，注意查看上方tab和面包屑的变化（和用户列表做对比，你就能体验出不同）
+    </div>
     <el-table :data="tableData" style="width: 100%" border>
       <el-table-column prop="name" label="Name" width="180" />
       <el-table-column fixed="right" label="Operations" width="200">

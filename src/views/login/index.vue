@@ -35,13 +35,28 @@ function handleLogin() {
       if (submitLoading.value)
         return
       submitLoading.value = true
-      useUser.login().then(() => {
+      useUser.login(loginForm).then(() => {
         router.replace(redirect.value)
       }).finally(() => {
         submitLoading.value = false
       })
     }
   })
+}
+
+function loginFast(type: 'admin' | 'test') {
+  switch (type) {
+    case 'admin':
+      loginForm.account = 'admin'
+      loginForm.password = '123456'
+      break
+
+    case 'test':
+      loginForm.account = 'test'
+      loginForm.password = '123456'
+      break
+  }
+  handleLogin()
 }
 </script>
 
@@ -66,7 +81,9 @@ function handleLogin() {
       <div class="w-full z-999">
         <div class="flex items-center justify-center text-3xl my-6">
           {{ generateTitle('login.title') }}
-          <LangSelect v-if="useAppConfig.appConfig.toolbar.enableI18n" class="ml-2" />
+          <div class="lang flex items-center justify-center">
+            <LangSelect v-if="useAppConfig.appConfig.toolbar.enableI18n" class="ml-2" />
+          </div>
         </div>
 
         <el-form ref="loginFormRef" class="mx-auto w-full px-4 sm:w-2/3 lg:px-0" :model="loginForm" :rules="loginRules">
@@ -88,6 +105,16 @@ function handleLogin() {
               </template>
             </el-input>
           </el-form-item>
+
+          <el-form-item>
+            <span class="mr-2">快速登录</span>
+            <el-button type="primary" size="small" @click="loginFast('admin')">
+              admin
+            </el-button>
+            <el-button type="primary" size="small" @click="loginFast('test')">
+              test
+            </el-button>
+          </el-form-item>
           <el-button class="w-full" type="primary" size="large" :loading="submitLoading" @click="handleLogin">
             {{ generateTitle('login.loginBtn') }}
           </el-button>
@@ -100,5 +127,11 @@ function handleLogin() {
 <style lang="scss" scoped>
 .login-bg {
   background-image: url('../../assets/images/login-bg.webp');
+}
+
+.lang {
+  .el-dropdown {
+    color: #fff;
+  }
 }
 </style>

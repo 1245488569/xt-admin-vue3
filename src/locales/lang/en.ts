@@ -3,6 +3,25 @@ export default {
     login: 'Login',
     personal: 'Personal Setting',
     dashboard: 'Dashboard',
+    multimenu: {
+      root: 'Multi-level navigation',
+      page1: 'navigation1',
+      page2: 'navigation2',
+      level2: {
+        page1: 'navigation1-1',
+        page2: 'navigation1-2',
+        level3: {
+          page: 'navigation1-1-1',
+        },
+      },
+    },
+    list: {
+      root: 'List',
+      page1: 'user list',
+      page2: 'goods list',
+      detail1: 'user detail',
+      detail2: 'goods detail',
+    },
   },
   tabbar: {
     refresh: 'refresh',

@@ -150,7 +150,7 @@ const docList = [
           </div>
 
           <div class="ml-4 flex-shrink-0 w-150px h-150px">
-            <el-image src="https://my-self-xt.oss-cn-chengdu.aliyuncs.com/IMG_202309143802_791x772.jpg?Expires=1694779852&OSSAccessKeyId=TMP.3KfQ2gr6426B7b5wQRmXiLibqpJu4Y69zyWaXadstGGDYKpwF4i9hhXcAHwdipe9qaYPt11W5HV3VkRajJAvf1Rb9eqcKE&Signature=8eSrvhqf%2B6FmKDXrQTOPJhG%2F%2FUE%3D" />
+            <el-image src="https://my-self-xt.oss-cn-chengdu.aliyuncs.com/IMG_202309143802_791x772.jpg" />
           </div>
         </div>
       </page-main>

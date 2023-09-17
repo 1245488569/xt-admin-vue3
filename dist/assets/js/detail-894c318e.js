@@ -1,0 +1,1 @@
+import{_ as s}from"./index-b871b3d1.js";import{d as e,b as t,o as a,k as o,w as r,i,t as n,j as d}from"./index-201a357a.js";import"./index-f9ce4d20.js";import"./plugin-vueexport-helper-1b428a4d.js";const l=e({__name:"detail",setup(e){const l=t().query.id;return(e,t)=>{const p=s;return a(),o(p,null,{default:r((()=>[i(" goods_detail + "+n(d(l)),1)])),_:1})}}});export{l as default};

@@ -22,6 +22,7 @@ export default {
       detail1: '用户列表',
       detail2: '商品详情',
     },
+    permission: '权限',
   },
   tabbar: {
     refresh: '刷新',

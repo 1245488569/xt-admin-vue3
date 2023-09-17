@@ -4,6 +4,7 @@ export default {
   path: '/permission',
   name: 'permission',
   component: () => import('@/layouts/index.vue'),
+  redirect: '/permission/index',
   children: [
     {
       path: 'index',

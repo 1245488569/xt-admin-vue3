@@ -13,7 +13,7 @@ function openSettingDrawer() {
 </script>
 
 <template>
-  <div class="rounded cursor-pointer flex items-center justify-center h-50px w-50px bg-[#409eff] text-white z-1" @click="openSettingDrawer">
+  <div class="rounded cursor-pointer flex items-center justify-center h-50px w-50px bg-[#409eff] text-white" @click="openSettingDrawer">
     <el-icon :size="25">
       <svg-icon name="ri:settings-2-line" />
     </el-icon>

@@ -157,7 +157,7 @@ const routerViewContentFontSize = computed(() => {
 
     <el-backtop target=".main-box" :right="20" :bottom="20" />
 
-    <div v-if="useAppConfig.appConfig.toolbar.enableAppSetting" class="top-50% right-0 fixed">
+    <div v-if="useAppConfig.appConfig.toolbar.enableAppSetting" class="top-50% right-0 fixed z-10">
       <Setting />
     </div>
   </div>

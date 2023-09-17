@@ -19,7 +19,7 @@ export default {
       root: '列表',
       page1: '用户列表',
       page2: '商品列表',
-      detail1: '用户列表',
+      detail1: '用户详情',
       detail2: '商品详情',
     },
     permission: '权限',

@@ -23,6 +23,7 @@ export default {
       detail2: 'goods detail',
     },
     permission: 'permission',
+    tabbar: 'tabbar',
   },
   tabbar: {
     refresh: 'refresh',

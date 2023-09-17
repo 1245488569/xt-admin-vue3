@@ -11,7 +11,7 @@ export default {
       name: 'PermissionIndex',
       component: () => import('@/views/permission/index.vue'),
       meta: {
-        title: '权限验证',
+        title: 'route.permission',
         icon: 'ri:lock-fill',
       },
     },

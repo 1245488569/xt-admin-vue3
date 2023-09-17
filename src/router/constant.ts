@@ -21,7 +21,7 @@ const constantRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/frame_dashboard/index.vue'),
         meta: {
           title: 'route.dashboard',
-          icon: 'ep:apple',
+          icon: 'ri:home-heart-fill',
         },
       },
       {

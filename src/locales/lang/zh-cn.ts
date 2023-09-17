@@ -23,6 +23,7 @@ export default {
       detail2: '商品详情',
     },
     permission: '权限',
+    tabbar: '标签栏',
   },
   tabbar: {
     refresh: '刷新',

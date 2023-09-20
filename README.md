@@ -1,15 +1,19 @@
 ## Vue3 + Typescript + Vite + pinia + element plus + unocss
 
-## 本项目配套了讲解视频，教你一步一步的自己搭建一个后台管理系统模板，有购买意愿的可以给我发私信或扫码添加（前100名购买者只需88,100名后108）
+### 分支说明：
+1. master分支为演示分支,会持续更新
+2. course分支为教学分支
+3. old为旧版本，旧版本不再维护
 
+### 其他说明：
+1. 本项目源码，免费开源，持续更新
+2. 本项目配套了讲解视频，如果你想学习一个企业级管理框架如何搭建，可找我购买配套的视频，有购买意愿的可以给我发私信或扫码添加（前100名购买者只需88,100名后108）
 
 <p>
   <img src="https://gitee.com/nideweixiaonuannuande/img-cache/raw/master/IMG_202309143802_791x772.jpg" width="150"  />
 </p>
 
 ### 如果大家觉得有用，请帮忙点下star，十分感谢
-
-### 说明：master分支为演示分支,会持续更新；course分支为教学分支，old为旧版本，旧版本不再维护
 
 ### 代码地址
 1. 码云：https://gitee.com/nideweixiaonuannuande/xt-admin-vue3

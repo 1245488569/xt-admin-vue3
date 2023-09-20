@@ -24,6 +24,10 @@ export default {
     },
     permission: '权限',
     tabbar: '标签栏',
+    directives: {
+      root: '自定义指令',
+      copy: '复制指令',
+    },
   },
   tabbar: {
     refresh: '刷新',

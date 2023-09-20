@@ -24,6 +24,10 @@ export default {
     },
     permission: '權限',
     tabbar: '標簽欄',
+    directives: {
+      root: '自定義指令',
+      copy: '複製指令',
+    },
   },
   tabbar: {
     refresh: '刷新',

@@ -24,6 +24,10 @@ export default {
     },
     permission: 'permission',
     tabbar: 'tabbar',
+    directives: {
+      root: 'directives',
+      copy: 'copy directive',
+    },
   },
   tabbar: {
     refresh: 'refresh',

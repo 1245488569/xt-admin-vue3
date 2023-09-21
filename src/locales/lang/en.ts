@@ -27,6 +27,7 @@ export default {
     directives: {
       root: 'directives',
       copy: 'copy directive',
+      watermarker: 'watermarker directive',
     },
   },
   tabbar: {

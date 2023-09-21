@@ -18,5 +18,13 @@ export default {
         title: 'route.directives.copy',
       },
     },
+    {
+      path: 'watermarker',
+      name: 'DirectivesWatermarker',
+      component: () => import('@/views/directives/watermarker/index.vue'),
+      meta: {
+        title: 'route.directives.watermarker',
+      },
+    },
   ],
 } as RouteRecordRaw

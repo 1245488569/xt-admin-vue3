@@ -27,6 +27,7 @@ export default {
     directives: {
       root: '自定义指令',
       copy: '复制指令',
+      watermarker: '水印指令',
     },
   },
   tabbar: {

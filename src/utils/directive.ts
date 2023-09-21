@@ -2,7 +2,7 @@ import type { App } from 'vue'
 import { ElMessage } from 'element-plus'
 import useAuth from '@/hooks/useAuth'
 
-async function handleClick(this: any) {
+async function handleCopyClick(this: any) {
   try {
     await navigator.clipboard.writeText(this.copyData)
   }
@@ -50,7 +50,7 @@ export default function setupDirective(app: App) {
   app.directive('copy', {
     mounted(el, binding) {
       el.copyData = binding.value
-      el.addEventListener('click', handleClick)
+      el.addEventListener('click', handleCopyClick)
     },
     updated(el, binding) {
       el.copyData = binding.value

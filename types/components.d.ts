@@ -17,5 +17,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./../src/components/SvgIcon/index.vue')['default']
     XtDialog: typeof import('./../src/components/XtDialog/index.vue')['default']
+    XtPagination: typeof import('./../src/components/XtPagination/index.vue')['default']
   }
 }

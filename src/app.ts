@@ -76,6 +76,8 @@ const sysGlobalConfig: IGlobalConfig = {
     enablePageReload: true,
     // 是否开启菜单搜索
     enableMenuSearch: true,
+    // 是否开启框架元素大小切换（改变elementui的大小和上方elementSize的作用一样）
+    enableElementSize: true,
     // 是否开启应用配置（建议在生产环境关闭）
     enableAppSetting: true,
     // 是否开启通知中心

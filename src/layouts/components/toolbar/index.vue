@@ -6,6 +6,7 @@ import Reload from '../tools/Reload/index.vue'
 import LangSelect from '../tools/LangSelect/index.vue'
 import Screenfull from '../tools/Screenfull/index.vue'
 import MenuSearch from '../tools/MenuSearch/index.vue'
+import ChangeSize from '../tools/ChangeSize/index.vue'
 import Personal from '../personal/index.vue'
 import Breadcrumb from './Breadcrumb/index.vue'
 import { useAppConfigStore } from '@/stores/app'
@@ -16,15 +17,16 @@ const toolbarTextColor = computed(() => useAppConfig.getTheme.toolbarTextColor)
 </script>
 
 <template>
-  <div class="h-[var(--xt-toolbar-height)] flex items-center px-4 toolbar-content">
+  <div class="flex h-[var(--xt-toolbar-height)] px-4 items-center toolbar-content">
     <div class="flex items-center">
       <SidebarCollapse v-if="useAppConfig.appConfig.toolbar.enableSidebarCollapse" class="mr-2" />
 
       <Breadcrumb v-if="useAppConfig.appConfig.toolbar.enableBreadcrumb" />
     </div>
 
-    <div class="ml-auto flex items-center">
+    <div class="flex ml-auto items-center">
       <MenuSearch v-if="useAppConfig.appConfig.toolbar.enableMenuSearch" class="mr-2" />
+      <ChangeSize v-if="useAppConfig.appConfig.toolbar.enableElementSize" class="mr-2" />
       <Reload v-if="useAppConfig.appConfig.toolbar.enablePageReload" class="mr-2" />
       <LangSelect v-if="useAppConfig.appConfig.toolbar.enableI18n" class="mr-2" />
       <Screenfull v-if="useAppConfig.appConfig.toolbar.enableFullscreen" class="mr-2" />

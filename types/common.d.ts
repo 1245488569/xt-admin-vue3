@@ -28,6 +28,7 @@ interface IGlobalToolbar {
   enableSidebarCollapse: boolean
   enableBreadcrumb: boolean
   enableMenuSearch: boolean
+  enableElementSize: boolean
   enableNotification: boolean
   enableI18n: boolean
   enableFullscreen: boolean

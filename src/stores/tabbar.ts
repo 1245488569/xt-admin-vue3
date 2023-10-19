@@ -20,11 +20,16 @@ export const useTabbarStore = defineStore('tabbar', () => {
   function add(tab: ITabbarItem) {
     if (tab.meta.mergeTabbarPath) {
       const mergeTabIndex = list.value.findIndex(item => item.fullPath === tab.meta.mergeTabbarPath)
-      if (mergeTabIndex !== -1)
+      if (mergeTabIndex !== -1) {
         list.value.splice(mergeTabIndex, 1, tab)
-
-      else
+      }
+      else {
+        for (const item of list.value) {
+          if (item.meta.mergeTabbarPath && item.meta.mergeTabbarPath === tab.meta.mergeTabbarPath)
+            return
+        }
         list.value.push(tab)
+      }
     }
     else {
       const isFind = list.value.some(item => item.fullPath === tab.fullPath)

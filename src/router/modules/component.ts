@@ -18,5 +18,13 @@ export default {
         title: '表单组件',
       },
     },
+    {
+      path: 'icon',
+      name: 'ComponentIcon',
+      component: () => import('@/views/component/icon.vue'),
+      meta: {
+        title: '图标选择器',
+      },
+    },
   ],
 } as RouteRecordRaw

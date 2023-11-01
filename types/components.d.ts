@@ -10,6 +10,7 @@ declare module 'vue' {
     Auth: typeof import('./../src/components/Auth/index.vue')['default']
     AuthAll: typeof import('./../src/components/AuthAll/index.vue')['default']
     ColorCard: typeof import('./../src/components/ColorCard/index.vue')['default']
+    IconPicker: typeof import('./../src/components/IconPicker/index.vue')['default']
     NoticeSlide: typeof import('./../src/components/NoticeSlide/index.vue')['default']
     NumberScroll: typeof import('./../src/components/NumberScroll/index.vue')['default']
     PageMain: typeof import('./../src/components/PageMain/index.vue')['default']

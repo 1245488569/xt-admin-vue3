@@ -1,5 +1,9 @@
-<script setup lang="ts" name="IconPicker">
+<script setup lang="ts">
 import data from './data/data.json'
+
+defineOptions({
+  name: 'IconPicker',
+})
 
 const props = withDefaults(defineProps<{
   modelValue: string

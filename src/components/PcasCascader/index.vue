@@ -81,11 +81,9 @@ const pcasData = computed(() => {
 })
 
 const myValue = computed({
-  // 将入参数据转成 code 码
   get: () => {
     return anyToCode(props.modelValue)
   },
-  // 将 code 码转成出参数据
   set: (value) => {
     emit('update:modelValue', value ? codeToAny(value) : [])
   },

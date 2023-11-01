@@ -35,14 +35,14 @@ const cascaderConfig = {
 
 const pcasData = computed(() => {
   const data: IPcasItem[] = []
-  // 省份
+  // 省
   pcasRaw.forEach((p) => {
     const tempP: IPcasItem = {
       code: p.code,
       name: p.name,
     }
     const tempChildrenC: IPcasItem[] = []
-    // 城市
+    // 市
     p.children.forEach((c) => {
       const tempC: IPcasItem = {
         code: c.code,
@@ -50,7 +50,7 @@ const pcasData = computed(() => {
       }
       if (['pca', 'pcas'].includes(props.type)) {
         const tempChildrenA: IPcasItem[] = []
-        // 区县
+        // 区
         c.children.forEach((a) => {
           const tempA: IPcasItem = {
             code: a.code,

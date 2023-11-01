@@ -26,5 +26,13 @@ export default {
         title: '图标选择器',
       },
     },
+    {
+      path: 'pcas',
+      name: 'ComponentPcas',
+      component: () => import('@/views/component/pcas.vue'),
+      meta: {
+        title: '省市区选择',
+      },
+    },
   ],
 } as RouteRecordRaw

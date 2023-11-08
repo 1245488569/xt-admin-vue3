@@ -34,5 +34,13 @@ export default {
         title: '省市区选择',
       },
     },
+    {
+      path: 'table',
+      name: 'ComponentTable',
+      component: () => import('@/views/component/table.vue'),
+      meta: {
+        title: '表格组件',
+      },
+    },
   ],
 } as RouteRecordRaw

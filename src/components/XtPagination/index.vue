@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { IPageInfo } from '@/types/common'
+import type { IPageChangeData, IPageObject } from '@/types/common'
 
 interface IProps {
-  pageObject: IPageInfo
+  pageObject: IPageObject
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -10,19 +10,16 @@ const props = withDefaults(defineProps<IProps>(), {
 })
 
 const emits = defineEmits<{
-  (e: 'updatePage', data: {
-    pageNumber: number
-    pageSize: number
-  }): void
+  (e: 'pageChange', data: IPageChangeData): void
 }>()
 
-const pageInfo = ref<IPageInfo>({
+const pageInfo = ref<IPageObject>({
   pageNumber: 1,
   pageSize: 10,
   total: 0,
   hideOnSinglePage: false,
   background: true,
-  small: true,
+  small: false,
   disabled: false,
   pageSizes: [10, 20, 50, 60, 100],
   layout: 'total, sizes, prev, pager, next, jumper',
@@ -36,14 +33,14 @@ watch(() => props.pageObject, (val) => {
 })
 // 这种写法 特定情况下 会导致页面刷新时，会触发两次
 // watch(() => pageInfo.value.pageNumber, (val) => {
-//   emits('updatePage', {
+//   emits('pageChange', {
 //     pageNumber: val as number,
 //     pageSize: pageInfo.value.pageSize as number,
 //   })
 // })
 
 // watch(() => pageInfo.value.pageSize, (val) => {
-//   emits('updatePage', {
+//   emits('pageChange', {
 //     pageNumber: pageInfo.value.pageNumber as number,
 //     pageSize: val as number,
 //   })
@@ -51,7 +48,7 @@ watch(() => props.pageObject, (val) => {
 
 function handleSizeChange(val: number) {
   pageInfo.value.pageSize = val
-  emits('updatePage', {
+  emits('pageChange', {
     pageNumber: pageInfo.value.pageNumber as number,
     pageSize: val as number,
   })
@@ -59,7 +56,7 @@ function handleSizeChange(val: number) {
 
 function handleCurrentChange(val: number) {
   pageInfo.value.pageNumber = val
-  emits('updatePage', {
+  emits('pageChange', {
     pageNumber: val as number,
     pageSize: pageInfo.value.pageSize as number,
   })

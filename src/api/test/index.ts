@@ -17,3 +17,9 @@ export function permissionApi() {
 export function backendRoutesApi() {
   return get('/user/backend')
 }
+
+export function tableListApi(data: any) {
+  return post('list', {
+    data,
+  })
+}

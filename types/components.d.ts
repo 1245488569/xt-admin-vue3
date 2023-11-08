@@ -21,5 +21,6 @@ declare module 'vue' {
     XtDialog: typeof import('./../src/components/XtDialog/index.vue')['default']
     XtForm: typeof import('./../src/components/XtForm/index.vue')['default']
     XtPagination: typeof import('./../src/components/XtPagination/index.vue')['default']
+    XtTable: typeof import('./../src/components/XtTable/index.vue')['default']
   }
 }

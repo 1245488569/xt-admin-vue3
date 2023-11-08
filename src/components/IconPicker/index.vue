@@ -59,6 +59,7 @@ function removeIcon() {
     <el-icon
       class="icon-picker"
       :class="{ empty: myValue === '' }"
+      :size="24"
       @click="dialogVisible = true"
     >
       <svg-icon :name="myValue !== '' ? myValue : 'ep:plus'" />
@@ -122,7 +123,6 @@ function removeIcon() {
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
-  font-size: 24px;
   vertical-align: middle;
 
   &:hover {

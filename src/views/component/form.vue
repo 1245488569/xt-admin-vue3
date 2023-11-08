@@ -229,8 +229,14 @@ const selectOptions = Array.from({ length: 1000 }).map((_, idx) => ({
 <template>
   <page-main>
     <div class="mb-3 text-2xl">
-      表单组件
+      表单封装-以配置项驱动的表单
     </div>
+    <div>
+      具体配置请在项目中查看
+    </div>
+  </page-main>
+
+  <page-main>
     <xt-form ref="formRef" inline :options="options">
       <template #slot1="{ item, model }">
         <el-select-v2

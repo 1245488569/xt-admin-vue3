@@ -1,1 +1,0 @@
-import{_ as s}from"./index-40f92fd0.js";import{d as e,b as t,o as r,k as a,w as o,i,t as n,j as u}from"./index-08899ed8.js";import"./index-bfcf3b6e.js";import"./plugin-vueexport-helper-1b428a4d.js";const d=e({__name:"detail",setup(e){const d=t().query.id;return(e,t)=>{const p=s;return r(),a(p,null,{default:o((()=>[i(" user_detail + "+n(u(d)),1)])),_:1})}}});export{d as default};

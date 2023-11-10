@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import TeachCard from './coms/TeachCard.vue'
+import DetailDialog from './coms/DetailDialog.vue'
+
 const topList = [
   {
     id: 1,
@@ -34,152 +37,29 @@ const topList = [
   },
 ]
 
-const docList = [
-  { id: 1, name: 'Vue3' },
-  { id: 2, name: 'Vite4' },
-  { id: 3, name: 'Typescript5' },
-  { id: 4, name: 'pinia' },
-  { id: 5, name: 'element plus' },
-  { id: 6, name: 'Unocss' },
-  { id: 7, name: 'pnpm 包管理器' },
-  { id: 8, name: '权限菜单支持（前端与后端模式都支持，极大程度简化开发工作）' },
-  { id: 9, name: '4种布局模式随意切换' },
-  { id: 10, name: '布局高度 宽度随意切换' },
-  { id: 11, name: 'Api 自动引入' },
-  { id: 12, name: 'Mock 支持' },
-  { id: 13, name: '暗黑模式 支持' },
-  { id: 14, name: 'i18n 国际化支持' },
-  { id: 15, name: '图标自动引入（iconify万种图标自动且按需引入）' },
-  { id: 16, name: '组件自动引入（components目录下组件自动且按需引入）' },
-  { id: 17, name: '菜单搜索' },
-  { id: 18, name: '全屏' },
-  { id: 19, name: '页面刷新' },
-  { id: 20, name: '动态换肤' },
-  { id: 21, name: 'VueUse 支持' },
-  { id: 22, name: 'gzip brotli资源压缩支持' },
-  { id: 23, name: '环境变量配置支持' },
-  { id: 24, name: '统一的代码规范与风格支持' },
-  { id: 25, name: '漂亮的 login 404 页 支持' },
-  { id: 26, name: '配置选择支持' },
-  { id: 27, name: 'svg-icon支持' },
-  { id: 28, name: '多级缓存' },
-  { id: 29, name: '历史菜单' },
-  { id: 30, name: '面包屑导航' },
-  { id: 31, name: '其余的（请查看app.ts 或者 .env文件 或者assets/styles/globals/layout.scss）' },
+const courseList = [
+  {
+    id: 1,
+    colorFrom: '#843cf6',
+    colorTo: '#759bff',
+    coverDesc: '从0到1带你写一个企业级的后台管理系统框架',
+    title: 'vue3+vite+ts用一个项目教你如何从0到1开发一个企业级的后台管理系统框架',
+    price: '88.00',
+  },
+  {
+    id: 2,
+    colorFrom: '#7367F0',
+    colorTo: '#FF7367',
+    coverDesc: 'go零基础入门',
+    title: '从0开始学习go语言',
+    price: '39.00',
+  },
 ]
 
-const directoryList = [
-  '00_项目介绍新',
-  '01_项目创建',
-  '02_代码规范_eslint',
-  '03_代码规范_stylelint',
-  '04_代码规范_husky',
-  '05_集成ep和windcss',
-  '06_如何使用windcss',
-  '07_抽离vite配置',
-  '08_自动引入组件配置',
-  '09_登录页面编写',
-  '10_登录逻辑编写',
-  '11_如何在vue中使用svg',
-  '12_svg网络图标使用',
-  '13_使用env',
-  '14_使用mock',
-  '15_axios封装',
-  '16_pinia介绍',
-  '17_pinia的使用',
-  '18_本地缓存的两种方式',
-  '19_错误',
-  '20_ep的全局配置',
-  '21_4种布局分析',
-  '22_基础布局搭建',
-  '23_4种布局初步实现',
-  '24_封装布局切换组件',
-  '25_改造路由',
-  '26_处理超出时的布局效果',
-  '27_侧导航收缩功能',
-  '28_logo组件封装及在主导航中使用',
-  '29_侧边次导航logo处理',
-  '30_添加env的类型声明',
-  '31_返回顶部',
-  '32_实现暗黑模式',
-  '33_2次封装dialog组件',
-  '34_主题选择弹框',
-  '35_替换成unocss',
-  '36_滚动公告组件实现',
-  '37_数字滚动组件',
-  '38_版本大更新',
-  '39_无限层级菜单',
-  '40_菜单类型定义',
-  '41_侧边栏样式初步修改',
-  '42_顶部导航设计',
-  '43_侧边栏支持配色',
-  '44_优化菜单配色',
-  '45_主导航栏结构定义',
-  '46_顶部主导航结构编写',
-  '47_顶部主导航样式',
-  '48_顶部主导航暗黑模式样式修改',
-  '49_侧边主导航样式编写',
-  '50_菜单细节调整',
-  '51_支持主菜单选色',
-  '52_菜单样式遗留问题处理',
-  '53_动态菜单前置知识',
-  '54_实现动态路由1',
-  '55_实现动态路由2',
-  '56_实现动态路由3',
-  '57_将路由转为菜单数据1',
-  '58_将路由转为菜单数据2',
-  '59_将路由转为菜单数据3',
-  '60_主导航菜单数据处理1',
-  '61_主导航菜单数据处理2',
-  '62_主导航菜单数据处理3',
-  '63_实现路由切换进度条',
-  '64_实现动态标题',
-  '65_路由白名单',
-  '66_实现框架首页是否显示',
-  '67_操作栏类型定义',
-  '68_操作栏样式实现',
-  '69_主内容区字体大小更随',
-  '70_tabbar样式实现',
-  '71_tabbar配色',
-  '72_toolbar样式及配色',
-  '73_toolbar初步实现',
-  '74_面包屑导航',
-  '75_页面刷新实现',
-  '76_右键菜单样式实现',
-  '77_tabbar的初步实现',
-  '78_通过store管理tabbar',
-  '79_关闭tabbar方法分析',
-  '80_tabbar单个关闭',
-  '81_右侧菜单中的刷新与单个关闭',
-  '82_完成tabbar多个关闭',
-  '83_多级缓存路由添加',
-  '84_keepalive讲解',
-  '85_编写keepalivestore',
-  '86_路由守卫中实现页面缓存',
-  '87_完成页面缓存功能',
-  '88_详情菜单如何配置',
-  '89_层级详情菜单如何配置',
-  '90_合并tab',
-  '91_权限路由演示',
-  '92_前端权限控制实现',
-  '93_前端权限控制bug修复',
-  '94_带权限的面包屑实现梳理',
-  '95_完成带权限的面包屑',
-  '96_完成后端路由',
-  '97_权限指令封装',
-  '98_权限组件封装',
-  '99_退出登录实现',
-  '100_初始i18n文件',
-  '101_完成i18n-hook封装',
-  '102_多语言切换',
-  '103_全屏功能',
-  '104_初始化搜索菜单',
-  '105_实现搜索菜单1',
-  '105_实现搜索菜单2',
-  '106_设置组件封装',
-  '107_打包配置',
-  '108_完结与展望',
-]
+const detailDialogRef = ref<InstanceType<typeof DetailDialog> | null>()
+function opneDetailDialog(id: number) {
+  detailDialogRef.value?.open(id)
+}
 </script>
 
 <template>
@@ -260,15 +140,6 @@ const directoryList = [
                 </div>
               </div>
             </div>
-
-            <div>
-              <div class="font-bold mt-2 text-lg">
-                课程目录展示
-              </div>
-              <template v-for="item in directoryList" :key="item">
-                <div>{{ item }}</div>
-              </template>
-            </div>
           </div>
 
           <div class="flex-shrink-0 h-150px ml-4 w-150px">
@@ -278,11 +149,15 @@ const directoryList = [
       </page-main>
 
       <page-main class="flex-1">
-        <span class="font-bold text-lg">项目特点：</span>
-        <div v-for="(item, index) in docList" :key="item.id">
-          {{ index + 1 }}. {{ item.name }}
+        <span class="font-bold text-lg">我教的课（已完成）：</span>
+        <div class="flex flex-wrap">
+          <template v-for="item in courseList" :key="item.id">
+            <TeachCard class="mr-10px mb-10px" :course="item" :color-from="item.colorFrom" :color-to="item.colorTo" @click="opneDetailDialog(item.id)" />
+          </template>
         </div>
       </page-main>
     </div>
+
+    <DetailDialog ref="detailDialogRef" />
   </div>
 </template>

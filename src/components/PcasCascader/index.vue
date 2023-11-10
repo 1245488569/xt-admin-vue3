@@ -91,7 +91,7 @@ const myValue = computed({
 
 function anyToCode(value: IModelValue, data = pcasData.value) {
   const arr: string[] = []
-  if (value.length) {
+  if (value && value.length) {
     const findItem = data.find((item) => {
       if (props.format === 'code')
         return item.code === value[0]

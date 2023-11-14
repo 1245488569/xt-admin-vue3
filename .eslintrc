@@ -1,7 +1,0 @@
-{
-  "extends": "@antfu",
-  "rules": {
-    "no-console": "off",
-    "n/prefer-global/process": "off"
-  }
-}

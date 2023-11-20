@@ -25,7 +25,7 @@
 （目前账号密码可以随便输入）
 
 ### 试看连接
-1. https://www.bilibili.com/video/BV1nu4y1r7Hb/?spm_id_from=333.788&vd_source=cb84374b498a3c0a374554582dfced70
+1. https://pan.baidu.com/s/1MmU-ATFGI54vum_0p0dbOQ?pwd=kjht
 
 ## 特点
 1. Vue3

@@ -261,6 +261,7 @@ defineExpose({
             <template v-for="(btn, index) in authOperate" :key="index">
               <el-button
                 v-if="typeof btn.isShow === 'function' ? btn.isShow(scope.row) : true"
+                v-auth="btn.auth ? btn.auth : ''"
                 :disabled="typeof btn.isDisabled === 'function' ? btn.isDisabled(scope.row) : false"
                 :title="typeof btn.showTitle === 'function' ? btn.showTitle(scope.row) : ''"
                 v-bind="btn.attrs"

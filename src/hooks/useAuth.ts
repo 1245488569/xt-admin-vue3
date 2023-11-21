@@ -14,6 +14,9 @@ function hasPermission(permission: string) {
 
 export default function useAuth() {
   function auth(value: string | string[]) {
+    if (!value)
+      return true
+
     let auth: boolean
     if (typeof value === 'string')
       auth = hasPermission(value)

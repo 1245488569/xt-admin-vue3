@@ -187,7 +187,7 @@ defineExpose({
           码云地址：<a class="text-[#409eff]" :href="curDetail.giteeLink" target="_blank">gitee</a>
         </div>
         <div class="mb-2">
-          试看地址: <a class="ml-2 text-[#409eff]" :href="curDetail.giteeLink" target="_blank">试看连接</a>
+          试看地址: <a class="ml-2 text-[#409eff]" :href="curDetail.videoLink" target="_blank">试看连接</a>
         </div>
         <div class="flex-shrink-0 h-150px ml-4 w-150px">
           <el-image src="https://my-self-xt.oss-cn-chengdu.aliyuncs.com/IMG_202309143802_791x772.jpg" />

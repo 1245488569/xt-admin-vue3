@@ -1,0 +1,1 @@
+import{X as t,u as n,z as e}from"./index-36e6a8a2.js";function a(){return{generateTitle:function(n){if(!n)return"";const e=t();return e.te(n)?e.t(n):n},watchSwitchLang:function(...t){const a=n();e((()=>a.getLanguage),(()=>{t.forEach((t=>t(a.getLanguage)))}))}}}export{a as u};

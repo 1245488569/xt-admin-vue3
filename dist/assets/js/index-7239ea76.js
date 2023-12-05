@@ -1,1 +1,0 @@
-import{_ as r}from"./index-f1c6fa4e.js";import{_ as o}from"./plugin-vueexport-helper-1b428a4d.js";import{o as e,k as s,w as t,i as n}from"./index-6b3e8f5b.js";import"./index-6120752c.js";const i=o({},[["render",function(o,i){const a=r;return e(),s(a,null,{default:t((()=>[n(" 个人介绍页面 ")])),_:1})}]]);export{i as default};

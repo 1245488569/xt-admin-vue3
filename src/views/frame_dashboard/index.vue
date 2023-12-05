@@ -56,6 +56,17 @@ const courseList = [
   },
 ]
 
+const noEndCourseList = [
+  {
+    id: 201,
+    colorFrom: '#843cf6',
+    colorTo: '#759bff',
+    coverDesc: 'gin+vue3实战权限管理系统',
+    title: '课程包括gin零基础入门，gorm零基础入门，gin+vue3实战权限管理系统',
+    price: '88.00',
+  },
+]
+
 const detailDialogRef = ref<InstanceType<typeof DetailDialog> | null>()
 function opneDetailDialog(id: number) {
   detailDialogRef.value?.open(id)
@@ -152,6 +163,13 @@ function opneDetailDialog(id: number) {
         <span class="font-bold text-lg">我教的课（已完成）：</span>
         <div class="flex flex-wrap">
           <template v-for="item in courseList" :key="item.id">
+            <TeachCard class="mr-10px mb-10px" :course="item" :color-from="item.colorFrom" :color-to="item.colorTo" @click="opneDetailDialog(item.id)" />
+          </template>
+        </div>
+
+        <span class="font-bold mt-20px text-lg">我教的课（更新中）：</span>
+        <div class="flex flex-wrap">
+          <template v-for="item in noEndCourseList" :key="item.id">
             <TeachCard class="mr-10px mb-10px" :course="item" :color-from="item.colorFrom" :color-to="item.colorTo" @click="opneDetailDialog(item.id)" />
           </template>
         </div>

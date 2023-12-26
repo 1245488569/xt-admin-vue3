@@ -36,7 +36,7 @@ const currentIconList = computed(() => {
   return iconList.value.slice(
     (pagination.value.page - 1) * pagination.value.pageSize,
     (pagination.value.page - 1) * pagination.value.pageSize
-      + pagination.value.pageSize,
+    + pagination.value.pageSize,
   )
 })
 

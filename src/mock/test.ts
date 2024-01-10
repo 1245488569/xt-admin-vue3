@@ -66,17 +66,26 @@ export default [
           // 数据是不带children的这种
           backendRoutes: [
             {
-              name: 'demo1',
+              name: 'List',
             },
             {
-              name: 'demo1-1',
+              name: 'UserIndex',
             },
             {
-              name: 'demo1-2',
+              name: 'UserDetail',
+            },
+            {
+              name: 'Goods',
               meta: {
-                title: 'demo1-222222',
+                title: '自定义',
                 icon: 'ep:avatar',
               },
+            },
+            {
+              name: 'GoodsIndex',
+            },
+            {
+              name: 'GoodsDetail',
             },
           ],
           // 按钮权限等 如果不需要 设为[]  permissions:[] 不要为其他值

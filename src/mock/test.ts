@@ -1,6 +1,8 @@
-import { Random } from 'mockjs'
+import { defineFakeRoute } from 'vite-plugin-fake-server/client'
 
-import type { MockMethod } from 'vite-plugin-mock'
+// 这里不能使用这种结构 否则会报错[vite-plugin-fake-server] failed to load module from src\mock\test.ts
+// import { Random } from 'mockjs'
+import Mock from 'mockjs'
 
 interface DataList {
   date: string
@@ -12,14 +14,14 @@ const dataList: DataList[] = [] // 用于接受生成数据的数组
 for (let i = 0; i < 100; i++) {
   // 可自定义生成的个数
   const template = {
-    date: Random.date(), // 生成一个随机日期,可加参数定义日期格式
-    name: Random.name(), // 生成姓名
-    address: Random.province(), // 生成地址
+    date: Mock.Random.date(), // 生成一个随机日期,可加参数定义日期格式
+    name: Mock.Random.name(), // 生成姓名
+    address: Mock.Random.province(), // 生成地址
   }
   dataList.push(template)
 }
 
-export default [
+export default defineFakeRoute([
   {
     url: '/api/login',
     method: 'post',
@@ -33,7 +35,7 @@ export default [
         result: {
           name: body.account,
           age: 18,
-          token: `${body.account}_${Random.string(10)}`,
+          token: `${body.account}_${Mock.Random.string(10)}`,
         },
       }
     },
@@ -136,4 +138,4 @@ export default [
       }
     },
   },
-] as MockMethod[]
+])

@@ -30,7 +30,7 @@ const menuactivetextcolor = computed(() => useAppConfig.getTheme.menuActiveTextC
       <el-icon v-if="menu.meta?.icon" :size="20">
         <svg-icon :name="menu.meta.icon" />
       </el-icon>
-      <span class="flex-1 mr-1 truncate" :title="generateTitle(menu.meta?.title || '')">{{ generateTitle(menu.meta?.title || '') }}</span>
+      <span class="mr-1 flex-1 truncate" :title="generateTitle(menu.meta?.title || '')">{{ generateTitle(menu.meta?.title || '') }}</span>
     </template>
     <!-- 循环渲染 -->
     <sidebar-item

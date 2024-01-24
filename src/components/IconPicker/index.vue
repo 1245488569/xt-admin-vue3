@@ -76,7 +76,7 @@ function removeIcon() {
           >
             <div class="flex flex-wrap">
               <div
-                class="border cursor-pointer border-red-300 p-4"
+                class="cursor-pointer border border-red-300 p-4"
                 title="删除已选图标"
                 @click="removeIcon"
               >
@@ -87,7 +87,7 @@ function removeIcon() {
               <div
                 v-for="icon in currentIconList"
                 :key="icon"
-                class="border cursor-pointer p-4"
+                class="cursor-pointer border p-4"
                 @click="chooseIcon(`${activeName}:${icon}`)"
               >
                 <el-icon :size="24">
@@ -97,7 +97,7 @@ function removeIcon() {
             </div>
           </el-tab-pane>
         </el-tabs>
-        <div class="flex mt-4 px-10 justify-end">
+        <div class="mt-4 flex justify-end px-10">
           <el-pagination
             v-model:current-page="pagination.page"
             layout="prev, pager, next"

@@ -26,10 +26,10 @@ const title = ref(import.meta.env.VITE_APP_TITLE)
   <router-link
     to="/"
     :title="title"
-    class="logo flex h-[var(--xt-logo-height)] px-2 items-center justify-center flex-shrink-0"
+    class="logo h-[var(--xt-logo-height)] flex flex-shrink-0 items-center justify-center px-2"
   >
-    <el-avatar v-if="showLogoImage" class="flex-shrink-0 mr-2" shape="square" :size="40" src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png" />
-    <span v-if="showLogoText" class="font-bold truncate">{{ title }}</span>
+    <el-avatar v-if="showLogoImage" class="mr-2 flex-shrink-0" shape="square" :size="40" src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png" />
+    <span v-if="showLogoText" class="truncate font-bold">{{ title }}</span>
   </router-link>
 </template>
 

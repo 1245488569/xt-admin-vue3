@@ -17,14 +17,14 @@ const toolbarTextColor = computed(() => useAppConfig.getTheme.toolbarTextColor)
 </script>
 
 <template>
-  <div class="flex h-[var(--xt-toolbar-height)] px-4 items-center toolbar-content">
+  <div class="toolbar-content h-[var(--xt-toolbar-height)] flex items-center px-4">
     <div class="flex items-center">
       <SidebarCollapse v-if="useAppConfig.appConfig.toolbar.enableSidebarCollapse" class="mr-2" />
 
       <Breadcrumb v-if="useAppConfig.appConfig.toolbar.enableBreadcrumb" />
     </div>
 
-    <div class="flex ml-auto items-center">
+    <div class="ml-auto flex items-center">
       <MenuSearch v-if="useAppConfig.appConfig.toolbar.enableMenuSearch" class="mr-2" />
       <ChangeSize v-if="useAppConfig.appConfig.toolbar.enableElementSize" class="mr-2" />
       <Reload v-if="useAppConfig.appConfig.toolbar.enablePageReload" class="mr-2" />

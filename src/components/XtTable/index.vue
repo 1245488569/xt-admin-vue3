@@ -182,7 +182,7 @@ defineExpose({
 
 <template>
   <div class="data-grid">
-    <div v-if="config.showDataGridTop" class="px-2 data-grid-top">
+    <div v-if="config.showDataGridTop" class="data-grid-top px-2">
       <slot name="top">
         <div v-if="config.showDataGridTopLeft" class="top-action-bar">
           <slot name="top-left" />
@@ -297,7 +297,7 @@ defineExpose({
         </el-table-column>
       </el-table>
     </div>
-    <div v-if="config.showDataGridBottom" class="flex mt-2 px-4 data-grid-bottom" :style="{ justifyContent }">
+    <div v-if="config.showDataGridBottom" class="data-grid-bottom mt-2 flex px-4" :style="{ justifyContent }">
       <slot name="bottom">
         <div v-if="config.showPagination" class="data-grid-bottom-right">
           <slot name="bottom-left">

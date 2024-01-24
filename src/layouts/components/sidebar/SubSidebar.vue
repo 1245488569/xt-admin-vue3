@@ -26,13 +26,13 @@ const { menus } = useMenus()
 </script>
 
 <template>
-  <div class="flex flex-col sub-sidebar-container" :class="[subSidebarWidth]">
+  <div class="sub-sidebar-container flex flex-col" :class="[subSidebarWidth]">
     <logo
       v-if="showLogo"
       :show-logo-image="useAppConfig.getLayoutMode === 'mainSubSideNav' ? false : true"
       :show-logo-text="useAppConfig.getLayoutMode === 'onlySubSideNav' && useAppConfig.getCollapse ? false : true"
     />
-    <div class="flex-1 overflow-hidden hover:overflow-y-auto py-2">
+    <div class="flex-1 overflow-hidden py-2 hover:overflow-y-auto">
       <el-menu
         router
         :default-active="$route.meta?.activeMenu || $route.path"

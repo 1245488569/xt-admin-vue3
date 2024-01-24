@@ -87,12 +87,12 @@ function onSelectChange() {
 </script>
 
 <template>
-  <div ref="targetRef" class="flex items-center header-search" :class="{ show: isShow }">
+  <div ref="targetRef" class="header-search flex items-center" :class="{ show: isShow }">
     <el-icon :size="size" @click="onShowClick">
       <svg-icon class="cursor-pointer" name="ri:search-line" />
     </el-icon>
 
-    <ElTreeSelect ref="headerSearchSelectRef" v-model="search" class="header-search-select" :data="searchOptions" default-expand-all filterable clearable @change="onSelectChange" />
+    <ElTreeSelect ref="headerSearchSelectRef" v-model="search" class="header-search-select" :data="searchOptions" filterable clearable default-expand-all @change="onSelectChange" />
   </div>
 </template>
 

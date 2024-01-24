@@ -87,10 +87,10 @@ function opneDetailDialog(id: number) {
       <page-main class="flex-1">
         <div class="flex justify-between">
           <div>
-            <div class="font-bold mt-2 text-lg">
+            <div class="mt-2 text-lg font-bold">
               本项目配套了讲解视频，教你一步一步的自己搭建一个后台管理系统模板，有购买意愿的可以给我发私信或扫码添加（前100名购买者只需88,100名后108）
             </div>
-            <div class="font-bold mt-2 text-lg">
+            <div class="mt-2 text-lg font-bold">
               扫码右侧二维码，加入我们
             </div>
 
@@ -101,24 +101,24 @@ function opneDetailDialog(id: number) {
             </div>
 
             <div class="flex justify-between">
-              <div class="rounded bg-[#f6f6f7] mt-4  p-5 w-300px dark:bg-[#252529]">
-                <div class="flex mb-4 items-center">
+              <div class="mt-4 w-300px rounded bg-[#f6f6f7] p-5 dark:bg-[#252529]">
+                <div class="mb-4 flex items-center">
                   <el-icon :size="35">
                     <svg-icon name="strong_new" />
                   </el-icon>
-                  <span class="font-bold text-lg ml-2 text-[#000] dark:text-white">最新的技术栈</span>
+                  <span class="ml-2 text-lg text-[#000] font-bold dark:text-white">最新的技术栈</span>
                 </div>
                 <div class="text-[#3c3c43bf] dark:text-white">
                   Vite4 + Vue3.3 + TypeScript5 + Vue-router4 + Pinia2 ，学习快人一步
                 </div>
               </div>
 
-              <div class="rounded bg-[#f6f6f7] mt-4 ml-2  p-5 w-300px dark:bg-[#252529]">
-                <div class="flex mb-4 items-center">
+              <div class="ml-2 mt-4 w-300px rounded bg-[#f6f6f7] p-5 dark:bg-[#252529]">
+                <div class="mb-4 flex items-center">
                   <el-icon :size="35">
                     <svg-icon name="theme" />
                   </el-icon>
-                  <span class="font-bold text-lg ml-2 text-[#000] dark:text-white">样式多样</span>
+                  <span class="ml-2 text-lg text-[#000] font-bold dark:text-white">样式多样</span>
                 </div>
                 <div class="text-[#3c3c43bf] dark:text-white">
                   4种最主流的布局模式支持，随心所欲的配色支持
@@ -127,24 +127,24 @@ function opneDetailDialog(id: number) {
             </div>
 
             <div class="flex justify-between">
-              <div class="rounded bg-[#f6f6f7] mt-4  p-5 w-300px dark:bg-[#252529]">
-                <div class="flex mb-4 items-center">
+              <div class="mt-4 w-300px rounded bg-[#f6f6f7] p-5 dark:bg-[#252529]">
+                <div class="mb-4 flex items-center">
                   <el-icon :size="35">
                     <svg-icon name="permission" />
                   </el-icon>
-                  <span class="font-bold text-lg ml-2 text-[#000] dark:text-white">全场景的权限验证</span>
+                  <span class="ml-2 text-lg text-[#000] font-bold dark:text-white">全场景的权限验证</span>
                 </div>
                 <div class="text-[#3c3c43bf] dark:text-white">
                   菜单权限，按钮权限，一门课程，完全理解权限管理
                 </div>
               </div>
 
-              <div class="rounded bg-[#f6f6f7] mt-4 ml-2  p-5 w-300px dark:bg-[#252529]">
-                <div class="flex mb-4 items-center">
+              <div class="ml-2 mt-4 w-300px rounded bg-[#f6f6f7] p-5 dark:bg-[#252529]">
+                <div class="mb-4 flex items-center">
                   <el-icon :size="35">
                     <svg-icon name="i18n" />
                   </el-icon>
-                  <span class="font-bold text-lg ml-2 text-[#000] dark:text-white">走向国际</span>
+                  <span class="ml-2 text-lg text-[#000] font-bold dark:text-white">走向国际</span>
                 </div>
                 <div class="text-[#3c3c43bf] dark:text-white">
                   通用国际化解决方案，通过简单配置实现语言切换
@@ -153,24 +153,24 @@ function opneDetailDialog(id: number) {
             </div>
           </div>
 
-          <div class="flex-shrink-0 h-150px ml-4 w-150px">
+          <div class="ml-4 h-150px w-150px flex-shrink-0">
             <el-image src="https://my-self-xt.oss-cn-chengdu.aliyuncs.com/IMG_202309143802_791x772.jpg" />
           </div>
         </div>
       </page-main>
 
       <page-main class="flex-1">
-        <span class="font-bold text-lg">我教的课（已完成）：</span>
+        <span class="text-lg font-bold">我教的课（已完成）：</span>
         <div class="flex flex-wrap">
           <template v-for="item in courseList" :key="item.id">
-            <TeachCard class="mr-10px mb-10px" :course="item" :color-from="item.colorFrom" :color-to="item.colorTo" @click="opneDetailDialog(item.id)" />
+            <TeachCard class="mb-10px mr-10px" :course="item" :color-from="item.colorFrom" :color-to="item.colorTo" @click="opneDetailDialog(item.id)" />
           </template>
         </div>
 
-        <span class="font-bold mt-20px text-lg">我教的课（更新中）：</span>
+        <span class="mt-20px text-lg font-bold">我教的课（更新中）：</span>
         <div class="flex flex-wrap">
           <template v-for="item in noEndCourseList" :key="item.id">
-            <TeachCard class="mr-10px mb-10px" :course="item" :color-from="item.colorFrom" :color-to="item.colorTo" @click="opneDetailDialog(item.id)" />
+            <TeachCard class="mb-10px mr-10px" :course="item" :color-from="item.colorFrom" :color-to="item.colorTo" @click="opneDetailDialog(item.id)" />
           </template>
         </div>
       </page-main>

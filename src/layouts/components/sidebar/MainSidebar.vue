@@ -59,21 +59,21 @@ watch(() => route, (val) => {
 </script>
 
 <template>
-  <div class="w-[var(--xt-main-sidebar-width)] flex flex-col flex-shrink-0 main-sidebar-container">
+  <div class="main-sidebar-container w-[var(--xt-main-sidebar-width)] flex flex-shrink-0 flex-col">
     <logo :show-logo-text="false" />
-    <div class="flex-1 py-1 main-sidebar-menu-container">
+    <div class="main-sidebar-menu-container flex-1 py-1">
       <ul>
         <template v-for="(item, index) in allMainMenu" :key="index">
           <li
             v-if="item.children.length"
-            class="rounded-lg cursor-pointer flex flex-col h-[var(--xt-main-sidebar-item-height)] mx-2 mb-1 justify-center items-center main-menu-item px-1 text-14px"
+            class="main-menu-item mx-2 mb-1 h-[var(--xt-main-sidebar-item-height)] flex flex-col cursor-pointer items-center justify-center rounded-lg px-1 text-14px"
             :class="item.parentIndex === usePermission.mainMenuActive ? 'is-active' : ''"
             @click="clickMainMenu(item.parentIndex!)"
           >
             <el-icon v-if="item.icon" :size="20">
               <svg-icon :name="item.icon" />
             </el-icon>
-            <span class="truncate w-full text-center" :title="generateTitle(item.title)">{{ generateTitle(item.title) }}</span>
+            <span class="w-full truncate text-center" :title="generateTitle(item.title)">{{ generateTitle(item.title) }}</span>
           </li>
         </template>
       </ul>
@@ -87,8 +87,7 @@ watch(() => route, (val) => {
 }
 
 .main-sidebar-menu-container {
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
   overscroll-behavior: contain;
   scrollbar-width: none;
 

@@ -48,14 +48,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative w-full h-15 flex items-center px-4  rounded overflow-hidden" :style="noticeStyle" @mouseenter="mouseEnter" @mouseleave="mouseLeave">
+  <div class="relative h-15 w-full flex items-center overflow-hidden rounded px-4" :style="noticeStyle" @mouseenter="mouseEnter" @mouseleave="mouseLeave">
     <slot>
-      <div class="font-bold flex-shrink-0 pr-4 mr-4 border-r">
+      <div class="mr-4 flex-shrink-0 border-r pr-4 font-bold">
         最新公告
       </div>
     </slot>
     <transition name="notice-slide">
-      <div :key="notice.id" class="flex-1 h-30px flex items-center truncate">
+      <div :key="notice.id" class="h-30px flex flex-1 items-center truncate">
         <p class="truncate">
           {{ notice.text }}
         </p>

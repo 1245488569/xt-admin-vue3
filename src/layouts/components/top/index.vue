@@ -147,11 +147,11 @@ if (useAppConfig.getLayoutMode === 'topSubSideNav') {
 </script>
 
 <template>
-  <div class="flex h-[var(--xt-top-nav-height)] flex-shrink-0 top-nav-container px-4 items-center">
+  <div class="top-nav-container h-[var(--xt-top-nav-height)] flex flex-shrink-0 items-center px-4">
     <Logo class="mr-4 text-xl" />
     <!-- 顶部主导航+侧边次导航 -->
     <template v-if="useAppConfig.getLayoutMode === 'topSubSideNav'">
-      <el-menu mode="horizontal" :default-active="`${usePermission.mainMenuActive}`" :unique-opened="true" class="flex-1 main-menu">
+      <el-menu mode="horizontal" :default-active="`${usePermission.mainMenuActive}`" :unique-opened="true" class="main-menu flex-1">
         <template v-for="(item, index) in allMainMenu" :key="index">
           <el-menu-item v-if="item.children.length" :index="`${item.parentIndex}`" @click="clickMainMenu(item.parentIndex!)">
             <el-icon v-if="item.icon" :size="20">

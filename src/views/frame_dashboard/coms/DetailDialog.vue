@@ -198,17 +198,17 @@ defineExpose({
 
 <template>
   <xt-dialog v-model="dialogVisible" width="800px" title="课程详情" :show-cancel="false" :show-confirm="false">
-    <div class="flex max-h-60vh justify-between overflow-hidden">
-      <div class="flex-1 max-h-60vh overflow-y-auto">
-        <div class="font-bold mt-2 text-lg">
+    <div class="max-h-60vh flex justify-between overflow-hidden">
+      <div class="max-h-60vh flex-1 overflow-y-auto">
+        <div class="mt-2 text-lg font-bold">
           课程目录
         </div>
         <template v-for="item in curDetail.directoryList" :key="item">
           <div>{{ item }}</div>
         </template>
       </div>
-      <div class="flex-shrink-0 px-10px w-300px">
-        <div class="font-bold mb-2">
+      <div class="w-300px flex-shrink-0 px-10px">
+        <div class="mb-2 font-bold">
           课程为本人录制，所以购买课程，提供全套答疑服务
         </div>
         <div v-if="curDetail.giteeLink" class="mb-2">
@@ -217,7 +217,7 @@ defineExpose({
         <div class="mb-2">
           试看地址: <a class="ml-2 text-[#409eff]" :href="curDetail.videoLink" target="_blank">试看连接</a>
         </div>
-        <div class="flex-shrink-0 h-150px ml-4 w-150px">
+        <div class="ml-4 h-150px w-150px flex-shrink-0">
           <el-image src="https://my-self-xt.oss-cn-chengdu.aliyuncs.com/IMG_202309143802_791x772.jpg" />
         </div>
       </div>

@@ -61,10 +61,10 @@ function loginFast(type: 'admin' | 'test') {
 </script>
 
 <template>
-  <section class="flex items-stretch min-h-screen text-white">
-    <div class="login-bg bg-no-repeat bg-cover w-1/2 hidden items-center lg:flex">
-      <div class="w-full px-24 z-10">
-        <div class="font-bold text-left text-5xl tracking-wide">
+  <section class="min-h-screen flex items-stretch text-white">
+    <div class="login-bg hidden w-1/2 items-center bg-cover bg-no-repeat lg:flex">
+      <div class="z-10 w-full px-24">
+        <div class="text-left text-5xl font-bold tracking-wide">
           欢迎您
         </div>
         <div class="my-4 text-3xl">
@@ -73,13 +73,13 @@ function loginFast(type: 'admin' | 'test') {
       </div>
     </div>
 
-    <div class="flex text-center w-full px-0 z-0 relative items-center justify-center   bg-[#161616] md:px-16 lg:w-1/2">
-      <div class="login-bg bg-no-repeat bg-cover absolute inset-0 z-10 lg:hidden">
-        <div class="bg-black opacity-60 absolute inset-0 z-0" />
+    <div class="relative z-0 w-full flex items-center justify-center bg-[#161616] px-0 text-center lg:w-1/2 md:px-16">
+      <div class="login-bg absolute inset-0 z-10 bg-cover bg-no-repeat lg:hidden">
+        <div class="absolute inset-0 z-0 bg-black opacity-60" />
       </div>
 
-      <div class="w-full z-999">
-        <div class="flex items-center justify-center text-3xl my-6">
+      <div class="z-999 w-full">
+        <div class="my-6 flex items-center justify-center text-3xl">
           {{ generateTitle('login.title') }}
           <div class="lang flex items-center justify-center">
             <LangSelect v-if="useAppConfig.appConfig.toolbar.enableI18n" class="ml-2" />

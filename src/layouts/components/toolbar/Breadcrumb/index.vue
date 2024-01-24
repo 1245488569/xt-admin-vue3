@@ -47,7 +47,7 @@ function onLinkClick(item: RouteLocationMatched) {
 </script>
 
 <template>
-  <el-breadcrumb class="text-sm inline-block" separator="/">
+  <el-breadcrumb class="inline-block text-sm" separator="/">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="index">
         <span v-if="index === breadcrumbData.length - 1">{{ generateTitle(item.meta.title || '') }}</span>

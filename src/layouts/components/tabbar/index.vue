@@ -93,10 +93,10 @@ watch(visible, (val) => {
 </script>
 
 <template>
-  <div ref="scrollRef" class="h-[var(--xt-tabbar-height)] text-xs flex items-center w-full whitespace-nowrap overflow-hidden tabbar-content">
-    <div ref="scrollItemRef" class="px-2 flex h-full py-1">
+  <div ref="scrollRef" class="tabbar-content h-[var(--xt-tabbar-height)] w-full flex items-center overflow-hidden whitespace-nowrap text-xs">
+    <div ref="scrollItemRef" class="h-full flex px-2 py-1">
       <template v-for="(tag, tagI) in useTabbar.list" :key="tag.fullPath">
-        <div class="tabbar-item mr-2 px-2 flex items-center h-full rounded-md cursor-pointer duration-300" :class="tag.fullPath === route.fullPath ? 'active' : ''" @click="router.push(tag.fullPath)" @contextmenu.prevent="openMenu($event, tagI)">
+        <div class="tabbar-item mr-2 h-full flex cursor-pointer items-center rounded-md px-2 duration-300" :class="tag.fullPath === route.fullPath ? 'active' : ''" @click="router.push(tag.fullPath)" @contextmenu.prevent="openMenu($event, tagI)">
           <span class="w-20 truncate" :title="generateTitle(tag.meta.title || '')">{{ generateTitle(tag.meta.title || '') }}</span>
           <el-icon v-show="useTabbar.list.length > 1" class="ml-2" @click.stop="closeTab(tagI)">
             <svg-icon name="ep:close" />

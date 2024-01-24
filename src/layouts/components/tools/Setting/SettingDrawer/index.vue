@@ -36,7 +36,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="text-sm drawer">
+  <div class="drawer text-sm">
     <el-drawer v-model="isOpen" title="应用配置" :size="350">
       <el-alert
         title="应用配置可实时预览效果，仅临时生效。"
@@ -55,7 +55,7 @@ defineExpose({
         </el-select>
       </div>
       <el-divider>app</el-divider>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启载入进度条</span>
         <el-switch
           v-model="useAppConfig.appConfig.app.enableProgress"
@@ -64,7 +64,7 @@ defineExpose({
           inactive-text="否"
         />
       </div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启动态标题</span>
         <el-switch
           v-model="useAppConfig.appConfig.app.enableDynamicTitle"
@@ -74,7 +74,7 @@ defineExpose({
         />
       </div>
       <el-divider>导航</el-divider>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">收起次导航</span>
         <el-switch
           v-model="useAppConfig.appConfig.nav.subMenuCollapse"
@@ -83,7 +83,7 @@ defineExpose({
           inactive-text="否"
         />
       </div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">操作栏是否固定</span>
         <el-switch
           v-model="useAppConfig.appConfig.nav.fixed"
@@ -93,7 +93,7 @@ defineExpose({
         />
       </div>
       <el-divider>标签栏</el-divider>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启标签栏</span>
         <el-switch
           v-model="useAppConfig.appConfig.tabbar.enable"
@@ -103,7 +103,7 @@ defineExpose({
         />
       </div>
       <el-divider>工具栏</el-divider>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启工具栏</span>
         <el-switch
           v-model="useAppConfig.appConfig.toolbar.enable"
@@ -112,7 +112,7 @@ defineExpose({
           inactive-text="否"
         />
       </div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启全屏</span>
         <el-switch
           v-model="useAppConfig.appConfig.toolbar.enableFullscreen"
@@ -121,7 +121,7 @@ defineExpose({
           inactive-text="否"
         />
       </div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启换肤</span>
         <el-switch
           v-model="useAppConfig.appConfig.toolbar.enableChangeTheme"
@@ -130,7 +130,7 @@ defineExpose({
           inactive-text="否"
         />
       </div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启暗黑模式切换</span>
         <el-switch
           v-model="useAppConfig.appConfig.toolbar.enableColorScheme"
@@ -139,7 +139,7 @@ defineExpose({
           inactive-text="否"
         />
       </div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启国际化</span>
         <el-switch
           v-model="useAppConfig.appConfig.toolbar.enableI18n"
@@ -148,7 +148,7 @@ defineExpose({
           inactive-text="否"
         />
       </div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启侧边栏展开收起按钮</span>
         <el-switch
           v-model="useAppConfig.appConfig.toolbar.enableSidebarCollapse"
@@ -157,7 +157,7 @@ defineExpose({
           inactive-text="否"
         />
       </div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启面包屑导航</span>
         <el-switch
           v-model="useAppConfig.appConfig.toolbar.enableBreadcrumb"
@@ -166,7 +166,7 @@ defineExpose({
           inactive-text="否"
         />
       </div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启页面刷新</span>
         <el-switch
           v-model="useAppConfig.appConfig.toolbar.enablePageReload"
@@ -175,7 +175,7 @@ defineExpose({
           inactive-text="否"
         />
       </div>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <span class="text-gray-500">开启菜单搜索</span>
         <el-switch
           v-model="useAppConfig.appConfig.toolbar.enableMenuSearch"

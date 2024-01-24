@@ -117,14 +117,14 @@ const routerViewContentFontSize = computed(() => {
 
 <template>
   <div class="h-full">
-    <section class="flex flex-col h-full relative">
+    <section class="relative h-full flex flex-col">
       <template v-if="showTop">
         <Top />
       </template>
 
       <div class="flex flex-1 overflow-hidden">
         <template v-if="showSidebar">
-          <div class="flex h-full" :class="[sideBarWidth]">
+          <div class="h-full flex" :class="[sideBarWidth]">
             <template v-if="showMainSidebar">
               <main-sidebar />
             </template>
@@ -134,7 +134,7 @@ const routerViewContentFontSize = computed(() => {
           </div>
         </template>
 
-        <main class="flex flex-col bg-[#f5f5f5] flex-1 main-box overflow-x-hidden dark:bg-[var(--el-bg-color)]" :class="useAppConfig.appConfig.nav.fixed ? '' : 'overflow-auto'">
+        <main class="main-box flex flex-1 flex-col overflow-x-hidden bg-[#f5f5f5] dark:bg-[var(--el-bg-color)]" :class="useAppConfig.appConfig.nav.fixed ? '' : 'overflow-auto'">
           <div class="right-0" :class="[fixedActionbar, actionbarLeft, actionbarTop]">
             <Tabbar v-if="showTabbar" />
             <Toolbar v-if="showToolbar" />
@@ -157,7 +157,7 @@ const routerViewContentFontSize = computed(() => {
 
     <el-backtop target=".main-box" :right="20" :bottom="20" />
 
-    <div v-if="useAppConfig.appConfig.toolbar.enableAppSetting" class="top-50% right-0 fixed z-10">
+    <div v-if="useAppConfig.appConfig.toolbar.enableAppSetting" class="fixed right-0 top-50% z-10">
       <Setting />
     </div>
   </div>

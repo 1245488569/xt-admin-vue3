@@ -20,27 +20,27 @@ function clcik() {
 </script>
 
 <template>
-  <div class="rounded-md w-270px course-card">
+  <div class="course-card w-270px rounded-md">
     <div
-      class="rounded-lt-md rounded-rt-md flex h-150px w-full px-15px  items-center" :style="{
+      class="h-150px w-full flex items-center rounded-lt-md rounded-rt-md px-15px" :style="{
         background: `linear-gradient(50deg, ${colorFrom}, ${colorTo})`,
       }"
     >
       <div
-        class="font-bold flex-1 text-18px" :style="{
+        class="flex-1 text-18px font-bold" :style="{
           color,
           'line-height': 1.5,
         }"
       >
         {{ course.coverDesc }}
       </div>
-      <div class="flex flex-shrink-0 w-80px justify-center">
+      <div class="w-80px flex flex-shrink-0 justify-center">
         <el-icon :size="50">
           <svg-icon class="text-white" name="ri:skype-fill" />
         </el-icon>
       </div>
     </div>
-    <div class="bg-[#fff] rounded-lb-md rounded-rb-md flex flex-col h-100px p-8px justify-between">
+    <div class="h-100px flex flex-col justify-between rounded-lb-md rounded-rb-md bg-[#fff] p-8px">
       <div class="text-[#545c63]">
         {{ course.title }}
       </div>

@@ -9,7 +9,7 @@ import constantRoutes from '@/router/constant'
 import type { IPrivateRoutes } from '@/router/types/privateRoutes'
 import { isEmpty } from '@/utils'
 
-function hasPermission(permissions: Ipermissions, route: RouteRecordRaw) {
+function hasPermission(permissions: Ipermissions, route: RouteRecordRaw): boolean {
   let isAuth = false
   if (route.meta?.auth) {
     isAuth = permissions.some((auth) => {
@@ -26,7 +26,7 @@ function hasPermission(permissions: Ipermissions, route: RouteRecordRaw) {
   return isAuth
 }
 
-function filterPrivateRoutes(routes: RouteRecordRaw[], permissions: Ipermissions) {
+function filterPrivateRoutes(routes: RouteRecordRaw[], permissions: Ipermissions): RouteRecordRaw[] {
   const res = [] as RouteRecordRaw[]
   routes.forEach((route) => {
     const tmpRoute = cloneDeep(route)
@@ -43,7 +43,7 @@ function filterPrivateRoutes(routes: RouteRecordRaw[], permissions: Ipermissions
   return res
 }
 
-function hasBackRoutePermission(backendRoutes: any[], route: RouteRecordRaw) {
+function hasBackRoutePermission(backendRoutes: any[], route: RouteRecordRaw): boolean {
   let isAuth = false
   if (backendRoutes.some(v => v.name === route.name))
     isAuth = true
@@ -51,7 +51,7 @@ function hasBackRoutePermission(backendRoutes: any[], route: RouteRecordRaw) {
   return isAuth
 }
 
-function filterBackendRoutes(routes: RouteRecordRaw[], backendRoutes: any[]) {
+function filterBackendRoutes(routes: RouteRecordRaw[], backendRoutes: any[]): RouteRecordRaw[] {
   const res = [] as RouteRecordRaw[]
 
   routes.forEach((route) => {
@@ -101,7 +101,7 @@ function addPrivateIndex(clonePrivateRoutes: IPrivateRoutes[]) {
   return clonePrivateRoutes
 }
 
-export const usePermissionStore = defineStore('route', () => {
+export const usePermissionStore: ReturnType<typeof defineStore> = defineStore('route', () => {
   // 过滤完成的路由表（固定路由+动态路由）
   const routes = ref<RouteRecordRaw[]>([])
   const mainMenuActive = ref(0)

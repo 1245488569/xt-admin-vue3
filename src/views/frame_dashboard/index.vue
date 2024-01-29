@@ -54,9 +54,6 @@ const courseList = [
     title: '从0开始学习go语言',
     price: '39.00',
   },
-]
-
-const noEndCourseList = [
   {
     id: 201,
     colorFrom: '#843cf6',
@@ -66,6 +63,8 @@ const noEndCourseList = [
     price: '88.00',
   },
 ]
+
+// const noEndCourseList = []
 
 const detailDialogRef = ref<InstanceType<typeof DetailDialog> | null>()
 function opneDetailDialog(id: number) {
@@ -167,12 +166,12 @@ function opneDetailDialog(id: number) {
           </template>
         </div>
 
-        <span class="mt-20px text-lg font-bold">我教的课（更新中）：</span>
+        <!-- <span class="mt-20px text-lg font-bold">我教的课（更新中）：</span>
         <div class="flex flex-wrap">
           <template v-for="item in noEndCourseList" :key="item.id">
             <TeachCard class="mb-10px mr-10px" :course="item" :color-from="item.colorFrom" :color-to="item.colorTo" @click="opneDetailDialog(item.id)" />
           </template>
-        </div>
+        </div> -->
       </page-main>
     </div>
 

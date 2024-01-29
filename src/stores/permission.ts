@@ -101,7 +101,7 @@ function addPrivateIndex(clonePrivateRoutes: IPrivateRoutes[]) {
   return clonePrivateRoutes
 }
 
-export const usePermissionStore: ReturnType<typeof defineStore> = defineStore('route', () => {
+export const usePermissionStore = defineStore('route', () => {
   // 过滤完成的路由表（固定路由+动态路由）
   const routes = ref<RouteRecordRaw[]>([])
   const mainMenuActive = ref(0)

@@ -1,4 +1,3 @@
-
 type Language = 'zh-cn' | 'zh-tw' | 'en'
 type ElementSize = 'large' | 'default' | 'small'
 type LayoutMode = 'onlyTopNav' | 'onlySubSideNav' | 'mainSubSideNav' | 'topSubSideNav'

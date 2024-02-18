@@ -37,6 +37,17 @@ const topList = [
   },
 ]
 
+const freeCourseList = [
+  {
+    id: 1001,
+    colorFrom: '#FF8008',
+    colorTo: '#FFC837',
+    coverDesc: 'typescript零基础入门',
+    title: '从0开始学习typescript（前10集由于设备原因声音较小）',
+    price: '免费(已完成)',
+  },
+]
+
 const courseList = [
   {
     id: 1,
@@ -150,6 +161,58 @@ function opneDetailDialog(id: number) {
                 </div>
               </div>
             </div>
+
+            <div class="mt-2">
+              <div class="text-lg font-bold">
+                我的开源项目:
+              </div>
+              <div class="flex justify-between">
+                <div class="mt-4 w-300px rounded bg-[#f6f6f7] p-5 dark:bg-[#252529]">
+                  <div class="mb-4 flex items-center">
+                    <span class="text-lg font-bold">
+                      🔥 <a class="text-[#409eff]" href="https://gitee.com/nideweixiaonuannuande/xt-admin-vue3" target="_blank">xt-admin-vue3</a>
+                    </span>
+                  </div>
+                  <div class="text-[#3c3c43bf] dark:text-white">
+                    一款基于Vue3+Typescript Vite pinia+ element plus+unocss且超级好用的中后台管理框架
+                  </div>
+                </div>
+
+                <div class="mt-4 w-300px rounded bg-[#f6f6f7] p-5 dark:bg-[#252529]">
+                  <div class="mb-4 flex items-center">
+                    <span class="text-lg font-bold">
+                      🔥 xt-admin-react18
+                    </span>
+                  </div>
+                  <div class="text-[#3c3c43bf] dark:text-white">
+                    准备中...
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-between">
+                <div class="mt-4 w-300px rounded bg-[#f6f6f7] p-5 dark:bg-[#252529]">
+                  <div class="mb-4 flex items-center">
+                    <span class="text-lg font-bold">
+                      🎉 <a class="text-[#409eff]" href="https://gitee.com/nideweixiaonuannuande/nxtm" target="_blank">nxtm</a>
+                    </span>
+                  </div>
+                  <div class="text-[#3c3c43bf] dark:text-white">
+                    node切换源工具
+                  </div>
+                </div>
+
+                <div class="mt-4 w-300px rounded bg-[#f6f6f7] p-5 dark:bg-[#252529]">
+                  <div class="mb-4 flex items-center">
+                    <span class="text-lg font-bold">
+                      🎉 <a class="text-[#409eff]" href="https://gitee.com/nideweixiaonuannuande/unplugin-antd-resolver" target="_blank">unplugin-antd-resolver</a>
+                    </span>
+                  </div>
+                  <div class="text-[#3c3c43bf] dark:text-white">
+                    用于在 unplugin-auto-import 中实现 antd 组件的按需引入(antd5版本)。
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="ml-4 h-150px w-150px flex-shrink-0">
@@ -159,6 +222,13 @@ function opneDetailDialog(id: number) {
       </page-main>
 
       <page-main class="flex-1">
+        <span class="text-lg font-bold">免费课程：</span>
+        <div class="flex flex-wrap">
+          <template v-for="item in freeCourseList" :key="item.id">
+            <TeachCard class="mb-10px mr-10px" :course="item" :color-from="item.colorFrom" :color-to="item.colorTo" @click="opneDetailDialog(item.id)" />
+          </template>
+        </div>
+
         <span class="text-lg font-bold">我教的课（已完成）：</span>
         <div class="flex flex-wrap">
           <template v-for="item in courseList" :key="item.id">

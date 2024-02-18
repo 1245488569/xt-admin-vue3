@@ -252,6 +252,33 @@ const m: any = {
     ],
     videoLink: 'https://www.bilibili.com/video/BV1HQ4y1V7DJ/',
   },
+  1001: {
+    directoryList: [
+      '01_ts介绍',
+      '02_ts运行环境搭建',
+      '03_ts的类型介绍1',
+      '04_函数的参数与返回值类型及any类型',
+      '05_unknown和元祖和联合类型',
+      '06_交叉类型和类型别名和接口',
+      '07_类型断言',
+      '08_函数类型',
+      '09_函数的构造签名',
+      '10_函数的重载',
+      '11_ts枚举的使用',
+      '12_ts的索引签名',
+      '13_ts泛型的使用1',
+      '14_ts泛型的使用2',
+      '15_keyof的使用',
+      '16_类型映射',
+      '17_ts的其余知识',
+      '18_ts的内置类型1',
+      '19_ts的内置类型2',
+      '20_ts中类的使用1',
+      '21_ts中类的使用2',
+      '22_ts中类的使用3',
+    ],
+    videoLink: 'https://www.bilibili.com/video/BV17M411W7GK/?spm_id_from=333.999.0.0&vd_source=cb84374b498a3c0a374554582dfced70',
+  },
 }
 
 const curDetail = computed(() => {

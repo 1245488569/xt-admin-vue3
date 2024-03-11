@@ -15,21 +15,28 @@
 
 ### 如果大家觉得有用，请帮忙点下star，十分感谢
 
-### 代码地址
+### vue3版本代码地址
 1. 码云：https://gitee.com/nideweixiaonuannuande/xt-admin-vue3
 2. github：https://github.com/1245488569/xt-admin-vue3
 
-### 演示地址
-1. 常用：http://nideweixiaonuannuande.gitee.io/xt-admin-vue3/#/login
-2. 备用：https://1245488569.github.io/#/login
+### Vue3版本演示地址
+1. http://nideweixiaonuannuande.gitee.io/xt-admin-vue3/#/login
 （目前账号密码可以随便输入）
 
-### 试看连接
+### React18版本代码地址
+1. 码云：https://gitee.com/nideweixiaonuannuande/xt-admin-react18
+2. github：https://github.com/1245488569/xt-admin-react18
+
+### React18版本演示地址
+1. http://nideweixiaonuannuande.gitee.io/xt-admin-react18/#/login
+（目前账号密码可以随便输入）
+
+### Vue3版本试看连接
 1. https://pan.baidu.com/s/1MmU-ATFGI54vum_0p0dbOQ?pwd=kjht
 
 ## 特点
-1. Vue3
-2. Vite4
+1. Vue3.4
+2. Vite5
 3. Typescript5
 4. pinia
 5. element plus

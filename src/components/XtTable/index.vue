@@ -195,9 +195,7 @@ defineExpose({
               </template>
               <template #default>
                 <el-checkbox-group v-model="visiblePropList" class="filter-column">
-                  <el-checkbox v-for="(col, index) in filterColumn" :key="index" :label="col.prop">
-                    {{ col.label }}
-                  </el-checkbox>
+                  <el-checkbox v-for="(col, index) in filterColumn" :key="index" :value="col.prop" :label="col.label" />
                 </el-checkbox-group>
               </template>
             </el-popover>
@@ -212,7 +210,7 @@ defineExpose({
       >
         <el-table-column v-if="config.showSingleSelection" :width="config.selectionWidth" :align="config.align">
           <template #default="scope">
-            <el-radio v-model="tableRadio" :label="scope.$index" />
+            <el-radio v-model="tableRadio" :value="scope.$index" />
           </template>
         </el-table-column>
         <el-table-column

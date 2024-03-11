@@ -91,30 +91,11 @@ defineExpose({
             v-model="model[item.prop!]"
           >
             <template v-for="(child, i) in item.children" :key="i">
-              <template
-                v-if="
-                  [
-                    'radio',
-                    'radio-button',
-                    'checkbox',
-                    'checkbox-button',
-                  ].includes(child.type)
-                "
-              >
-                <component
-                  :is="`el-${child.type}`"
-                  :label="child.label"
-                >
-                  {{ child.value }}
-                </component>
-              </template>
-              <template v-else>
-                <component
-                  :is="`el-${child.type}`"
-                  :label="child.label"
-                  :value="child.value"
-                />
-              </template>
+              <component
+                :is="`el-${child.type}`"
+                :label="child.label"
+                :value="child.value"
+              />
             </template>
           </component>
         </el-form-item>

@@ -90,18 +90,18 @@ const options: FormOptions[] = [
     children: [
       {
         type: 'radio',
-        label: '1',
-        value: '男',
+        label: '男',
+        value: '1',
       },
       {
         type: 'radio',
-        label: '2',
-        value: '女',
+        label: '女',
+        value: '2',
       },
       {
         type: 'radio',
-        label: '3',
-        value: '未知',
+        label: '未知',
+        value: '3',
       },
     ],
   },
@@ -131,24 +131,24 @@ const options: FormOptions[] = [
     children: [
       {
         type: 'checkbox',
-        label: '1',
-        value: '足球',
+        label: '足球',
+        value: '1',
       },
       {
         type: 'checkbox',
-        label: '2',
-        value: '篮球',
+        label: '篮球',
+        value: '2',
       },
       {
         type: 'checkbox',
-        label: '3',
-        value: '排球',
+        label: '排球',
+        value: '3',
       },
     ],
   },
   {
     type: 'select',
-    value: '',
+    value: 1,
     prop: 'select',
     label: '下拉框',
     fromItemOtherAttrs: {
@@ -180,6 +180,9 @@ const options: FormOptions[] = [
     attrs: {
       clearable: true,
       onChange: selectOnchange,
+      style: {
+        width: '200px',
+      },
     },
   },
   {

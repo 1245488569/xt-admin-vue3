@@ -1,0 +1,1 @@
+import{ah as t,u as n,F as e}from"./index-CCR-krXi.js";function a(){return{generateTitle:function(n){if(!n)return"";const e=t();return e.te(n)?e.t(n):n},watchSwitchLang:function(...t){const a=n();e((()=>a.getLanguage),(()=>{t.forEach((t=>t(a.getLanguage)))}))}}}export{a as u};

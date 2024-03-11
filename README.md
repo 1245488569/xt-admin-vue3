@@ -68,7 +68,7 @@
 31. 其余的（请查看app.ts 或者 .env文件 或者assets/styles/globals/layout.scss）
 
 ## `node` 版本推荐
-最低18，推荐18或者20
+最低18，推荐20
 
 ## 使用（请一定使用pnpm）
 

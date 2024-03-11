@@ -1,6 +1,5 @@
 <script setup lang="ts">
 interface IProps {
-  modelValue: boolean
   loading?: boolean
   showCancel?: boolean
   showConfirm?: boolean
@@ -12,7 +11,7 @@ defineOptions({
   name: 'XtDialog',
 })
 
-const props = withDefaults(defineProps<IProps>(), {
+withDefaults(defineProps<IProps>(), {
   loading: false,
   showCancel: true,
   showConfirm: true,
@@ -20,17 +19,9 @@ const props = withDefaults(defineProps<IProps>(), {
   confirmButtonText: '确定',
 })
 
-const emits = defineEmits(['update:modelValue', 'cancel', 'confirm'])
+const emits = defineEmits(['cancel', 'confirm'])
 
-const value = computed({
-  get() {
-    return props.modelValue
-  },
-
-  set(value) {
-    emits('update:modelValue', value)
-  },
-})
+const model = defineModel<boolean>()
 
 function handleCancel() {
   emits('cancel')
@@ -43,7 +34,7 @@ function handleConfirm() {
 
 <template>
   <el-dialog
-    v-model="value"
+    v-model="model"
     class="xt-base-dialog"
     :close-on-click-modal="false"
     :close-on-press-escape="false"

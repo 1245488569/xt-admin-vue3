@@ -19,14 +19,16 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<{
-  modelValue: IModelValue
   type?: 'pc' | 'pca' | 'pcas'
   format?: 'code' | 'name' | 'both'
 }>(), {
   type: 'pcas',
   format: 'code',
 })
-const emit = defineEmits(['update:modelValue'])
+
+const model = defineModel<IModelValue>({
+  default: [],
+})
 
 const cascaderConfig = {
   value: 'code',
@@ -82,10 +84,10 @@ const pcasData = computed(() => {
 
 const myValue = computed({
   get: () => {
-    return anyToCode(props.modelValue)
+    return anyToCode(model.value)
   },
-  set: (value) => {
-    emit('update:modelValue', value ? codeToAny(value) : [])
+  set: (val) => {
+    model.value = val ? codeToAny(val) : []
   },
 })
 

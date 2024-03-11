@@ -5,24 +5,12 @@ defineOptions({
   name: 'IconPicker',
 })
 
-const props = withDefaults(defineProps<{
-  modelValue: string
-}>(), {})
-
-const emits = defineEmits(['update:modelValue'])
-
-const myValue = computed({
-  get() {
-    return props.modelValue
-  },
-
-  set(value) {
-    emits('update:modelValue', value)
-  },
+const model = defineModel<string>({
+  default: '',
 })
 
 // ------------------数据初始化------------------
-const activeName = ref(myValue.value.split(':')[0] || data[0].prefix)
+const activeName = ref(model.value.split(':')[0] || data[0].prefix)
 
 const pagination = ref({
   page: 1,
@@ -44,12 +32,12 @@ const currentIconList = computed(() => {
 const dialogVisible = ref(false)
 
 function chooseIcon(val: string) {
-  myValue.value = val
+  model.value = val
   dialogVisible.value = false
 }
 
 function removeIcon() {
-  myValue.value = ''
+  model.value = ''
   dialogVisible.value = false
 }
 </script>
@@ -58,11 +46,11 @@ function removeIcon() {
   <div>
     <el-icon
       class="icon-picker"
-      :class="{ empty: myValue === '' }"
+      :class="{ empty: model === '' }"
       :size="24"
       @click="dialogVisible = true"
     >
-      <svg-icon :name="myValue !== '' ? myValue : 'ep:plus'" />
+      <svg-icon :name="model !== '' ? model : 'ep:plus'" />
     </el-icon>
 
     <xt-dialog v-model="dialogVisible" width="800px" title="选择图标" :show-cancel="false" :show-confirm="false">
